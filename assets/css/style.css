@@ -1,0 +1,207 @@
+:root {
+    --bg-color: #050505;       /* Preto Profundo */
+    --footer-bg: #0a0a0a;      /* Preto Levemente mais claro para contraste */
+    --text-color: #fafafa;
+    --accent-color: #00ffcc;
+    --glass-bg: rgba(255, 255, 255, 0.05);
+    --glass-border: rgba(255, 255, 255, 0.1);
+    
+    --font-body: 'Inter', sans-serif;
+    --font-title: 'Playfair Display', serif;
+    
+    --transition-smooth: all 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+    background-color: var(--footer-bg); /* O fundo do body é a cor do footer */
+    color: var(--text-color);
+    font-family: var(--font-body);
+    overflow-x: hidden;
+    -webkit-font-smoothing: antialiased;
+}
+
+/* --- Tipografia --- */
+h1, h2, h3 { font-family: var(--font-title); font-weight: 400; }
+.italic-text { font-style: italic; color: var(--accent-color); }
+a { text-decoration: none; color: inherit; transition: color 0.3s ease; }
+a:hover { color: var(--accent-color); }
+
+.container {
+    width: 90%;
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+/* --- Navbar (Camada Superior: Z-Index 100) --- */
+.navbar {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    padding: 20px 40px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    z-index: 100; /* Sempre no topo */
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--glass-border);
+    background: rgba(5, 5, 5, 0.7);
+}
+
+.logo { font-family: var(--font-title); font-size: 1.5rem; font-weight: 700; }
+.nav-links { display: flex; gap: 40px; list-style: none; }
+.nav-links a { font-size: 0.9rem; text-transform: uppercase; letter-spacing: 1px; }
+
+/* --- Main Content (Camada do Meio: Z-Index 10) --- */
+main {
+    position: relative;
+    z-index: 10; /* Fica em cima do footer */
+    background-color: var(--bg-color); /* CRUCIAL: Fundo sólido para cobrir o footer */
+    width: 100%;
+    margin-bottom: 60vh; /* Espaço para o footer aparecer (mesma altura do footer) */
+    box-shadow: 0px 10px 50px rgba(0,0,0,0.5); /* Sombra suave no final do main */
+}
+
+/* --- Hero Section --- */
+.hero-section {
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+}
+
+.hero-title {
+    font-size: clamp(3rem, 8vw, 7rem);
+    line-height: 1.1;
+    margin-bottom: 2rem;
+}
+
+.hero-subtitle {
+    font-size: 1.1rem;
+    opacity: 0.7;
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+/* --- Work Grid --- */
+.work-section { padding: 10rem 0; }
+.work-grid {
+    display: grid;
+    grid-template-columns: repeat(12, 1fr);
+    gap: 40px;
+    margin-top: 5rem;
+}
+
+.project-card { position: relative; cursor: pointer; overflow: hidden; }
+.project-card img {
+    width: 100%;
+    height: auto;
+    display: block;
+    border-radius: 4px;
+    filter: grayscale(100%);
+    transition: var(--transition-smooth);
+}
+.project-card:hover img { filter: grayscale(0%); transform: scale(1.05); }
+
+/* Grid Spans */
+.large { grid-column: span 12; }
+.medium { grid-column: span 7; }
+.small { grid-column: span 5; }
+@media (min-width: 768px) { .large { grid-column: 2 / span 10; } }
+
+/* --- Experience Timeline --- */
+.exp-section { padding: 5rem 0 10rem 0; } /* Padding bottom extra */
+.timeline { border-left: 1px solid var(--glass-border); margin-left: 20px; padding-left: 40px; }
+.timeline-item { margin-bottom: 4rem; position: relative; }
+.timeline-item::before {
+    content: ''; position: absolute; left: -45px; top: 8px;
+    width: 10px; height: 10px; background: var(--accent-color); border-radius: 50%;
+    box-shadow: 0 0 10px var(--accent-color);
+}
+
+/* --- Footer Reveal (Camada Inferior: Z-Index 1) --- */
+.footer-reveal {
+    position: fixed; /* Fixo no fundo da tela */
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 60vh; /* Altura fixa para o efeito reveal funcionar bem */
+    z-index: 1; /* Atrás do main */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: var(--footer-bg);
+}
+
+.footer-content { text-align: center; }
+.socials { margin: 2rem 0; display: flex; gap: 20px; justify-content: center; }
+.credits { font-size: 0.8rem; opacity: 0.5; margin-top: 2rem; }
+
+/* Helpers de Animação */
+.char { display: inline-block; }
+.magnetic-btn { display: inline-block; }
+
+/* --- MEDIA QUERIES (Adicione no final do style.css) --- */
+
+@media (max-width: 768px) {
+    /* 1. Ajuste da Navbar para Mobile */
+    .navbar {
+        padding: 15px 20px; /* Menos padding lateral */
+        justify-content: center; /* Centraliza tudo se quebrar linha */
+        flex-direction: column; /* Empilha Logo e Links se necessário */
+        gap: 15px;
+    }
+
+    .nav-links {
+        gap: 20px; /* Diminui o espaço entre os links */
+        font-size: 0.8rem; /* Fonte levemente menor */
+        padding: 0;
+    }
+
+    /* 2. Redução de Espaços Gigantes (Paddings) */
+    .hero-title {
+        font-size: 3rem; /* Tamanho fixo legível para mobile */
+    }
+    
+    .work-section {
+        padding: 5rem 0; /* De 10rem para 5rem */
+    }
+    
+    .work-grid {
+        gap: 30px; /* Menos espaço entre projetos */
+        margin-top: 3rem;
+    }
+
+    .exp-section {
+        padding: 3rem 0 8rem 0; /* Ajuste para o footer reveal não quebrar */
+    }
+
+    /* 3. Ajuste da Linha do Tempo */
+    .timeline {
+        margin-left: 10px;
+        padding-left: 25px;
+    }
+    
+    .timeline-item::before {
+        left: -30px; /* Ajusta a bolinha para a nova margem */
+    }
+    
+    /* 4. Footer Reveal no Mobile */
+    /* Em telas muito pequenas, o efeito reveal pode ser bugado devido à barra de navegação do navegador. 
+       Muitos sites Awwwards desativam o reveal no mobile e deixam estático. */
+    .footer-reveal {
+        position: relative; /* Volta ao fluxo normal */
+        height: auto;
+        min-height: 50vh;
+        z-index: 10;
+    }
+    
+    main {
+        margin-bottom: 0; /* Remove o espaço reservado */
+        box-shadow: none;
+    }
+}
