@@ -205,3 +205,145 @@ main {
         box-shadow: none;
     }
 }
+
+
+
+/* --- PÁGINA DE PROJETO (Case Study) --- */
+
+.project-page {
+    background-color: var(--bg-color);
+}
+
+/* Botão Voltar Fixo */
+.back-btn {
+    position: fixed;
+    top: 40px;
+    left: 40px;
+    z-index: 100;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    color: var(--text-color);
+    font-size: 0.9rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    background: rgba(0,0,0,0.5);
+    padding: 10px 20px;
+    border-radius: 30px;
+    backdrop-filter: blur(5px);
+    border: 1px solid var(--glass-border);
+}
+
+/* Hero do Projeto */
+.project-hero {
+    padding-top: 20vh;
+    padding-bottom: 5rem;
+}
+
+.project-title {
+    font-size: clamp(4rem, 10vw, 8rem);
+    line-height: 1;
+    margin-bottom: 2rem;
+}
+
+.project-tagline {
+    font-size: 1.5rem;
+    max-width: 600px;
+    margin-bottom: 4rem;
+    opacity: 0.8;
+}
+
+/* Meta Dados (Role, Year, Stack) */
+.project-meta {
+    display: flex;
+    gap: 4rem;
+    margin-bottom: 5rem;
+    border-top: 1px solid var(--glass-border);
+    padding-top: 2rem;
+}
+
+.meta-item span {
+    display: block;
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    opacity: 0.5;
+    margin-bottom: 0.5rem;
+}
+
+.meta-item p {
+    font-size: 1.1rem;
+}
+
+/* Imagem Gigante */
+.hero-image img {
+    width: 100%;
+    height: 80vh;
+    object-fit: cover;
+    border-radius: 8px;
+}
+
+/* Grid de Informações */
+.project-info { padding: 5rem 0; }
+
+.info-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 40px;
+}
+
+.info-block h3 {
+    font-size: 2rem;
+    margin-bottom: 1.5rem;
+    color: var(--accent-color);
+}
+
+.info-block p {
+    font-size: 1.1rem;
+    line-height: 1.6;
+    opacity: 0.8;
+}
+
+/* Galeria */
+.project-gallery { padding-bottom: 5rem; }
+.gallery-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+}
+
+.gallery-grid img {
+    width: 100%;
+    height: auto;
+    border-radius: 4px;
+    transition: transform 0.5s ease;
+}
+
+.gallery-grid img:hover { transform: scale(1.02); }
+.span-2 { grid-column: span 2; } /* Imagem ocupa largura total */
+
+/* Link Próximo Projeto */
+.next-project {
+    padding: 10rem 0;
+    text-align: center;
+    background: #0a0a0a;
+}
+
+.next-link {
+    display: block;
+    font-family: var(--font-title);
+    font-size: 5rem;
+    margin-top: 1rem;
+    transition: color 0.3s;
+}
+
+.next-link:hover { color: var(--accent-color); font-style: italic; }
+
+/* Mobile Responsivo */
+@media (max-width: 768px) {
+    .project-meta { flex-direction: column; gap: 2rem; }
+    .info-grid { grid-template-columns: 1fr; }
+    .gallery-grid { grid-template-columns: 1fr; }
+    .span-2 { grid-column: span 1; }
+    .hero-image img { height: 50vh; }
+    .back-btn { top: 20px; left: 20px; padding: 8px 15px; }
+}
