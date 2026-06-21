@@ -1,8 +1,8 @@
 import React from 'react';
 
-export default function Card({ children, className = '', glow = false, ...props }) {
+export default function Card({ children, className = '', glow = false, as: Tag = 'div', ...props }) {
   return (
-    <div
+    <Tag
       className={`
         relative bg-[#0f0f12] border border-white/5 p-6
         hover:border-purple-500/30 transition-all duration-300
@@ -12,6 +12,6 @@ export default function Card({ children, className = '', glow = false, ...props 
       {...props}
     >
       {children}
-    </div>
+    </Tag>
   );
 }

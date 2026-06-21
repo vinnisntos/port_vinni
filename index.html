@@ -1,13 +1,43 @@
 <!doctype html>
-<html lang="en">
+<html lang="pt-BR">
   <head>
     <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="icon" type="image/svg+xml" href="./favicon.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>vinnisantos-v2</title>
+    <meta name="theme-color" content="#09090B" />
+    <meta name="color-scheme" content="dark" />
+
+    <!-- SEO primário -->
+    <title>Vinnicius Santos · Full Stack Developer — Hub de Utilitários</title>
+    <meta
+      name="description"
+      content="Portfólio e hub de utilitários para desenvolvedores de Vinnicius Santos: validadores de CPF, CNPJ, e-mail, telefone, busca de CEP e gerador de dados fake."
+    />
+    <meta name="author" content="Vinnicius Santos" />
+    <meta name="robots" content="index,follow" />
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="website" />
+    <meta property="og:locale" content="pt_BR" />
+    <meta property="og:title" content="Vinnicius Santos · Full Stack Developer" />
+    <meta
+      property="og:description"
+      content="Portfólio pessoal + suíte de ferramentas para devs (CPF, CNPJ, CEP, e-mail, telefone, dados fake)."
+    />
+    <meta property="og:site_name" content="Santos Soluções" />
+
+    <!-- Preconnect para a única API externa consumida (ViaCEP) -->
+    <link rel="preconnect" href="https://viacep.com.br" crossorigin />
+
+    <!-- Previne flash branco no dark mode antes do CSS carregar -->
+    <style>
+      html, body { background-color: #09090B; color: #fff; }
+    </style>
   </head>
   <body>
     <div id="root"></div>
+    <!-- Restaura a rota vinda do 404.html em SPAs no GitHub Pages -->
+    <script type="text/javascript" defer src="/spa-redirect.js"></script>
     <script type="module" src="/src/main.jsx"></script>
   </body>
 </html>

@@ -1,0 +1,52 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Redirecionando…</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" type="image/svg+xml" href="./favicon.svg" />
+    <style>
+      html, body {
+        background-color: #09090B;
+        color: #fff;
+        font-family: ui-monospace, "JetBrains Mono", monospace;
+        margin: 0;
+        height: 100%;
+        display: grid;
+        place-items: center;
+      }
+      .hint {
+        opacity: 0.6;
+        font-size: 12px;
+        letter-spacing: 0.2em;
+        text-transform: uppercase;
+      }
+    </style>
+
+    <!--
+      Técnica SPA GitHub Pages:
+      1. Usuário acessa /tools/cpf diretamente.
+      2. GH Pages não encontra o arquivo e serve 404.html.
+      3. Este script captura o caminho atual, transforma em query string
+         (?p=/tools/cpf) e redireciona para index.html, onde o React Router
+         lê a rota e renderiza a página correta.
+      Detalhes: https://github.com/rafgraph/spa-github-pages
+    -->
+    <script>
+      (function () {
+        var pathSegmentsToKeep = 1; // "port_vinni" é o segmento do repo
+        var l = window.location;
+        l.replace(
+          l.protocol + '//' + l.hostname + (l.port ? ':' + l.port : '') +
+          l.pathname.split('/').slice(0, 1 + pathSegmentsToKeep).join('/') + '/?p=/' +
+          l.pathname.slice(1).split('/').slice(pathSegmentsToKeep).join('/').replace(/&/g, '~and~') +
+          (l.search ? '&q=' + l.search.slice(1).replace(/&/g, '~and~') : '') +
+          l.hash
+        );
+      })();
+    </script>
+  </head>
+  <body>
+    <p class="hint">[ redirecting // please wait ]</p>
+  </body>
+</html>
