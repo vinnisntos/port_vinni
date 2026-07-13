@@ -17,11 +17,6 @@ permissions:
   pages: write
   id-token: write
 
-# Para que a action de upload saiba que é um Pages deploy.
-environment:
-  name: github-pages
-  url: ${{ steps.deployment.outputs.page_url }}
-
 jobs:
   build:
     runs-on: ubuntu-latest
