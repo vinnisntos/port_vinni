@@ -17,6 +17,7 @@ import {
   FaGraduationCap,
   FaCertificate,
   FaLanguage,
+  FaDownload,
 } from 'react-icons/fa';
 import {
   SiPostgresql,
@@ -29,6 +30,9 @@ import {
 import { TbBrandCSharp } from 'react-icons/tb';
 import Card from '../components/ui/Card';
 import PageHeader from '../components/ui/PageHeader';
+import Button from '../components/ui/Button';
+
+const RESUME_URL = `${import.meta.env.BASE_URL}curriculo-vinnicius-santos.docx`;
 
 const skillGroups = [
   {
@@ -201,6 +205,17 @@ export default function About() {
                   </dd>
                 </div>
               </dl>
+
+              <Button
+                as="a"
+                href={RESUME_URL}
+                download="Vinnicius_Gabriel_Matos_dos_Santos_Curriculo.docx"
+                variant="primary"
+                size="md"
+                className="w-full mb-3"
+              >
+                <FaDownload aria-hidden="true" /> Baixar Currículo
+              </Button>
 
               <div className="flex gap-3">
                 <a

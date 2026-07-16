@@ -6,6 +6,7 @@ export default function Button({
   type = 'button',
   disabled = false,
   className = '',
+  as: Tag = 'button',
   ...props
 }) {
   const baseStyles =
@@ -27,15 +28,17 @@ export default function Button({
     lg: 'px-8 py-4 text-xs',
   };
 
+  const buttonOnlyProps =
+    Tag === 'button' ? { type, disabled } : {};
+
   return (
-    <button
-      type={type}
-      disabled={disabled}
+    <Tag
       onClick={onClick}
       className={`${baseStyles} ${variants[variant]} ${sizes[size]} ${className}`}
+      {...buttonOnlyProps}
       {...props}
     >
       {children}
-    </button>
+    </Tag>
   );
 }
