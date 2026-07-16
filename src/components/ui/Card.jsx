@@ -1,5 +1,3 @@
-import React from 'react';
-
 export default function Card({ children, className = '', glow = false, as: Tag = 'div', ...props }) {
   return (
     <Tag

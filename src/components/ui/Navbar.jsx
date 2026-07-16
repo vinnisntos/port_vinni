@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Link, NavLink, useLocation } from 'react-router-dom';
+import { Link, NavLink } from 'react-router-dom';
 import { FaGithub } from 'react-icons/fa';
 
 const links = [
@@ -9,7 +9,6 @@ const links = [
 ];
 
 export default function Navbar() {
-  const location = useLocation();
   const [mobileOpen, setMobileOpen] = useState(false);
 
   // Fecha o menu mobile automaticamente ao trocar de rota

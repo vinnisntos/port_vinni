@@ -51,6 +51,9 @@ export function isValidEmail(email) {
 export function isValidPhone(phone) {
   if (!phone) return false;
   phone = phone.replace(/[^\d]/g, '');
+  const ddd = parseInt(phone.slice(0, 2), 10);
+  if (ddd < 11 || ddd > 99) return false;
+
   if (phone.length === 10) {
     // Fixo: (XX) XXXX-XXXX
     return /^[2-5]\d{7}$/.test(phone.slice(2));

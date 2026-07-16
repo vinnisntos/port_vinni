@@ -14,6 +14,33 @@ import Button from '../../components/ui/Button';
 import PageHeader from '../../components/ui/PageHeader';
 import { generateFakePerson } from '../../utils/generators';
 
+function Field({ icon: Icon, label, value, field, copiedField, onCopy }) {
+  return (
+    <div className="p-3 bg-white/5 rounded-lg">
+      <div className="flex items-center justify-between mb-1">
+        <span className="text-[10px] text-gray-500 uppercase flex items-center gap-2">
+          <Icon className="text-purple-500 w-3 h-3" aria-hidden="true" /> {label}
+        </span>
+        {value && (
+          <button
+            type="button"
+            onClick={() => onCopy(field, value)}
+            className="text-gray-400 hover:text-purple-400 transition-colors p-1"
+            aria-label={`Copiar ${label}`}
+          >
+            {copiedField === field ? (
+              <FaCheck className="text-green-400 w-3 h-3" />
+            ) : (
+              <FaCopy className="w-3 h-3" />
+            )}
+          </button>
+        )}
+      </div>
+      <p className="text-white text-sm font-mono">{value || '—'}</p>
+    </div>
+  );
+}
+
 export default function FakeDataGenerator() {
   const [data, setData] = useState(null);
   const [copiedField, setCopiedField] = useState(null);
@@ -44,31 +71,6 @@ Nascimento: ${data.birthDate}`;
       setTimeout(() => setCopiedField(null), 2000);
     }
   };
-
-  const Field = ({ icon: Icon, label, value, field }) => (
-    <div className="p-3 bg-white/5 rounded-lg">
-      <div className="flex items-center justify-between mb-1">
-        <span className="text-[10px] text-gray-500 uppercase flex items-center gap-2">
-          <Icon className="text-purple-500 w-3 h-3" aria-hidden="true" /> {label}
-        </span>
-        {value && (
-          <button
-            type="button"
-            onClick={() => handleCopy(field, value)}
-            className="text-gray-400 hover:text-purple-400 transition-colors p-1"
-            aria-label={`Copiar ${label}`}
-          >
-            {copiedField === field ? (
-              <FaCheck className="text-green-400 w-3 h-3" />
-            ) : (
-              <FaCopy className="w-3 h-3" />
-            )}
-          </button>
-        )}
-      </div>
-      <p className="text-white text-sm font-mono">{value || '—'}</p>
-    </div>
-  );
 
   return (
     <div className="pt-24 pb-12 max-w-3xl mx-auto">
@@ -118,12 +120,12 @@ Nascimento: ${data.birthDate}`;
               </div>
 
               <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
-                <Field icon={FaEnvelope} label="E-mail" value={data.email} field="email" />
-                <Field icon={FaIdCard} label="CPF" value={data.cpf} field="cpf" />
-                <Field icon={FaPhone} label="Telefone" value={data.phone} field="phone" />
-                <Field icon={FaMapMarkerAlt} label="CEP" value={data.cep} field="cep" />
-                <Field icon={FaMapMarkerAlt} label="Endereço" value={data.address} field="address" />
-                <Field icon={FaIdCard} label="Nascimento" value={data.birthDate} field="birthDate" />
+                <Field icon={FaEnvelope} label="E-mail" value={data.email} field="email" copiedField={copiedField} onCopy={handleCopy} />
+                <Field icon={FaIdCard} label="CPF" value={data.cpf} field="cpf" copiedField={copiedField} onCopy={handleCopy} />
+                <Field icon={FaPhone} label="Telefone" value={data.phone} field="phone" copiedField={copiedField} onCopy={handleCopy} />
+                <Field icon={FaMapMarkerAlt} label="CEP" value={data.cep} field="cep" copiedField={copiedField} onCopy={handleCopy} />
+                <Field icon={FaMapMarkerAlt} label="Endereço" value={data.address} field="address" copiedField={copiedField} onCopy={handleCopy} />
+                <Field icon={FaIdCard} label="Nascimento" value={data.birthDate} field="birthDate" copiedField={copiedField} onCopy={handleCopy} />
               </div>
             </div>
           )}

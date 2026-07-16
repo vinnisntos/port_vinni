@@ -1,55 +1,128 @@
 import {
-  FaReact,
-  FaNodeJs,
   FaGitAlt,
-  FaDocker,
-  FaPython,
   FaGithub,
   FaLinkedin,
+  FaDocker,
+  FaTerminal,
+  FaPython,
+  FaDatabase,
+  FaJs,
+  FaPalette,
+  FaRobot,
+  FaServer,
+  FaMicrosoft,
+  FaMapMarkerAlt,
+  FaPhoneAlt,
+  FaBriefcase,
+  FaGraduationCap,
+  FaCertificate,
+  FaLanguage,
 } from 'react-icons/fa';
 import {
   SiPostgresql,
-  SiTailwindcss,
-  SiVite,
   SiTypescript,
+  SiDotnet,
+  SiFlask,
+  SiDjango,
+  SiSupabase,
 } from 'react-icons/si';
 import { TbBrandCSharp } from 'react-icons/tb';
 import Card from '../components/ui/Card';
 import PageHeader from '../components/ui/PageHeader';
 
-const skills = [
-  { name: 'React 19', icon: FaReact, level: 90, color: 'text-cyan-400' },
-  { name: 'C# .NET', icon: TbBrandCSharp, level: 90, color: 'text-purple-400' },
-  { name: 'TypeScript', icon: SiTypescript, level: 65, color: 'text-blue-400' },
-  { name: 'PostgreSQL', icon: SiPostgresql, level: 75, color: 'text-yellow-400' },
-  { name: 'Tailwind CSS', icon: SiTailwindcss, level: 90, color: 'text-cyan-400' },
-  { name: 'Node.js', icon: FaNodeJs, level: 80, color: 'text-green-400' },
-  { name: 'Git', icon: FaGitAlt, level: 70, color: 'text-orange-400' },
-  { name: 'Docker', icon: FaDocker, level: 40, color: 'text-blue-400' },
-  { name: 'Python', icon: FaPython, level: 70, color: 'text-yellow-400' },
-  { name: 'Vite', icon: SiVite, level: 65, color: 'text-purple-400' },
+const skillGroups = [
+  {
+    title: 'Ferramentas & Controle de Versão',
+    items: [
+      { name: 'Git', icon: FaGitAlt },
+      { name: 'GitHub', icon: FaGithub },
+      { name: 'Docker', icon: FaDocker },
+      { name: 'CLI', icon: FaTerminal },
+    ],
+  },
+  {
+    title: 'Linguagens de Programação',
+    items: [
+      { name: 'C# (.NET)', icon: TbBrandCSharp },
+      { name: 'Python', icon: FaPython },
+      { name: 'JavaScript', icon: FaJs },
+      { name: 'TypeScript', icon: SiTypescript },
+      { name: 'SQL', icon: FaDatabase },
+    ],
+  },
+  {
+    title: 'Frameworks & Desenvolvimento Web',
+    items: [
+      { name: 'ASP.NET Core (Razor Pages)', icon: SiDotnet },
+      { name: 'Flask', icon: SiFlask },
+      { name: 'Django', icon: SiDjango },
+    ],
+  },
+  {
+    title: 'Banco de Dados & Cloud',
+    items: [
+      { name: 'PostgreSQL', icon: SiPostgresql },
+      { name: 'SQL Server', icon: FaServer },
+      { name: 'Supabase', icon: SiSupabase },
+      { name: 'Azure', icon: FaMicrosoft },
+    ],
+  },
+  {
+    title: 'Interfaces',
+    items: [{ name: 'UX/UI · Interfaces Responsivas', icon: FaPalette }],
+  },
+  {
+    title: 'IA & Engenharia de Prompt',
+    items: [
+      {
+        name: 'ChatGPT, Claude AI/Claude Code, Gemini',
+        icon: FaRobot,
+      },
+    ],
+  },
 ];
 
-const competencies = [
+const experience = [
   {
-    title: 'Desenvolvimento Full Stack',
-    description:
-      'Criação de aplicações web completas, do frontend ao backend, com foco em performance e escalabilidade.',
+    company: 'D.S.S. Distribuidora',
+    role: 'Auxiliar de Vendas Externas Júnior',
+    period: '11/2024 — 03/2026',
+    bullets: [
+      'Atuação direta no modelo de negócios B2B, com atendimento consultivo, cobrança e negociação com clientes corporativos.',
+      'Responsável pela inteligência de roteirização e logística bruta, otimizando o fluxo de entregas e distribuição de mercadorias.',
+      'Controle e manuseio de valores financeiros, com auditoria diária de fluxos de caixa operacionais.',
+      'Manutenção corretiva e preventiva de equipamentos refrigerados de alta rotatividade.',
+    ],
   },
   {
-    title: 'APIs RESTful',
-    description:
-      'Design e implementação de APIs robustas e bem documentadas para integração entre sistemas.',
+    company: 'MDA Do Brasil — Indústria e Comércio',
+    role: 'Alimentador de Linha de Produção',
+    period: '01/2024 — 03/2024',
+    bullets: [
+      'Inspeção visual e controle de qualidade rigoroso de peças usinadas de alta precisão.',
+      'Monitoramento constante de sistemas de fluidos refrigerantes e manutenção preventiva/corretiva de maquinários industriais.',
+      'Gestão de resíduos e organização de zonas críticas de produção seguindo normas de segurança e eficiência.',
+    ],
+  },
+];
+
+const courses = [
+  {
+    name: 'Introduction to Computer Science with Python (CS50P)',
+    org: 'Harvard University / EdX',
+    year: '2024',
   },
   {
-    title: 'Banco de Dados',
-    description:
-      'Modelagem, otimização e gerenciamento de bancos de dados relacionais e não-relacionais.',
+    name: 'Introduction to Databases with SQL (CS50SQL)',
+    org: 'Harvard University / EdX',
+    year: 'Em andamento',
   },
+  { name: 'Java Fundamentos', org: 'FIAP', year: '2026' },
+  { name: 'Metrologia', org: 'SENAI', year: '2024' },
   {
-    title: 'UX/UI Design',
-    description:
-      'Criação de interfaces intuitivas e acessíveis, seguindo boas práticas de design moderno.',
+    name: 'Programação Orientada a Objetos (POO) com C#',
+    org: 'Udemy',
+    year: 'Em andamento',
   },
 ];
 
@@ -65,7 +138,7 @@ const stackDetails = [
 export default function About() {
   return (
     <div className="pt-24 pb-12">
-      <PageHeader tag="[ sobre // desenvolvedor ]" title="SOBRE" accent="MIM" />
+      <PageHeader tag="[ sobre // estudante-dev ]" title="SOBRE" accent="MIM" />
 
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
         {/* Card de perfil — sticky em telas grandes */}
@@ -79,18 +152,55 @@ export default function About() {
                 <span className="text-4xl font-black text-white">VS</span>
               </div>
 
-              <h2 className="text-2xl font-bold text-white mb-2">
+              <h2 className="text-2xl font-bold text-white mb-1">
                 Vinnicius Santos
               </h2>
+              <p className="text-gray-500 text-xs mb-3">
+                Vinnicius Gabriel Matos dos Santos
+              </p>
               <p className="text-purple-400 font-mono text-sm mb-4">
-                Full Stack Developer
+                Backend / Fullstack Jr. — Estágio
               </p>
 
               <p className="text-muted text-sm leading-relaxed mb-6">
-                Desenvolvedor apaixonado por criar soluções reais e eficientes.
-                Especialista em React e C# .NET, com foco em entregar
-                experiências de qualidade que resolvem problemas do mundo real.
+                Estudante de Análise e Desenvolvimento de Sistemas com base
+                sólida em lógica de programação, arquitetura de sistemas e
+                foco em backend. Experiência prática com C#, Python e bancos
+                SQL, somada à vivência em ambientes industriais e comerciais
+                que trouxe forte visão de processos de negócio, logística e
+                resolução de problemas.
               </p>
+
+              <dl className="w-full space-y-2 mb-6 text-left">
+                <div className="flex items-center gap-2 text-xs text-muted">
+                  <FaMapMarkerAlt
+                    className="text-purple-500 flex-shrink-0"
+                    aria-hidden="true"
+                  />
+                  <dd>Sorocaba — SP</dd>
+                </div>
+                <div className="flex items-center gap-2 text-xs text-muted">
+                  <FaPhoneAlt
+                    className="text-purple-500 flex-shrink-0"
+                    aria-hidden="true"
+                  />
+                  <dd>
+                    <a
+                      href="tel:+5515920022260"
+                      className="hover:text-purple-400 transition-colors"
+                    >
+                      (15) 92002-2260
+                    </a>{' '}
+                    ·{' '}
+                    <a
+                      href="tel:+5515981636193"
+                      className="hover:text-purple-400 transition-colors"
+                    >
+                      (15) 98163-6193
+                    </a>
+                  </dd>
+                </div>
+              </dl>
 
               <div className="flex gap-3">
                 <a
@@ -124,86 +234,181 @@ export default function About() {
             </h3>
             <div className="space-y-4 text-muted leading-relaxed">
               <p>
-                Comecei minha jornada na programação explorando as possibilidades
-                da web. O que começou como curiosidade sobre como sites funcionavam
-                se transformou em uma carreira dedicada a construir soluções
-                digitais.
+                Antes de entrar para a área de tecnologia, passei por
+                ambientes industriais e comerciais bem exigentes — de linha
+                de produção a vendas B2B, passando por logística, controle
+                financeiro e atendimento consultivo a clientes corporativos.
+                Essa vivência me deu uma visão prática de processos de
+                negócio e resolução de problemas que levo comigo para o
+                desenvolvimento de software.
               </p>
               <p>
-                Atualmente trabalho como Desenvolvedor Full Stack, focando em
-                criar aplicações que unem tecnologia de ponta com usabilidade
-                excepcional. Minha stack principal envolve React no frontend e
-                C# .NET no backend, com PostgreSQL como banco de dados.
+                Hoje sou estudante de{' '}
+                <span className="text-purple-400">
+                  Análise e Desenvolvimento de Sistemas
+                </span>{' '}
+                na UNIP e busco uma oportunidade de estágio ou vaga júnior
+                com foco em backend/fullstack. Tenho experiência prática
+                criando soluções e automações com{' '}
+                <span className="text-purple-400">C#</span>,{' '}
+                <span className="text-purple-400">Python</span> e bancos de
+                dados SQL, além de estar me aprofundando em JavaScript/
+                TypeScript e boas práticas de UX/UI.
               </p>
               <p>
                 Este portfólio foi construído com{' '}
                 <span className="text-purple-400">React 19</span> e{' '}
-                <span className="text-purple-400">Tailwind CSS v4</span>,
-                utilizando as tecnologias mais modernas do ecossistema. Cada
+                <span className="text-purple-400">Tailwind CSS v4</span> como
+                forma de colocar em prática o que venho estudando — cada
                 ferramenta aqui presente foi desenvolvida para demonstrar
-                habilidades práticas e resolver necessidades reais de
+                habilidades reais e resolver necessidades práticas de
                 desenvolvedores.
               </p>
             </div>
           </Card>
 
-          {/* Skills */}
+          {/* Competências Técnicas */}
           <Card>
             <h3 className="text-xl font-bold text-white mb-6 flex items-center gap-3">
               <span className="text-purple-500" aria-hidden="true">//</span>
               Competências Técnicas
             </h3>
-            <ul className="grid grid-cols-1 sm:grid-cols-2 gap-4 list-none">
-              {skills.map((skill) => (
-                <li key={skill.name} className="flex items-center gap-3">
-                  <skill.icon
-                    className={`w-6 h-6 ${skill.color} flex-shrink-0`}
-                    aria-hidden="true"
-                  />
-                  <div className="flex-1 min-w-0">
-                    <div className="flex justify-between mb-1">
-                      <span className="text-sm text-white">{skill.name}</span>
-                      <span className="text-xs text-gray-500 font-mono">
-                        {skill.level}%
+            <div className="space-y-6">
+              {skillGroups.map((group) => (
+                <div key={group.title}>
+                  <h4 className="text-[11px] font-mono text-gray-500 uppercase tracking-widest mb-3">
+                    {group.title}
+                  </h4>
+                  <ul className="flex flex-wrap gap-2 list-none">
+                    {group.items.map((skill) => (
+                      <li
+                        key={skill.name}
+                        className="flex items-center gap-2 px-3 py-2 bg-white/5 border border-white/5 rounded-lg text-sm text-white"
+                      >
+                        <skill.icon
+                          className="text-purple-400 flex-shrink-0"
+                          aria-hidden="true"
+                        />
+                        {skill.name}
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              ))}
+            </div>
+          </Card>
+
+          {/* Experiência Profissional */}
+          <Card>
+            <h3 className="text-xl font-bold text-white mb-6 flex items-center gap-3">
+              <FaBriefcase className="text-purple-500" aria-hidden="true" />
+              Experiência Profissional
+            </h3>
+            <ol className="space-y-6 list-none">
+              {experience.map((job) => (
+                <li
+                  key={job.company}
+                  className="border-l-2 border-purple-500/30 pl-4"
+                >
+                  <div className="flex flex-col sm:flex-row sm:items-baseline sm:justify-between gap-1 mb-2">
+                    <h4 className="text-white font-semibold">
+                      {job.role}{' '}
+                      <span className="text-purple-400 font-normal">
+                        · {job.company}
                       </span>
-                    </div>
-                    <div
-                      className="h-1.5 bg-white/5 rounded-full overflow-hidden"
-                      role="progressbar"
-                      aria-valuenow={skill.level}
-                      aria-valuemin={0}
-                      aria-valuemax={100}
-                      aria-label={`${skill.name}: ${skill.level}%`}
-                    >
-                      <div
-                        className="h-full bg-gradient-to-r from-purple-600 to-purple-400 rounded-full"
-                        style={{ width: `${skill.level}%` }}
-                      />
-                    </div>
+                    </h4>
+                    <span className="text-xs text-gray-500 font-mono whitespace-nowrap">
+                      {job.period}
+                    </span>
                   </div>
+                  <ul className="space-y-1.5 list-none">
+                    {job.bullets.map((b) => (
+                      <li
+                        key={b}
+                        className="text-sm text-muted leading-relaxed flex gap-2"
+                      >
+                        <span className="text-purple-500 flex-shrink-0" aria-hidden="true">
+                          →
+                        </span>
+                        {b}
+                      </li>
+                    ))}
+                  </ul>
+                </li>
+              ))}
+            </ol>
+          </Card>
+
+          {/* Formação Acadêmica */}
+          <Card>
+            <h3 className="text-xl font-bold text-white mb-4 flex items-center gap-3">
+              <FaGraduationCap className="text-purple-500" aria-hidden="true" />
+              Formação Acadêmica
+            </h3>
+            <div>
+              <h4 className="text-white font-semibold">
+                Tecnólogo em Análise e Desenvolvimento de Sistemas
+              </h4>
+              <p className="text-purple-400 text-sm mb-1">
+                Universidade Paulista (UNIP)
+              </p>
+              <p className="text-sm text-muted">
+                Previsão de conclusão: fev/2027 — cursando o 3º semestre
+                (período noturno)
+              </p>
+            </div>
+          </Card>
+
+          {/* Cursos e Certificações */}
+          <Card>
+            <h3 className="text-xl font-bold text-white mb-4 flex items-center gap-3">
+              <FaCertificate className="text-purple-500" aria-hidden="true" />
+              Cursos e Certificações
+            </h3>
+            <ul className="space-y-3 list-none">
+              {courses.map((course) => (
+                <li
+                  key={course.name}
+                  className="flex items-start justify-between gap-4 pb-3 border-b border-white/5 last:border-0 last:pb-0"
+                >
+                  <div>
+                    <p className="text-sm text-white">{course.name}</p>
+                    <p className="text-xs text-gray-500">{course.org}</p>
+                  </div>
+                  <span className="text-xs text-purple-400 font-mono whitespace-nowrap">
+                    {course.year}
+                  </span>
                 </li>
               ))}
             </ul>
           </Card>
 
-          {/* Competências */}
+          {/* Idiomas */}
           <Card>
-            <h3 className="text-xl font-bold text-white mb-6 flex items-center gap-3">
-              <span className="text-purple-500" aria-hidden="true">//</span>
-              Áreas de Atuação
+            <h3 className="text-xl font-bold text-white mb-4 flex items-center gap-3">
+              <FaLanguage className="text-purple-500" aria-hidden="true" />
+              Idiomas
             </h3>
-            <ul className="grid grid-cols-1 sm:grid-cols-2 gap-4 list-none">
-              {competencies.map((item) => (
-                <li
-                  key={item.title}
-                  className="p-4 bg-white/5 border border-white/5 rounded-lg"
-                >
-                  <h4 className="text-white font-semibold mb-2">{item.title}</h4>
-                  <p className="text-sm text-muted leading-relaxed">
-                    {item.description}
-                  </p>
-                </li>
-              ))}
+            <ul className="space-y-3 list-none">
+              <li>
+                <span className="text-white font-semibold">Inglês</span>
+                <span className="text-purple-400 text-xs font-mono ml-2 uppercase">
+                  Intermediário
+                </span>
+                <p className="text-sm text-muted leading-relaxed mt-1">
+                  Excelente compreensão de leitura técnica, documentações de
+                  APIs, código e termos de tecnologia. Boa capacidade de
+                  comunicação e escrita.
+                </p>
+              </li>
+              <li>
+                <span className="text-white font-semibold">Latim</span>
+                <p className="text-sm text-muted leading-relaxed mt-1">
+                  Conhecimento de termos e estruturas linguísticas
+                  fundamentais aplicadas à compreensão etimológica e lógica
+                  estrutural de idiomas derivados.
+                </p>
+              </li>
             </ul>
           </Card>
 

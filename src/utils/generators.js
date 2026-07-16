@@ -12,8 +12,8 @@ function randomDigits(n) {
   return Array.from({ length: n }, () => randomDigit()).join('');
 }
 
-function generateCPFDigit(sum, weight) {
-  let digit = 11 - (sum % 11);
+function generateCPFDigit(sum) {
+  const digit = 11 - (sum % 11);
   return digit >= 10 ? 0 : digit;
 }
 
@@ -22,12 +22,12 @@ export function generateCPF(formatted = true) {
 
   let sum1 = 0;
   for (let i = 0; i < 9; i++) sum1 += parseInt(base[i]) * (10 - i);
-  const d1 = generateCPFDigit(sum1, 10);
+  const d1 = generateCPFDigit(sum1);
 
   let sum2 = 0;
   for (let i = 0; i < 9; i++) sum2 += parseInt(base[i]) * (11 - i);
   sum2 += d1 * 2;
-  const d2 = generateCPFDigit(sum2, 11);
+  const d2 = generateCPFDigit(sum2);
 
   const cpf = base + d1 + d2;
   return formatted ? formatCPF(cpf) : cpf;
@@ -39,13 +39,13 @@ export function generateCNPJ(formatted = true) {
   const weights1 = [5, 4, 3, 2, 9, 8, 7, 6, 5, 4, 3, 2];
   let sum1 = 0;
   for (let i = 0; i < 12; i++) sum1 += parseInt(base[i]) * weights1[i];
-  const d1 = generateCPFDigit(sum1, 12);
+  const d1 = generateCPFDigit(sum1);
 
   const weights2 = [6, 5, 4, 3, 2, 9, 8, 7, 6, 5, 4, 3, 2];
   let sum2 = 0;
   for (let i = 0; i < 12; i++) sum2 += parseInt(base[i]) * weights2[i];
   sum2 += d1 * 2;
-  const d2 = generateCPFDigit(sum2, 13);
+  const d2 = generateCPFDigit(sum2);
 
   const cnpj = base + d1 + d2;
   return formatted ? formatCNPJ(cnpj) : cnpj;
