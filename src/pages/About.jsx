@@ -88,6 +88,18 @@ const skillGroups = [
 
 const experience = [
   {
+    company: 'PendurAi',
+    role: 'Desenvolvedor Full Stack — SaaS de Gestão para Adegas e Mercados',
+    period: '07/2026 — Atual',
+    bullets: [
+      'SaaS multi-tenant de PDV e ERP, com isolamento de dados por loja (tenant_id), painel de SuperAdmin e licenciamento com bloqueio automático de acesso suspenso, cancelado ou expirado.',
+      'PDV completo com venda por código de barras ou nome, atalhos de teclado, comandas por mesa e transação atômica (estoque + venda + ledger em uma única operação).',
+      'Caixa cego com contagem sem saldo visível e ledger imutável de sangria/suprimento, estoque com fator de conversão e Kardex de auditoria, e carteira de fiado com limite de crédito por cliente.',
+      'Integração com o Zé Delivery via webhook (fila durável, assinatura HMAC e rate limiting) e impressão térmica de recibos via ESC/POS.',
+      'Dashboard administrativo com métricas de negócio (CMV, lucro bruto, ROI), construído em ASP.NET Core (Razor Pages) com arquitetura em camadas e acesso transacional via Dapper/Npgsql.',
+    ],
+  },
+  {
     company: 'Mocidade 015',
     role: 'Desenvolvedor Full Stack — Sistema de Passagens e Reservas',
     period: '04/2026 — Atual',
@@ -104,8 +116,6 @@ const experience = [
     period: '09/2025 — Atual',
     bullets: [
       'SaaS_PDV: sistema de PDV e gestão financeira com arquitetura multi-tenant em C# .NET 10, Entity Framework Core e SQLite, com isolamento de dados por empresa e filial.',
-      'PendurAi (repo EmporioGege): SaaS multi-tenant de PDV e ERP para adegas e mercados, com ASP.NET Core (Razor Pages), Supabase/PostgreSQL e arquitetura em camadas (Core/Application/Infrastructure).',
-      'PendurAi: comandas, caixa cego, estoque com fator de conversão (Kardex), fiado, impressão térmica ESC/POS, dashboard com CMV/ROI, painel de SuperAdmin e licenciamento por loja, além de integração com o Zé Delivery via webhook.',
       'botmocidade e wpp-agendamento: bots de automação de atendimento e agendamento via WhatsApp em Node.js (whatsapp-web.js), com persistência de sessão e conexão via QR Code.',
       'Desenvolvimento de catálogos digitais e sistemas de cadastro sob demanda para pequenos negócios e clientes autônomos.',
     ],
