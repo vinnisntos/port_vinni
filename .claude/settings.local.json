@@ -3,7 +3,27 @@
     "allow": [
       "mcp__ide__getDiagnostics",
       "Bash(npm run *)",
-      "Bash(curl *)"
+      "Bash(curl *)",
+      "Bash(python3 -c ' *)",
+      "Bash(node -e \"console.log\\(Object.keys\\(require\\('react-icons/si'\\)\\).filter\\(k=>/dotnet|flask|django|azure|sqlserver|supabase|openai/i.test\\(k\\)\\)\\)\")",
+      "Bash(node -e \"console.log\\(Object.keys\\(require\\('react-icons/fa'\\)\\).filter\\(k=>/graduation|briefcase|certificate|maptmarker|phone|language|globe|java\\\\b/i.test\\(k\\)\\)\\)\")",
+      "Bash(node -e \"console.log\\(Object.keys\\(require\\('react-icons/fa6'\\)\\).filter\\(k=>/graduation|briefcase|certificate|phone|language|globe/i.test\\(k\\)\\)\\)\")",
+      "Bash(node -e \"console.log\\(Object.keys\\(require\\('react-icons/fa'\\)\\).filter\\(k=>/mapmarker/i.test\\(k\\)\\)\\)\")",
+      "Bash(node -e \"console.log\\(Object.keys\\(require\\('react-icons/si'\\)\\).filter\\(k=>/microsoftsqlserver|azure/i.test\\(k\\)\\)\\)\")",
+      "Bash(node -e \"console.log\\(Object.keys\\(require\\('react-icons/tb'\\)\\).filter\\(k=>/brandjavascript|brandsql/i.test\\(k\\)\\)\\)\")",
+      "Bash(node -e \"console.log\\(Object.keys\\(require\\('react-icons/si'\\)\\).filter\\(k=>/azure/i.test\\(k\\)\\)\\)\")",
+      "Bash(node -e \"console.log\\(Object.keys\\(require\\('react-icons/si'\\)\\).filter\\(k=>/sqlserver|mssql/i.test\\(k\\)\\)\\)\")",
+      "Bash(node -e \"console.log\\(Object.keys\\(require\\('react-icons/vsc'\\)\\).filter\\(k=>/azure/i.test\\(k\\)\\)\\)\")",
+      "Bash(node -e \"console.log\\(Object.keys\\(require\\('react-icons/fa'\\)\\).filter\\(k=>/microsoft|server|cloud/i.test\\(k\\)\\)\\)\")",
+      "Bash(node -e \"console.log\\(Object.keys\\(require\\('react-icons/fa'\\)\\).filter\\(k=>/^FaPalette$|^FaRobot$|^FaJs$/.test\\(k\\)\\)\\)\")",
+      "Bash(netstat -ano)",
+      "Bash(awk '{print $5}')",
+      "Bash(powershell -Command \"Stop-Process -Id 25556 -Force -ErrorAction SilentlyContinue\")",
+      "Bash(git rm *)",
+      "Bash(node -e ' *)",
+      "Bash(git add *)",
+      "Bash(git commit -m ' *)",
+      "Bash(git push *)"
     ]
   }
 }

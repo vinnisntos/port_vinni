@@ -6,7 +6,7 @@
   "homepage": "https://vinnisntos.github.io/port_vinni",
   "scripts": {
     "dev": "vite",
-    "build": "vite build",
+    "build": "VITE_BASE=/ vite build",
     "preview": "vite preview",
     "deploy": "vite build && gh-pages -d dist",
     "lint": "eslint ."
