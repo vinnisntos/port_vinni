@@ -88,6 +88,28 @@ const skillGroups = [
 
 const experience = [
   {
+    company: 'Mocidade 015',
+    role: 'Desenvolvedor Full Stack — Sistema de Passagens e Reservas',
+    period: '04/2026 — Atual',
+    bullets: [
+      'Sistema completo de venda e reserva de passagens de ônibus para viagens em grupo, em produção em mocidade015.vinnisantos.com.br, com seleção de assentos, lista de espera e gestão de acompanhantes.',
+      'Desenvolvido em ASP.NET Core (Razor Pages) com C# .NET 10 e Entity Framework Core, incluindo cadastro em lote de passageiros com dados completos (CPF, RG, contatos de emergência, congregação).',
+      'Camada de segurança própria: validação de CPF e telefone com dígito verificador, rate limiting contra força bruta e políticas de senha forte.',
+      'Pipeline de CI/CD com GitHub Actions, publicando a aplicação e realizando deploy automático via SSH/SCP em servidor AWS com reinício do serviço.',
+    ],
+  },
+  {
+    company: 'Projetos Independentes',
+    role: 'Desenvolvedor de Software — github.com/vinnisntos',
+    period: '09/2025 — Atual',
+    bullets: [
+      'SaaS_PDV: sistema de PDV e gestão financeira com arquitetura multi-tenant em C# .NET 10, Entity Framework Core e SQLite, com isolamento de dados por empresa e filial.',
+      'EmporioGege: PDV e ERP completos para varejo, com ASP.NET Core (Razor Pages), Supabase/PostgreSQL, controle de estoque com fator de conversão (Kardex), gestão de fiado e fechamento de caixa cego.',
+      'botmocidade e wpp-agendamento: bots de automação de atendimento e agendamento via WhatsApp em Node.js (whatsapp-web.js), com persistência de sessão e conexão via QR Code.',
+      'Desenvolvimento de catálogos digitais e sistemas de cadastro sob demanda para pequenos negócios e clientes autônomos.',
+    ],
+  },
+  {
     company: 'D.S.S. Distribuidora',
     role: 'Auxiliar de Vendas Externas Júnior',
     period: '11/2024 — 03/2026',
