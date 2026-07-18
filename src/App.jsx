@@ -14,7 +14,7 @@ import FakeDataGenerator from './pages/tools/FakeDataGenerator';
 import NotFound from './pages/NotFound';
 
 // Lê o base configurado no vite.config.js em build time.
-// Funciona para "/port_vinni/" (GH Pages) e "/" (domínio próprio).
+// Sempre "/", já que o site roda na raiz do domínio próprio.
 const BASE_URL = import.meta.env.BASE_URL || '/';
 
 function App() {

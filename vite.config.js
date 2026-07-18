@@ -4,18 +4,11 @@ import tailwindcss from '@tailwindcss/vite';
 
 // https://vite.dev/config/
 //
-// `base` controla a URL base de todos os assets emitidos.
-// No GitHub Pages servindo a partir de um projeto (`/port_vinni/`),
-// `base` precisa ser `/port_vinni/`. Em ambiente local + domínio custom,
-// `base` deve ser `/`.
-//
-// Usamos `GITHUB_PAGES_REPO` injetado no build pelo workflow para detectar
-// isso automaticamente, com fallback para o valor atual.
-const repoName = process.env.GITHUB_PAGES_REPO || 'port_vinni';
-
+// O site roda no domínio próprio vinnisantos.com.br, servido na raiz,
+// então `base` é sempre "/".
 export default defineConfig({
   plugins: [react(), tailwindcss()],
-  base: process.env.VITE_BASE || `/${repoName}/`,
+  base: '/',
   build: {
     outDir: 'dist',
     assetsDir: 'assets',

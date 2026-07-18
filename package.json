@@ -3,12 +3,11 @@
   "private": true,
   "version": "0.0.0",
   "type": "module",
-  "homepage": "https://vinnisntos.github.io/port_vinni",
+  "homepage": "https://vinnisantos.com.br",
   "scripts": {
     "dev": "vite",
-    "build": "VITE_BASE=/ vite build",
+    "build": "vite build",
     "preview": "vite preview",
-    "deploy": "vite build && gh-pages -d dist",
     "lint": "eslint ."
   },
   "dependencies": {

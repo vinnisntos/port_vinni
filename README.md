@@ -4,13 +4,13 @@
 ![Vite](https://img.shields.io/badge/Vite_8-B73BFE?style=for-the-badge&logo=vite&logoColor=FFD62E)
 ![Tailwind CSS](https://img.shields.io/badge/Tailwind_v4-38B2AC?style=for-the-badge&logo=tailwind-css&logoColor=white)
 ![React Router](https://img.shields.io/badge/React_Router_7-CA4245?style=for-the-badge&logo=react-router&logoColor=white)
-![GitHub Pages](https://img.shields.io/badge/GitHub_Pages-deployed-222222?style=for-the-badge&logo=github&logoColor=white)
+![AWS](https://img.shields.io/badge/AWS_EC2-deployed-222222?style=for-the-badge&logo=amazonaws&logoColor=FF9900)
 
 Um ambiente híbrido que funciona tanto como portfólio pessoal quanto como uma suíte de ferramentas para desenvolvedores (inspirado no modelo 4Devs). Construído com foco em performance, experiência de usuário e processamento local.
 
 O design adota uma estética *Dark/Tech* (Preto e Roxo), com layouts baseados em painéis de controle, grades de engenharia e referências a interfaces de linha de comando (CLI).
 
-> **🌐 Demo online:** [vinnisntos.github.io/port_vinni](https://vinnisntos.github.io/port_vinni/)
+> **🌐 Demo online:** [vinnisantos.com.br](https://vinnisantos.com.br/)
 
 ---
 
@@ -32,9 +32,9 @@ O hub conta com geradores e validadores de dados frequentemente utilizados no de
 * **Framework:** React.js 19
 * **Bundler:** Vite 8
 * **Estilização:** Tailwind CSS v4 (com design tokens customizados)
-* **Roteamento:** React Router DOM v7 (SPA architecture com fallback para GH Pages)
+* **Roteamento:** React Router DOM v7 (SPA architecture)
 * **Ícones:** React Icons (FontAwesome, Simple Icons, Tabler)
-* **Deploy:** GitHub Actions → GitHub Pages
+* **Deploy:** VM na AWS (EC2) com Nginx servindo o build estático
 
 ---
 
@@ -64,20 +64,14 @@ npm run preview    # serve ./dist localmente para teste
 
 ---
 
-## ☁️ Deploy no GitHub Pages
+## ☁️ Deploy na AWS (EC2 + Nginx)
 
-O projeto está configurado para deploy 100% automatizado no GitHub Pages:
+O site roda numa VM EC2 e é servido diretamente no domínio próprio `vinnisantos.com.br`:
 
-1. **Workflow** (`.github/workflows/deploy.yml`) é acionado em cada `push` na branch `main`.
-2. O Vite compila com `base=/<repo>/` (detectado automaticamente via `GITHUB_PAGES_REPO`).
-3. O `404.html` resolve o problema de rotas SPA — recarregar `/tools/cpf` direto funciona.
-4. O artefato é publicado no GitHub Pages via `actions/deploy-pages@v4`.
-
-### Configuração no repositório
-
-No GitHub: **Settings → Pages → Source: GitHub Actions**. Pronto, qualquer push na `main` faz deploy.
-
-Se renomear o repositório, o workflow detecta o novo nome automaticamente.
+1. `npm run build` gera o estático em `./dist` (base `/`, já que o domínio serve o site na raiz).
+2. O conteúdo de `dist/` é copiado para a VM (ex.: `scp`/`rsync` para o diretório configurado no `root` do Nginx).
+3. O Nginx serve os arquivos estáticos e resolve rotas de SPA via `try_files ... /index.html` — ver referência em [`deploy/nginx.conf`](./deploy/nginx.conf).
+4. HTTPS/certificado gerenciado na própria VM (ex.: Certbot), fora do escopo deste repositório.
 
 ---
 
