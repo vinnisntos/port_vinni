@@ -88,9 +88,21 @@ const skillGroups = [
 
 const experience = [
   {
+    company: 'Going2',
+    role: 'Estagiário de TI — HelpDesk / DevOps',
+    period: '07/2026 — Atual',
+    bullets: [
+      'Estágio em modelo híbrido, com 1 dia por semana presencial na empresa e restante remoto.',
+      'Controle de acesso de usuários: criação, alteração e desativação de contas (AD/Azure AD e sistemas internos), seguindo processo de onboarding e offboarding.',
+      'Gestão de grupos e permissões de acesso a sistemas, pastas e aplicações, aplicando o princípio de menor privilégio.',
+      'Reset de senhas, desbloqueio de contas e validação de identidade do solicitante antes de conceder ou revogar acessos.',
+      'Suporte a chamados de helpdesk (acesso a VPN, e-mail corporativo e estações de trabalho) e apoio em rotinas básicas de DevOps, como monitoramento de infraestrutura e documentação de processos.',
+    ],
+  },
+  {
     company: 'PendurAi',
     role: 'Desenvolvedor Full Stack — SaaS de Gestão para Adegas e Mercados',
-    period: '07/2026 — Atual',
+    period: 'Beta — Fase de Testes',
     bullets: [
       'SaaS multi-tenant de PDV e ERP, com isolamento de dados por loja (tenant_id), painel de SuperAdmin e licenciamento com bloqueio automático de acesso suspenso, cancelado ou expirado.',
       'PDV completo com venda por código de barras ou nome, atalhos de teclado, comandas por mesa e transação atômica (estoque + venda + ledger em uma única operação).',
@@ -102,7 +114,7 @@ const experience = [
   {
     company: 'Mocidade 015',
     role: 'Desenvolvedor Full Stack — Sistema de Passagens e Reservas',
-    period: '04/2026 — Atual',
+    period: 'Em Desenvolvimento',
     bullets: [
       'Sistema completo de venda e reserva de passagens de ônibus para viagens em grupo, em produção em mocidade015.vinnisantos.com.br, com seleção de assentos, lista de espera e gestão de acompanhantes.',
       'Desenvolvido em ASP.NET Core (Razor Pages) com C# .NET 10 e Entity Framework Core, incluindo cadastro em lote de passageiros com dados completos (CPF, RG, contatos de emergência, congregação).',
@@ -113,7 +125,7 @@ const experience = [
   {
     company: 'Projetos Independentes',
     role: 'Desenvolvedor de Software — github.com/vinnisntos',
-    period: '09/2025 — Atual',
+    period: 'Em Desenvolvimento',
     bullets: [
       'SaaS_PDV: sistema de PDV e gestão financeira com arquitetura multi-tenant em C# .NET 10, Entity Framework Core e SQLite, com isolamento de dados por empresa e filial.',
       'botmocidade e wpp-agendamento: bots de automação de atendimento e agendamento via WhatsApp em Node.js (whatsapp-web.js), com persistência de sessão e conexão via QR Code.',
@@ -196,7 +208,7 @@ export default function About() {
                 Vinnicius Gabriel Matos dos Santos
               </p>
               <p className="text-purple-400 font-mono text-sm mb-4">
-                Backend / Fullstack Jr. — Estágio
+                Estagiário TI (HelpDesk/DevOps) · Backend Jr.
               </p>
 
               <p className="text-muted text-sm leading-relaxed mb-6">
@@ -295,9 +307,10 @@ export default function About() {
                 <span className="text-purple-400">
                   Análise e Desenvolvimento de Sistemas
                 </span>{' '}
-                na UNIP e busco uma oportunidade de estágio ou vaga júnior
-                com foco em backend/fullstack. Tenho experiência prática
-                criando soluções e automações com{' '}
+                na UNIP e atuo como estagiário de TI em HelpDesk/DevOps na
+                Going2, enquanto mantenho projetos próprios de
+                backend/fullstack. Tenho experiência prática criando
+                soluções e automações com{' '}
                 <span className="text-purple-400">C#</span>,{' '}
                 <span className="text-purple-400">Python</span> e bancos de
                 dados SQL, além de estar me aprofundando em JavaScript/
