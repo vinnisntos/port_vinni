@@ -114,9 +114,9 @@ const experience = [
   {
     company: 'Mocidade 015',
     role: 'Desenvolvedor Full Stack — Sistema de Passagens e Reservas',
-    period: 'Em Desenvolvimento',
+    period: 'Em Produção',
     bullets: [
-      'Sistema completo de venda e reserva de passagens de ônibus para viagens em grupo, em produção em mocidade015.vinnisantos.com.br, com seleção de assentos, lista de espera e gestão de acompanhantes.',
+      'Sistema 100% em produção com dados reais em mocidade015.vinnisantos.com.br, usado ativamente na venda e reserva de passagens de ônibus para viagens em grupo, com seleção de assentos, lista de espera e gestão de acompanhantes.',
       'Desenvolvido em ASP.NET Core (Razor Pages) com C# .NET 10 e Entity Framework Core, incluindo cadastro em lote de passageiros com dados completos (CPF, RG, contatos de emergência, congregação).',
       'Camada de segurança própria: validação de CPF e telefone com dígito verificador, rate limiting contra força bruta e políticas de senha forte.',
       'Pipeline de CI/CD com GitHub Actions, publicando a aplicação e realizando deploy automático via SSH/SCP em servidor AWS com reinício do serviço.',
