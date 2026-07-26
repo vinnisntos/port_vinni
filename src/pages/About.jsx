@@ -414,8 +414,8 @@ export default function About() {
                 Universidade Paulista (UNIP)
               </p>
               <p className="text-sm text-muted">
-                Previsão de conclusão: fev/2027 — cursando o 3º semestre
-                (período noturno)
+                Previsão de conclusão: fev/2027 — cursando o 4º semestre
+                (último) (período noturno)
               </p>
             </div>
           </Card>
