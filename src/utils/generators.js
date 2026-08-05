@@ -51,8 +51,12 @@ export function generateCNPJ(formatted = true) {
   return formatted ? formatCNPJ(cnpj) : cnpj;
 }
 
+function randomDDD() {
+  return String(Math.floor(Math.random() * (99 - 11 + 1)) + 11);
+}
+
 export function generatePhone(formatted = true) {
-  const ddd = (randomDigits(2).replace(/^0/, '1') || '11');
+  const ddd = randomDDD();
   const prefix = '9' + randomDigits(8);
   const phone = ddd + prefix;
   return formatted ? formatPhone(phone) : phone;
