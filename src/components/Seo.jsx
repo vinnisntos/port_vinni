@@ -1,6 +1,7 @@
 import { useEffect } from 'react';
 
 const SITE_URL = 'https://vinnisantos.com.br';
+const DEFAULT_IMAGE = `${SITE_URL}/og-image.png`;
 
 function setMeta(attr, key, content) {
   let tag = document.head.querySelector(`meta[${attr}="${key}"]`);
@@ -41,20 +42,29 @@ function setJsonLd(id, data) {
  * Aplica title, meta tags e JSON-LD específicos da rota atual.
  * `path` deve ser o caminho absoluto (ex.: "/tools/cpf") usado no canonical e og:url.
  */
-export default function Seo({ title, description, path, structuredData, noindex = false }) {
+export default function Seo({
+  title,
+  description,
+  path,
+  structuredData,
+  noindex = false,
+  image = DEFAULT_IMAGE,
+}) {
   useEffect(() => {
     document.title = title;
     setMeta('name', 'description', description);
     setMeta('property', 'og:title', title);
     setMeta('property', 'og:description', description);
     setMeta('property', 'og:url', `${SITE_URL}${path}`);
-    setMeta('name', 'twitter:card', 'summary');
+    setMeta('property', 'og:image', image);
+    setMeta('name', 'twitter:card', 'summary_large_image');
     setMeta('name', 'twitter:title', title);
     setMeta('name', 'twitter:description', description);
+    setMeta('name', 'twitter:image', image);
     setMeta('name', 'robots', noindex ? 'noindex,follow' : 'index,follow');
     setCanonical(`${SITE_URL}${path}`);
     setJsonLd('page-jsonld', structuredData ?? null);
-  }, [title, description, path, structuredData, noindex]);
+  }, [title, description, path, structuredData, noindex, image]);
 
   return null;
 }
