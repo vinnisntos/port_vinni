@@ -129,7 +129,8 @@ const experience = [
     period: 'Em Desenvolvimento',
     bullets: [
       'SaaS_PDV: sistema de PDV e gestão financeira com arquitetura multi-tenant em C# .NET 10, Entity Framework Core e SQLite, com isolamento de dados por empresa e filial.',
-      'botmocidade e wpp-agendamento: bots de automação de atendimento e agendamento via WhatsApp em Node.js (whatsapp-web.js), com persistência de sessão e conexão via QR Code.',
+      'wpp-agendamento: SaaS multi-tenant de agendamento via WhatsApp (Baileys), com cobrança via PIX (Mercado Pago), persistência em Supabase/PostgreSQL e fluxo conversacional por máquina de estados.',
+      'botmocidade: bot de automação de respostas no WhatsApp (whatsapp-web.js) com comandos customizáveis e sessão persistente via QR Code — projeto open-source educacional.',
       'Desenvolvimento de catálogos digitais e sistemas de cadastro sob demanda para pequenos negócios e clientes autônomos.',
     ],
   },
