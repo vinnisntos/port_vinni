@@ -9,6 +9,8 @@ import {
 } from 'react-icons/fa';
 import Card from '../components/ui/Card';
 import Button from '../components/ui/Button';
+import Seo from '../components/Seo';
+import { itemListSchema } from '../utils/seo';
 
 const tools = [
   {
@@ -64,6 +66,15 @@ const techStack = [
 export default function Home() {
   return (
     <div className="pt-24 pb-12">
+      <Seo
+        title="Vinnicius Santos · Full Stack Developer — Hub de Utilitários"
+        description="Portfólio e hub de utilitários para desenvolvedores de Vinnicius Santos: validadores de CPF, CNPJ, e-mail, telefone, busca de CEP e gerador de dados fake."
+        path="/"
+        structuredData={itemListSchema({
+          name: 'Ferramentas para desenvolvedores',
+          items: tools.map((tool) => ({ name: tool.title, path: tool.path })),
+        })}
+      />
       {/* ===========================================================
           HERO
           Hierarquia:

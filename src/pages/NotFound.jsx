@@ -1,10 +1,17 @@
 import { Link } from 'react-router-dom';
 import Card from '../components/ui/Card';
 import Button from '../components/ui/Button';
+import Seo from '../components/Seo';
 
 export default function NotFound() {
   return (
     <div className="pt-24 pb-12 max-w-2xl mx-auto text-center">
+      <Seo
+        title="Página não encontrada · Vinnicius Santos"
+        description="A página que você procura não existe ou foi movida."
+        path="/404"
+        noindex
+      />
       <span className="inline-block px-3 py-1 mb-4 border border-purple-500/30 bg-purple-500/5 text-purple-400 font-mono text-[10px] tracking-widest uppercase">
         [ error // 404 ]
       </span>

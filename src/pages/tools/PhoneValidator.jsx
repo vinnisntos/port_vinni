@@ -9,6 +9,8 @@ import Card from '../../components/ui/Card';
 import Input from '../../components/ui/Input';
 import Button from '../../components/ui/Button';
 import PageHeader from '../../components/ui/PageHeader';
+import Seo from '../../components/Seo';
+import { toolSchema } from '../../utils/seo';
 import { isValidPhone, formatPhone } from '../../utils/validators';
 
 export default function PhoneValidator() {
@@ -42,6 +44,21 @@ export default function PhoneValidator() {
 
   return (
     <div className="pt-24 pb-12 max-w-3xl mx-auto">
+      <Seo
+        title="Validador de Telefone Online e Grátis · Vinnicius Santos"
+        description="Valide números de celular e telefone fixo do Brasil com formatação automática, direto no navegador."
+        path="/tools/phone-validator"
+        structuredData={toolSchema({
+          name: 'Phone Validator',
+          description: 'Valida telefones celulares e fixos do Brasil.',
+          path: '/tools/phone-validator',
+          breadcrumbItems: [
+            { name: 'Início', path: '/' },
+            { name: 'Ferramentas', path: '/tools' },
+            { name: 'Phone Validator', path: '/tools/phone-validator' },
+          ],
+        })}
+      />
       <PageHeader
         tag="[ validador // telefone ]"
         title="PHONE"

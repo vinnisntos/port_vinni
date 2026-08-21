@@ -31,6 +31,7 @@ import { TbBrandCSharp } from 'react-icons/tb';
 import Card from '../components/ui/Card';
 import PageHeader from '../components/ui/PageHeader';
 import Button from '../components/ui/Button';
+import Seo from '../components/Seo';
 
 const RESUME_URL = `${import.meta.env.BASE_URL}curriculo-vinnicius-santos.docx`;
 
@@ -187,6 +188,40 @@ const stackDetails = [
 export default function About() {
   return (
     <div className="pt-24 pb-12">
+      <Seo
+        title="Sobre Vinnicius Santos · Desenvolvedor Full Stack"
+        description="Conheça a trajetória, formação e experiência profissional de Vinnicius Santos: estudante de ADS, estagiário de TI e desenvolvedor full stack com projetos reais em produção."
+        path="/about"
+        structuredData={{
+          '@context': 'https://schema.org',
+          '@type': 'ProfilePage',
+          mainEntity: {
+            '@type': 'Person',
+            name: 'Vinnicius Santos',
+            alternateName: 'Vinnicius Gabriel Matos dos Santos',
+            url: 'https://vinnisantos.com.br/about',
+            jobTitle: 'Desenvolvedor Full Stack',
+            worksFor: { '@type': 'Organization', name: 'Going2' },
+            alumniOf: {
+              '@type': 'CollegeOrUniversity',
+              name: 'Universidade Paulista (UNIP)',
+            },
+            knowsAbout: [
+              'C#',
+              '.NET',
+              'Python',
+              'JavaScript',
+              'TypeScript',
+              'PostgreSQL',
+              'React',
+            ],
+            sameAs: [
+              'https://github.com/vinnisntos',
+              'https://linkedin.com/in/vinnisantos',
+            ],
+          },
+        }}
+      />
       <PageHeader tag="[ sobre // estudante-dev ]" title="SOBRE" accent="MIM" />
 
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">

@@ -12,6 +12,11 @@ dist
 dist-ssr
 *.local
 
+# Credenciais (ex.: service account do Google Search Console)
+*service-account*.json
+.env
+.env.*
+
 # Editor directories and files
 .vscode/*
 !.vscode/extensions.json

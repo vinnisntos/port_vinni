@@ -4,6 +4,8 @@ import Card from '../../components/ui/Card';
 import Input from '../../components/ui/Input';
 import Button from '../../components/ui/Button';
 import PageHeader from '../../components/ui/PageHeader';
+import Seo from '../../components/Seo';
+import { toolSchema } from '../../utils/seo';
 import { fetchCEP } from '../../utils/api';
 import { formatCEP } from '../../utils/validators';
 
@@ -50,6 +52,21 @@ export default function CEPFinder() {
 
   return (
     <div className="pt-24 pb-12 max-w-3xl mx-auto">
+      <Seo
+        title="Buscador de CEP Online e Grátis · Vinnicius Santos"
+        description="Encontre o endereço completo a partir de um CEP usando a API ViaCEP, direto no navegador e sem cadastro."
+        path="/tools/cep"
+        structuredData={toolSchema({
+          name: 'CEP Finder',
+          description: 'Busca endereços por CEP via ViaCEP API.',
+          path: '/tools/cep',
+          breadcrumbItems: [
+            { name: 'Início', path: '/' },
+            { name: 'Ferramentas', path: '/tools' },
+            { name: 'CEP Finder', path: '/tools/cep' },
+          ],
+        })}
+      />
       <PageHeader
         tag="[ busca // cep ]"
         title="CEP"

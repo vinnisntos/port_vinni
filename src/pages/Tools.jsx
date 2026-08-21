@@ -11,6 +11,8 @@ import {
 import Card from '../components/ui/Card';
 import Button from '../components/ui/Button';
 import PageHeader from '../components/ui/PageHeader';
+import Seo from '../components/Seo';
+import { itemListSchema } from '../utils/seo';
 
 const tools = [
   {
@@ -60,6 +62,15 @@ const tools = [
 export default function Tools() {
   return (
     <div className="pt-24 pb-12">
+      <Seo
+        title="Ferramentas para Desenvolvedores · Vinnicius Santos"
+        description="Validadores e geradores gratuitos para devs: CPF, CNPJ, e-mail, telefone, busca de CEP e dados fake. Processamento 100% local, sem envio de dados."
+        path="/tools"
+        structuredData={itemListSchema({
+          name: 'Ferramentas para desenvolvedores',
+          items: tools.map((tool) => ({ name: tool.title, path: tool.path })),
+        })}
+      />
       <PageHeader
         tag="[ ferramentas // utilitários ]"
         title="FERRAMENTAS"

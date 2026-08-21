@@ -12,6 +12,8 @@ import {
 import Card from '../../components/ui/Card';
 import Button from '../../components/ui/Button';
 import PageHeader from '../../components/ui/PageHeader';
+import Seo from '../../components/Seo';
+import { toolSchema } from '../../utils/seo';
 import { generateFakePerson } from '../../utils/generators';
 
 function Field({ icon: Icon, label, value, field, copiedField, onCopy }) {
@@ -74,6 +76,21 @@ Nascimento: ${data.birthDate}`;
 
   return (
     <div className="pt-24 pb-12 max-w-3xl mx-auto">
+      <Seo
+        title="Gerador de Dados Fake Online e Grátis · Vinnicius Santos"
+        description="Gere personas completas para testes: nome, e-mail, CPF, telefone e endereço, direto no navegador e sem cadastro."
+        path="/tools/fake-data"
+        structuredData={toolSchema({
+          name: 'Fake Data Generator',
+          description: 'Gera dados completos para testes: nome, email, CPF, endereço.',
+          path: '/tools/fake-data',
+          breadcrumbItems: [
+            { name: 'Início', path: '/' },
+            { name: 'Ferramentas', path: '/tools' },
+            { name: 'Fake Data Generator', path: '/tools/fake-data' },
+          ],
+        })}
+      />
       <PageHeader
         tag="[ gerador // dados fake ]"
         title="FAKE"
