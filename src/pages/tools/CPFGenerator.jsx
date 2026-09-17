@@ -4,6 +4,8 @@ import Card from '../../components/ui/Card';
 import Input from '../../components/ui/Input';
 import Button from '../../components/ui/Button';
 import PageHeader from '../../components/ui/PageHeader';
+import Seo from '../../components/Seo';
+import { toolSchema } from '../../utils/seo';
 import { generateCPF } from '../../utils/generators';
 import { isValidCPF } from '../../utils/validators';
 
@@ -38,6 +40,21 @@ export default function CPFGenerator() {
 
   return (
     <div className="pt-24 pb-12 max-w-3xl mx-auto">
+      <Seo
+        title="Gerador e Validador de CPF Online e Grátis · Vinnicius Santos"
+        description="Gere CPFs válidos para testes ou valide um CPF existente usando o algoritmo oficial da Receita Federal, direto no navegador."
+        path="/tools/cpf"
+        structuredData={toolSchema({
+          name: 'CPF Generator',
+          description: 'Gera e valida CPFs com algoritmo oficial da Receita.',
+          path: '/tools/cpf',
+          breadcrumbItems: [
+            { name: 'Início', path: '/' },
+            { name: 'Ferramentas', path: '/tools' },
+            { name: 'CPF Generator', path: '/tools/cpf' },
+          ],
+        })}
+      />
       <PageHeader
         tag="[ gerador // cpf ]"
         title="CPF"

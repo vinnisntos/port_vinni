@@ -176,7 +176,8 @@ export const aboutEn = {
       period: 'In Development',
       bullets: [
         'SaaS_PDV: a point-of-sale and financial management system with a multi-tenant architecture in C# .NET 10, Entity Framework Core, and SQLite, with data isolation per company and branch.',
-        'botmocidade and wpp-agendamento: WhatsApp automation bots for customer service and scheduling, built in Node.js (whatsapp-web.js), with session persistence and QR-code login.',
+        'wpp-agendamento: a multi-tenant WhatsApp scheduling SaaS (built on Baileys), with PIX billing via Mercado Pago, Supabase/PostgreSQL persistence, and a state-machine-driven conversational flow.',
+        'botmocidade: a WhatsApp auto-reply bot (whatsapp-web.js) with customizable commands and persistent QR-code login sessions — an open-source educational project.',
         'Built digital catalogs and on-demand registration systems for small businesses and independent professionals.',
       ],
     },

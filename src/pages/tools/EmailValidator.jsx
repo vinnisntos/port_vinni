@@ -4,6 +4,8 @@ import Card from '../../components/ui/Card';
 import Input from '../../components/ui/Input';
 import Button from '../../components/ui/Button';
 import PageHeader from '../../components/ui/PageHeader';
+import Seo from '../../components/Seo';
+import { toolSchema } from '../../utils/seo';
 import { isValidEmail } from '../../utils/validators';
 
 export default function EmailValidator() {
@@ -31,6 +33,21 @@ export default function EmailValidator() {
 
   return (
     <div className="pt-24 pb-12 max-w-3xl mx-auto">
+      <Seo
+        title="Validador de E-mail Online e Grátis · Vinnicius Santos"
+        description="Valide o formato e o domínio de qualquer e-mail gratuitamente, direto no navegador, sem enviar dados para servidores."
+        path="/tools/email-validator"
+        structuredData={toolSchema({
+          name: 'Email Validator',
+          description: 'Validação de e-mails com verificação de formato e domínio.',
+          path: '/tools/email-validator',
+          breadcrumbItems: [
+            { name: 'Início', path: '/' },
+            { name: 'Ferramentas', path: '/tools' },
+            { name: 'Email Validator', path: '/tools/email-validator' },
+          ],
+        })}
+      />
       <PageHeader
         tag="[ validador // email ]"
         title="EMAIL"

@@ -13,10 +13,10 @@ import {
 import Card from '../components/ui/Card';
 import PageHeader from '../components/ui/PageHeader';
 import Button from '../components/ui/Button';
+import Seo from '../components/Seo';
 import { aboutPt } from '../content/about.pt';
 import { aboutEn } from '../content/about.en';
 import { useLocale, getLocalizedPath } from '../hooks/useLocale';
-import { useDocumentHead } from '../hooks/useDocumentHead';
 
 const SITE_URL = 'https://vinnisantos.com.br';
 
@@ -89,25 +89,59 @@ const historyEn = (
   </>
 );
 
+function personSchema(locale, path) {
+  return {
+    '@context': 'https://schema.org',
+    '@type': 'ProfilePage',
+    mainEntity: {
+      '@type': 'Person',
+      name: 'Vinnicius Santos',
+      alternateName: 'Vinnicius Gabriel Matos dos Santos',
+      url: `${SITE_URL}${path}`,
+      jobTitle: locale === 'en' ? 'Full Stack Developer' : 'Desenvolvedor Full Stack',
+      worksFor: { '@type': 'Organization', name: 'Going2' },
+      alumniOf: {
+        '@type': 'CollegeOrUniversity',
+        name: 'Universidade Paulista (UNIP)',
+      },
+      knowsAbout: [
+        'C#',
+        '.NET',
+        'Python',
+        'JavaScript',
+        'TypeScript',
+        'PostgreSQL',
+        'React',
+      ],
+      sameAs: [
+        'https://github.com/vinnisntos',
+        'https://linkedin.com/in/vinnisantos',
+      ],
+    },
+  };
+}
+
 export default function About() {
   const locale = useLocale();
   const { pathname } = useLocation();
   const t = locale === 'en' ? aboutEn : aboutPt;
   const history = locale === 'en' ? historyEn : historyPt;
-
-  useDocumentHead({
-    title: t.seo.title,
-    description: t.seo.description,
-    lang: locale === 'en' ? 'en-US' : 'pt-BR',
-    alternates: [
-      { hreflang: 'pt-BR', href: SITE_URL + getLocalizedPath(pathname, 'pt') },
-      { hreflang: 'en-US', href: SITE_URL + getLocalizedPath(pathname, 'en') },
-      { hreflang: 'x-default', href: SITE_URL + getLocalizedPath(pathname, 'pt') },
-    ],
-  });
+  const currentPath = locale === 'en' ? '/en/about' : '/about';
 
   return (
     <div className="pt-24 pb-12">
+      <Seo
+        title={t.seo.title}
+        description={t.seo.description}
+        path={currentPath}
+        lang={locale === 'en' ? 'en-US' : 'pt-BR'}
+        structuredData={personSchema(locale, currentPath)}
+        alternates={[
+          { hreflang: 'pt-BR', href: SITE_URL + getLocalizedPath(pathname, 'pt') },
+          { hreflang: 'en-US', href: SITE_URL + getLocalizedPath(pathname, 'en') },
+          { hreflang: 'x-default', href: SITE_URL + getLocalizedPath(pathname, 'pt') },
+        ]}
+      />
       <PageHeader tag={t.pageHeader.tag} title={t.pageHeader.title} accent={t.pageHeader.accent} />
 
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">

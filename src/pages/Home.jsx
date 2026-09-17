@@ -2,10 +2,11 @@ import { Link, useLocation } from 'react-router-dom';
 import { FaCode, FaDatabase, FaTerminal } from 'react-icons/fa';
 import Card from '../components/ui/Card';
 import Button from '../components/ui/Button';
+import Seo from '../components/Seo';
+import { itemListSchema } from '../utils/seo';
 import { toolsPt, toolsEn } from '../content/tools';
 import { homeContent } from '../content/home';
 import { useLocale, getLocalizedPath } from '../hooks/useLocale';
-import { useDocumentHead } from '../hooks/useDocumentHead';
 
 const SITE_URL = 'https://vinnisantos.com.br';
 
@@ -21,20 +22,25 @@ export default function Home() {
   const t = homeContent[locale];
   const tools = locale === 'en' ? toolsEn : toolsPt;
   const aboutHref = locale === 'en' ? '/en/about' : '/about';
-
-  useDocumentHead({
-    title: t.seo.title,
-    description: t.seo.description,
-    lang: locale === 'en' ? 'en-US' : 'pt-BR',
-    alternates: [
-      { hreflang: 'pt-BR', href: SITE_URL + getLocalizedPath(pathname, 'pt') },
-      { hreflang: 'en-US', href: SITE_URL + getLocalizedPath(pathname, 'en') },
-      { hreflang: 'x-default', href: SITE_URL + getLocalizedPath(pathname, 'pt') },
-    ],
-  });
+  const currentPath = locale === 'en' ? '/en' : '/';
 
   return (
     <div className="pt-24 pb-12">
+      <Seo
+        title={t.seo.title}
+        description={t.seo.description}
+        path={currentPath}
+        lang={locale === 'en' ? 'en-US' : 'pt-BR'}
+        structuredData={itemListSchema({
+          name: locale === 'en' ? 'Developer tools' : 'Ferramentas para desenvolvedores',
+          items: tools.map((tool) => ({ name: tool.title, path: tool.path })),
+        })}
+        alternates={[
+          { hreflang: 'pt-BR', href: SITE_URL + getLocalizedPath(pathname, 'pt') },
+          { hreflang: 'en-US', href: SITE_URL + getLocalizedPath(pathname, 'en') },
+          { hreflang: 'x-default', href: SITE_URL + getLocalizedPath(pathname, 'pt') },
+        ]}
+      />
       {/* ===========================================================
           HERO
           Hierarquia:

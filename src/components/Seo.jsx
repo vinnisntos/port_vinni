@@ -1,0 +1,87 @@
+import { useEffect } from 'react';
+
+const SITE_URL = 'https://vinnisantos.com.br';
+const DEFAULT_IMAGE = `${SITE_URL}/og-image.png`;
+
+function setMeta(attr, key, content) {
+  let tag = document.head.querySelector(`meta[${attr}="${key}"]`);
+  if (!tag) {
+    tag = document.createElement('meta');
+    tag.setAttribute(attr, key);
+    document.head.appendChild(tag);
+  }
+  tag.setAttribute('content', content);
+}
+
+function setCanonical(href) {
+  let tag = document.head.querySelector('link[rel="canonical"]');
+  if (!tag) {
+    tag = document.createElement('link');
+    tag.setAttribute('rel', 'canonical');
+    document.head.appendChild(tag);
+  }
+  tag.setAttribute('href', href);
+}
+
+function setJsonLd(id, data) {
+  let tag = document.getElementById(id);
+  if (!data) {
+    tag?.remove();
+    return;
+  }
+  if (!tag) {
+    tag = document.createElement('script');
+    tag.id = id;
+    tag.type = 'application/ld+json';
+    document.head.appendChild(tag);
+  }
+  tag.textContent = JSON.stringify(data);
+}
+
+function setAlternate(hreflang, href) {
+  let tag = document.head.querySelector(`link[rel="alternate"][hreflang="${hreflang}"]`);
+  if (!tag) {
+    tag = document.createElement('link');
+    tag.setAttribute('rel', 'alternate');
+    tag.setAttribute('hreflang', hreflang);
+    document.head.appendChild(tag);
+  }
+  tag.setAttribute('href', href);
+}
+
+/**
+ * Aplica title, meta tags e JSON-LD específicos da rota atual.
+ * `path` deve ser o caminho absoluto (ex.: "/tools/cpf") usado no canonical e og:url.
+ * `alternates` (opcional) recebe pares { hreflang, href } para páginas com
+ * versão traduzida (ex.: PT/EN), usado para as tags <link rel="alternate">.
+ */
+export default function Seo({
+  title,
+  description,
+  path,
+  structuredData,
+  noindex = false,
+  image = DEFAULT_IMAGE,
+  lang = 'pt-BR',
+  alternates,
+}) {
+  useEffect(() => {
+    document.title = title;
+    document.documentElement.lang = lang;
+    setMeta('name', 'description', description);
+    setMeta('property', 'og:title', title);
+    setMeta('property', 'og:description', description);
+    setMeta('property', 'og:url', `${SITE_URL}${path}`);
+    setMeta('property', 'og:image', image);
+    setMeta('name', 'twitter:card', 'summary_large_image');
+    setMeta('name', 'twitter:title', title);
+    setMeta('name', 'twitter:description', description);
+    setMeta('name', 'twitter:image', image);
+    setMeta('name', 'robots', noindex ? 'noindex,follow' : 'index,follow');
+    setCanonical(`${SITE_URL}${path}`);
+    setJsonLd('page-jsonld', structuredData ?? null);
+    (alternates || []).forEach(({ hreflang, href }) => setAlternate(hreflang, href));
+  }, [title, description, path, structuredData, noindex, image, lang, alternates]);
+
+  return null;
+}

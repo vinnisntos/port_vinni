@@ -4,6 +4,8 @@ import Card from '../../components/ui/Card';
 import Input from '../../components/ui/Input';
 import Button from '../../components/ui/Button';
 import PageHeader from '../../components/ui/PageHeader';
+import Seo from '../../components/Seo';
+import { toolSchema } from '../../utils/seo';
 import { generateCNPJ } from '../../utils/generators';
 import { isValidCNPJ } from '../../utils/validators';
 
@@ -41,6 +43,21 @@ export default function CNPJGenerator() {
 
   return (
     <div className="pt-24 pb-12 max-w-3xl mx-auto">
+      <Seo
+        title="Gerador e Validador de CNPJ Online e Grátis · Vinnicius Santos"
+        description="Gere CNPJs válidos para testes ou valide um CNPJ existente usando o algoritmo oficial da Receita Federal, direto no navegador."
+        path="/tools/cnpj"
+        structuredData={toolSchema({
+          name: 'CNPJ Generator',
+          description: 'Gera e valida CNPJs com algoritmo oficial.',
+          path: '/tools/cnpj',
+          breadcrumbItems: [
+            { name: 'Início', path: '/' },
+            { name: 'Ferramentas', path: '/tools' },
+            { name: 'CNPJ Generator', path: '/tools/cnpj' },
+          ],
+        })}
+      />
       <PageHeader
         tag="[ gerador // cnpj ]"
         title="CNPJ"
