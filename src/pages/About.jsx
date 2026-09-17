@@ -26,6 +26,7 @@ import {
   SiFlask,
   SiDjango,
   SiSupabase,
+  SiGooglecloud,
 } from 'react-icons/si';
 import { TbBrandCSharp } from 'react-icons/tb';
 import Card from '../components/ui/Card';
@@ -33,6 +34,7 @@ import PageHeader from '../components/ui/PageHeader';
 import Button from '../components/ui/Button';
 
 const RESUME_URL = `${import.meta.env.BASE_URL}curriculo-vinnicius-santos.docx`;
+const RESUME_URL_EN = `${import.meta.env.BASE_URL}curriculo-vinnicius-santos-en.docx`;
 
 const skillGroups = [
   {
@@ -69,6 +71,7 @@ const skillGroups = [
       { name: 'SQL Server', icon: FaServer },
       { name: 'Supabase', icon: SiSupabase },
       { name: 'Azure', icon: FaMicrosoft },
+      { name: 'Google Cloud (Console/CLI)', icon: SiGooglecloud },
     ],
   },
   {
@@ -92,22 +95,21 @@ const experience = [
     role: 'Estagiário de TI — HelpDesk / DevOps',
     period: '07/2026 — Atual',
     bullets: [
-      'Estágio em modelo híbrido, com 1 dia por semana presencial na empresa e restante remoto.',
-      'Controle de acesso de usuários: criação, alteração e desativação de contas (AD/Azure AD e sistemas internos), seguindo processo de onboarding e offboarding.',
-      'Gestão de grupos e permissões de acesso a sistemas, pastas e aplicações, aplicando o princípio de menor privilégio.',
-      'Reset de senhas, desbloqueio de contas e validação de identidade do solicitante antes de conceder ou revogar acessos.',
-      'Suporte a chamados de helpdesk (acesso a VPN, e-mail corporativo e estações de trabalho) e apoio em rotinas básicas de DevOps, como monitoramento de infraestrutura e documentação de processos.',
+      'Gestão de TI e governança, responsável pelo desenvolvimento ponta a ponta de um Portal interno (Next.js, Supabase, AWS EC2) para controle de acessos e auditoria do catálogo de sistemas.',
+      'Automação e inovação tecnológica, participando ativamente da criação e implementação de projetos internos utilizando Inteligência Artificial para otimização de processos.',
+      'Responsável pelas rotinas de DevOps, atuando no gerenciamento de infraestrutura em nuvem, configuração de servidores (Nginx/PM2) e manutenção de ambientes para garantir a alta disponibilidade das aplicações.',
+      'Suporte técnico de HelpDesk, realizando atendimento contínuo, resolução ágil de incidentes e manutenção preventiva e corretiva da infraestrutura tecnológica corporativa.',
     ],
   },
   {
     company: 'PendurAi',
-    role: 'Desenvolvedor Full Stack — SaaS de Gestão para Adegas e Mercados',
-    period: 'Beta — Fase de Testes',
+    role: 'Desenvolvedor Full Stack — ERP e PDV (SaaS) para Adegas e Mercados',
+    period: 'Em Produção',
     bullets: [
-      'SaaS multi-tenant de PDV e ERP, com isolamento de dados por loja (tenant_id), painel de SuperAdmin e licenciamento com bloqueio automático de acesso suspenso, cancelado ou expirado.',
+      'SaaS multi-tenant de PDV e ERP em produção na AWS EC2 (pendurai.vinnisantos.com.br), com isolamento de dados por loja (tenant_id), painel de SuperAdmin e licenciamento com bloqueio automático de acesso suspenso, cancelado ou expirado.',
       'PDV completo com venda por código de barras ou nome, atalhos de teclado, comandas por mesa e transação atômica (estoque + venda + ledger em uma única operação).',
       'Caixa cego com contagem sem saldo visível e ledger imutável de sangria/suprimento, estoque com fator de conversão e Kardex de auditoria, e carteira de fiado com limite de crédito por cliente.',
-      'Integração com o Zé Delivery via webhook (fila durável, assinatura HMAC e rate limiting) e impressão térmica de recibos via ESC/POS.',
+      'Integração de pagamentos recorrentes via API do Asaas, integração com o Zé Delivery via webhook (fila durável, assinatura HMAC e rate limiting) e impressão térmica de recibos via ESC/POS.',
       'Dashboard administrativo com métricas de negócio (CMV, lucro bruto, ROI), construído em ASP.NET Core (Razor Pages) com arquitetura em camadas e acesso transacional via Dapper/Npgsql.',
     ],
   },
@@ -120,6 +122,25 @@ const experience = [
       'Desenvolvido em ASP.NET Core (Razor Pages) com C# .NET 10 e Entity Framework Core, incluindo cadastro em lote de passageiros com dados completos (CPF, RG, contatos de emergência, congregação).',
       'Camada de segurança própria: validação de CPF e telefone com dígito verificador, rate limiting contra força bruta e políticas de senha forte.',
       'Pipeline de CI/CD com GitHub Actions, publicando a aplicação e realizando deploy automático via SSH/SCP em servidor AWS com reinício do serviço.',
+    ],
+  },
+  {
+    company: 'MarcAi',
+    role: 'Desenvolvedor Full Stack — Plataforma de Agendamento (SaaS)',
+    period: 'Em Desenvolvimento',
+    bullets: [
+      'Construção de aplicação multi-tenant voltada para salões de estética, com foco em segurança e autenticação de dois fatores (TOTP 2FA).',
+      'Garantia de qualidade de código através de testes unitários (xUnit) e conteinerização do ambiente com Docker.',
+      'Stack: C# (ASP.NET Core), Supabase, xUnit e Docker.',
+    ],
+  },
+  {
+    company: 'Life OS',
+    role: 'Desenvolvedor Full Stack — Dashboard de Gestão Pessoal',
+    period: 'Em Produção',
+    bullets: [
+      'Aplicação fullstack para gerenciamento pessoal e produtividade, disponível em agenda.vinnisantos.com.br.',
+      'Stack: Next.js 15, Tailwind CSS e Supabase Auth, orquestrado com Docker na AWS EC2.',
     ],
   },
   {
@@ -260,6 +281,17 @@ export default function About() {
                 className="w-full mb-3"
               >
                 <FaDownload aria-hidden="true" /> Baixar Currículo
+              </Button>
+
+              <Button
+                as="a"
+                href={RESUME_URL_EN}
+                download="Vinnicius_Gabriel_Matos_dos_Santos_Resume_EN.docx"
+                variant="outline"
+                size="md"
+                className="w-full mb-6"
+              >
+                <FaDownload aria-hidden="true" /> Download Resume (EN)
               </Button>
 
               <div className="flex gap-3">
