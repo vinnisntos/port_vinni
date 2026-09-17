@@ -226,8 +226,9 @@ export const aboutPt = {
     {
       name: 'Programação Orientada a Objetos (POO) com C#',
       org: 'Udemy',
-      year: 'Em andamento',
+      year: '2026',
     },
+    { name: 'Engenharia de Software', org: 'FIAP', year: 'Em andamento' },
   ],
 
   languages: [

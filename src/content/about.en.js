@@ -226,8 +226,9 @@ export const aboutEn = {
     {
       name: 'Object-Oriented Programming (OOP) with C#',
       org: 'Udemy',
-      year: 'In Progress',
+      year: '2026',
     },
+    { name: 'Software Engineering', org: 'FIAP', year: 'In Progress' },
   ],
 
   languages: [
