@@ -166,7 +166,7 @@ export const aboutPt = {
       role: 'Desenvolvedor Full Stack — Dashboard de Gestão Pessoal',
       period: 'Em Produção',
       bullets: [
-        'Aplicação fullstack para gerenciamento pessoal e produtividade, disponível em agenda.vinnisantos.com.br.',
+        'Aplicação fullstack para gerenciamento pessoal e produtividade, em uso diário como ferramenta pessoal, disponível em agenda.vinnisantos.com.br.',
         'Stack: Next.js 15, Tailwind CSS e Supabase Auth, orquestrado com Docker na AWS EC2.',
       ],
     },
