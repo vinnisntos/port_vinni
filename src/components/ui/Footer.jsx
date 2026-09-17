@@ -1,12 +1,21 @@
+import { useLocale } from '../../hooks/useLocale';
+
+const COPY = {
+  pt: { rights: 'Todos os direitos reservados.' },
+  en: { rights: 'All rights reserved.' },
+};
+
 export default function Footer() {
   const year = new Date().getFullYear();
+  const locale = useLocale();
+  const t = COPY[locale];
 
   return (
     <footer className="border-t border-white/5 bg-[#09090B]">
       <div className="max-w-7xl mx-auto px-6 py-8">
         <div className="flex flex-col md:flex-row justify-between items-center gap-4">
           <p className="text-[10px] font-mono text-gray-600 uppercase tracking-widest">
-            © {year} Vinni Santos Dev. Todos os direitos reservados.
+            © {year} Vinni Santos Dev. {t.rights}
           </p>
           <p className="text-[10px] font-mono text-gray-600">
             Built with{' '}

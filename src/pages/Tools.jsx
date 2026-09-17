@@ -1,61 +1,9 @@
 import { Link } from 'react-router-dom';
-import {
-  FaBolt,
-  FaUserSecret,
-  FaShieldAlt,
-  FaTerminal,
-  FaCode,
-  FaDatabase,
-  FaArrowRight,
-} from 'react-icons/fa';
+import { FaArrowRight } from 'react-icons/fa';
 import Card from '../components/ui/Card';
 import Button from '../components/ui/Button';
 import PageHeader from '../components/ui/PageHeader';
-
-const tools = [
-  {
-    path: '/tools/email-validator',
-    title: 'Email Validator',
-    description: 'Validação de e-mails com verificação de formato e domínio',
-    icon: FaBolt,
-    tags: ['Validação', 'Frontend'],
-  },
-  {
-    path: '/tools/cpf',
-    title: 'CPF Generator',
-    description: 'Gera e valida CPFs com algoritmo oficial da Receita',
-    icon: FaUserSecret,
-    tags: ['Brasil', 'Validação'],
-  },
-  {
-    path: '/tools/cnpj',
-    title: 'CNPJ Generator',
-    description: 'Gera e valida CNPJs com algoritmo oficial',
-    icon: FaShieldAlt,
-    tags: ['Brasil', 'Empresa'],
-  },
-  {
-    path: '/tools/cep',
-    title: 'CEP Finder',
-    description: 'Busca endereços por CEP via ViaCEP API',
-    icon: FaTerminal,
-    tags: ['API', 'Brasil'],
-  },
-  {
-    path: '/tools/phone-validator',
-    title: 'Phone Validator',
-    description: 'Valida telefones celulares e fixos do Brasil',
-    icon: FaCode,
-    tags: ['Validação', 'Mobile'],
-  },
-  {
-    path: '/tools/fake-data',
-    title: 'Fake Data Generator',
-    description: 'Gera dados completos para testes: nome, email, CPF, endereço',
-    icon: FaDatabase,
-    tags: ['Teste', 'Generator'],
-  },
-];
+import { toolsPt as tools } from '../content/tools';
 
 export default function Tools() {
   return (

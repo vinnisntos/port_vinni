@@ -40,7 +40,9 @@ function App() {
         >
           <Routes>
             <Route path="/" element={<Home />} />
+            <Route path="/en" element={<Home />} />
             <Route path="/about" element={<About />} />
+            <Route path="/en/about" element={<About />} />
             <Route path="/tools" element={<Tools />} />
             <Route path="/tools/email-validator" element={<EmailValidator />} />
             <Route path="/tools/cpf" element={<CPFGenerator />} />

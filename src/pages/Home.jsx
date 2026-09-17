@@ -1,59 +1,13 @@
-import { Link } from 'react-router-dom';
-import {
-  FaCode,
-  FaDatabase,
-  FaTerminal,
-  FaBolt,
-  FaShieldAlt,
-  FaUserSecret,
-} from 'react-icons/fa';
+import { Link, useLocation } from 'react-router-dom';
+import { FaCode, FaDatabase, FaTerminal } from 'react-icons/fa';
 import Card from '../components/ui/Card';
 import Button from '../components/ui/Button';
+import { toolsPt, toolsEn } from '../content/tools';
+import { homeContent } from '../content/home';
+import { useLocale, getLocalizedPath } from '../hooks/useLocale';
+import { useDocumentHead } from '../hooks/useDocumentHead';
 
-const tools = [
-  {
-    path: '/tools/email-validator',
-    title: 'Email Validator',
-    description: 'Validação de e-mails com verificação de formato e domínio',
-    icon: FaBolt,
-    tags: ['Validação', 'Frontend'],
-  },
-  {
-    path: '/tools/cpf',
-    title: 'CPF Generator',
-    description: 'Gera e valida CPFs com algoritmo oficial da Receita',
-    icon: FaUserSecret,
-    tags: ['Brasil', 'Validação'],
-  },
-  {
-    path: '/tools/cnpj',
-    title: 'CNPJ Generator',
-    description: 'Gera e valida CNPJs com algoritmo oficial',
-    icon: FaShieldAlt,
-    tags: ['Brasil', 'Empresa'],
-  },
-  {
-    path: '/tools/cep',
-    title: 'CEP Finder',
-    description: 'Busca endereços por CEP via ViaCEP API',
-    icon: FaTerminal,
-    tags: ['API', 'Brasil'],
-  },
-  {
-    path: '/tools/phone-validator',
-    title: 'Phone Validator',
-    description: 'Valida telefones celulares e fixos do Brasil',
-    icon: FaCode,
-    tags: ['Validação', 'Mobile'],
-  },
-  {
-    path: '/tools/fake-data',
-    title: 'Fake Data Generator',
-    description: 'Gera dados completos para testes: nome, email, CPF, endereço',
-    icon: FaDatabase,
-    tags: ['Teste', 'Generator'],
-  },
-];
+const SITE_URL = 'https://vinnisantos.com.br';
 
 const techStack = [
   { icon: FaCode, label: 'React 19 + TypeScript' },
@@ -62,6 +16,23 @@ const techStack = [
 ];
 
 export default function Home() {
+  const locale = useLocale();
+  const { pathname } = useLocation();
+  const t = homeContent[locale];
+  const tools = locale === 'en' ? toolsEn : toolsPt;
+  const aboutHref = locale === 'en' ? '/en/about' : '/about';
+
+  useDocumentHead({
+    title: t.seo.title,
+    description: t.seo.description,
+    lang: locale === 'en' ? 'en-US' : 'pt-BR',
+    alternates: [
+      { hreflang: 'pt-BR', href: SITE_URL + getLocalizedPath(pathname, 'pt') },
+      { hreflang: 'en-US', href: SITE_URL + getLocalizedPath(pathname, 'en') },
+      { hreflang: 'x-default', href: SITE_URL + getLocalizedPath(pathname, 'pt') },
+    ],
+  });
+
   return (
     <div className="pt-24 pb-12">
       {/* ===========================================================
@@ -84,7 +55,7 @@ export default function Home() {
           {/* Lado esquerdo — identidade + CTAs */}
           <div className="lg:col-span-8">
             <span className="inline-block px-3 py-1 mb-6 border border-purple-500/30 bg-purple-500/5 text-purple-400 font-mono text-[10px] tracking-widest uppercase">
-              [ status: online // session: active ]
+              {t.statusTag}
             </span>
 
             <h1 className="text-5xl md:text-8xl font-black leading-[0.85] tracking-tighter uppercase mb-6 text-white">
@@ -94,19 +65,18 @@ export default function Home() {
             </h1>
 
             <p className="max-w-xl text-muted text-lg md:text-xl font-light leading-relaxed mb-8">
-              Desenvolvedor Full Stack especializado em criar soluções reais.
-              Este hub reúne ferramentas e utilitários para desenvolvedores.
+              {t.subtitle}
             </p>
 
             <div className="flex flex-wrap gap-4">
               <Link to="/tools">
                 <Button variant="primary" size="lg">
-                  Explorar Ferramentas
+                  {t.ctaPrimary}
                 </Button>
               </Link>
-              <Link to="/about">
+              <Link to={aboutHref}>
                 <Button variant="secondary" size="lg">
-                  Sobre Mim
+                  {t.ctaSecondary}
                 </Button>
               </Link>
             </div>
@@ -116,7 +86,7 @@ export default function Home() {
           <aside className="lg:col-span-4 pb-4" aria-label="Stack principal">
             <Card glow className="h-full">
               <p className="text-[10px] font-mono text-gray-600 uppercase tracking-widest mb-4">
-                // Stack principal
+                {t.stackLabel}
               </p>
               <ul className="space-y-4 list-none">
                 {techStack.map(({ icon: Icon, label }) => (
@@ -161,7 +131,7 @@ export default function Home() {
         <div className="flex items-center gap-4 mb-8">
           <div className="h-px flex-1 bg-gradient-to-r from-transparent via-purple-500/30 to-transparent" />
           <span className="text-[10px] font-mono text-purple-400 uppercase tracking-widest">
-            // Ferramentas Disponíveis
+            {t.toolsSectionLabel}
           </span>
           <div className="h-px flex-1 bg-gradient-to-r from-transparent via-purple-500/30 to-transparent" />
         </div>
@@ -172,7 +142,7 @@ export default function Home() {
               key={tool.path}
               to={tool.path}
               className="block group focus:outline-none focus-visible:ring-2 focus-visible:ring-purple-500 rounded-sm"
-              aria-label={`Abrir ${tool.title}`}
+              aria-label={t.toolAriaLabel(tool.title)}
             >
               <Card glow className="h-full">
                 <div className="flex items-start justify-between mb-4">
