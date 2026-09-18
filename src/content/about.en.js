@@ -166,7 +166,7 @@ export const aboutEn = {
       role: 'Full Stack Developer — Personal Management Dashboard',
       period: 'In Production',
       bullets: [
-        'Full-stack application for personal task management and productivity, in daily personal use, live at agenda.vinnisantos.com.br.',
+        'Full-stack application for personal task management and productivity, in daily personal use, live at lifeos.vinnisantos.com.br.',
         'Stack: Next.js 15, Tailwind CSS, and Supabase Auth, orchestrated with Docker on AWS EC2.',
       ],
     },
