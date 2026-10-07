@@ -11,7 +11,7 @@ const COPY = {
     openMenu: 'Abrir menu',
     closeMenu: 'Fechar menu',
     langSwitcher: 'Selecionar idioma',
-    links: { home: 'Home', tools: 'Ferramentas', about: 'Sobre' },
+    links: { home: 'Home', projects: 'Projetos', tools: 'Ferramentas', about: 'Sobre' },
   },
   en: {
     nav: 'Main navigation',
@@ -20,7 +20,7 @@ const COPY = {
     openMenu: 'Open menu',
     closeMenu: 'Close menu',
     langSwitcher: 'Select language',
-    links: { home: 'Home', tools: 'Tools', about: 'About' },
+    links: { home: 'Home', projects: 'Projects', tools: 'Tools', about: 'About' },
   },
 };
 
@@ -64,9 +64,11 @@ export default function Navbar() {
 
   const homeHref = locale === 'en' ? '/en' : '/';
   const aboutHref = locale === 'en' ? '/en/about' : '/about';
+  const projectsHref = locale === 'en' ? '/en/projects' : '/projects';
 
   const links = [
     { path: homeHref, label: t.links.home, end: true },
+    { path: projectsHref, label: t.links.projects, end: false },
     { path: '/tools', label: t.links.tools, end: false },
     { path: aboutHref, label: t.links.about, end: false },
   ];

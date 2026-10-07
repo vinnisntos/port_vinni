@@ -2,30 +2,38 @@
 <html lang="pt-BR">
   <head>
     <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="./favicon.svg" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="theme-color" content="#09090B" />
     <meta name="color-scheme" content="dark" />
 
     <!-- SEO primário -->
-    <title>Vinnicius Santos · Full Stack Developer — Hub de Utilitários</title>
+    <title>Vinnicius Santos · Desenvolvedor Full Stack e Arquitetura de Soluções</title>
     <meta
       name="description"
-      content="Portfólio e hub de utilitários para desenvolvedores de Vinnicius Santos: validadores de CPF, CNPJ, e-mail, telefone, busca de CEP e gerador de dados fake."
+      content="Portfólio de Vinnicius Santos (Vinnicius Gabriel Matos dos Santos), desenvolvedor full stack em Sorocaba/SP com foco em arquitetura de soluções: SaaS multi-tenant em C#/.NET, Next.js e PostgreSQL, com as decisões de arquitetura de cada projeto."
     />
     <meta name="author" content="Vinnicius Santos" />
     <meta name="robots" content="index,follow" />
     <link rel="canonical" href="https://vinnisantos.com.br/" />
+    <link rel="alternate" hreflang="pt-BR" href="https://vinnisantos.com.br/" />
+    <link rel="alternate" hreflang="en-US" href="https://vinnisantos.com.br/en" />
+    <link rel="alternate" hreflang="x-default" href="https://vinnisantos.com.br/" />
+    <link rel="me" href="https://github.com/vinnisntos" />
+    <link rel="me" href="https://www.linkedin.com/in/vinnisantos" />
 
     <!-- Open Graph -->
-    <meta property="og:type" content="website" />
+    <meta property="og:type" content="profile" />
+    <meta property="profile:first_name" content="Vinnicius" />
+    <meta property="profile:last_name" content="Santos" />
+    <meta property="profile:username" content="vinnisantos" />
     <meta property="og:locale" content="pt_BR" />
-    <meta property="og:title" content="Vinnicius Santos · Full Stack Developer" />
+    <meta property="og:title" content="Vinnicius Santos · Desenvolvedor Full Stack e Arquitetura de Soluções" />
     <meta
       property="og:description"
-      content="Portfólio pessoal + suíte de ferramentas para devs (CPF, CNPJ, CEP, e-mail, telefone, dados fake)."
+      content="SaaS multi-tenant em C#/.NET, Next.js e PostgreSQL, com as decisões de arquitetura de cada projeto."
     />
-    <meta property="og:site_name" content="Santos Soluções" />
+    <meta property="og:site_name" content="Vinnicius Santos" />
     <meta property="og:url" content="https://vinnisantos.com.br/" />
     <meta property="og:image" content="https://vinnisantos.com.br/og-image.png" />
     <meta property="og:image:width" content="1200" />
@@ -41,13 +49,49 @@
       {
         "@context": "https://schema.org",
         "@type": "Person",
+        "@id": "https://vinnisantos.com.br/#person",
         "name": "Vinnicius Santos",
+        "alternateName": [
+          "Vinnicius Gabriel Matos dos Santos",
+          "Vinnicius Dos Santos",
+          "Vinni Santos",
+          "vinnisantos"
+        ],
         "url": "https://vinnisantos.com.br",
+        "image": "https://vinnisantos.com.br/og-image.png",
+        "jobTitle": "Desenvolvedor Full Stack",
+        "description": "Desenvolvedor full stack com foco em arquitetura de soluções para SaaS multi-tenant com C#/.NET, Next.js e PostgreSQL. Cofundador do PendurAi.",
+        "address": {
+          "@type": "PostalAddress",
+          "addressLocality": "Sorocaba",
+          "addressRegion": "SP",
+          "addressCountry": "BR"
+        },
+        "worksFor": {
+          "@type": "Organization",
+          "name": "Going2"
+        },
+        "alumniOf": {
+          "@type": "CollegeOrUniversity",
+          "name": "Universidade Paulista (UNIP)"
+        },
+        "knowsAbout": [
+          "Arquitetura de soluções",
+          "Arquitetura de software",
+          "SaaS multi-tenant",
+          "C#",
+          ".NET",
+          "ASP.NET Core",
+          "Next.js",
+          "TypeScript",
+          "PostgreSQL",
+          "Docker",
+          "AWS"
+        ],
         "sameAs": [
           "https://github.com/vinnisntos",
-          "https://linkedin.com/in/vinnisantos"
-        ],
-        "jobTitle": "Desenvolvedor de Software"
+          "https://www.linkedin.com/in/vinnisantos"
+        ]
       }
     </script>
 
@@ -58,6 +102,21 @@
   </head>
   <body>
     <div id="root"></div>
+    <noscript>
+      <h1>Vinnicius Santos — Desenvolvedor Full Stack e Arquitetura de Soluções</h1>
+      <p>
+        Portfólio de Vinnicius Gabriel Matos dos Santos, desenvolvedor full stack em Sorocaba/SP
+        com foco em arquitetura de soluções: SaaS multi-tenant em C#/.NET, Next.js e PostgreSQL.
+        Cofundador do PendurAi.
+      </p>
+      <ul>
+        <li><a href="/projects">Arquitetura e projetos</a></li>
+        <li><a href="/about">Sobre</a></li>
+        <li><a href="/tools">Ferramentas</a></li>
+        <li><a href="https://github.com/vinnisntos">GitHub</a></li>
+        <li><a href="https://www.linkedin.com/in/vinnisantos">LinkedIn</a></li>
+      </ul>
+    </noscript>
     <script type="module" src="/src/main.jsx"></script>
   </body>
 </html>

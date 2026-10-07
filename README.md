@@ -70,7 +70,7 @@ O site roda numa VM EC2 e é servido diretamente no domínio próprio `vinnisant
 
 1. `npm run build` gera o estático em `./dist` (base `/`, já que o domínio serve o site na raiz).
 2. O conteúdo de `dist/` é copiado para a VM (ex.: `scp`/`rsync` para o diretório configurado no `root` do Nginx).
-3. O Nginx serve os arquivos estáticos e resolve rotas de SPA via `try_files ... /index.html` — ver referência em [`deploy/nginx.conf`](./deploy/nginx.conf).
+3. O build gera um HTML por rota (`scripts/prerender.mjs`), com o `<head>` de cada página, para buscadores e prévias de link. O Nginx serve esses arquivos e resolve as demais rotas de SPA via `try_files $uri $uri.html /index.html` — ver referência em [`deploy/nginx.conf`](./deploy/nginx.conf).
 4. HTTPS/certificado gerenciado na própria VM (ex.: Certbot), fora do escopo deste repositório.
 
 ---

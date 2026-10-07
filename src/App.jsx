@@ -4,6 +4,7 @@ import Footer from './components/ui/Footer';
 import ScrollToTop from './components/ui/ScrollToTop';
 import Home from './pages/Home';
 import About from './pages/About';
+import Projects from './pages/Projects';
 import Tools from './pages/Tools';
 import EmailValidator from './pages/tools/EmailValidator';
 import CPFGenerator from './pages/tools/CPFGenerator';
@@ -43,6 +44,8 @@ function App() {
             <Route path="/en" element={<Home />} />
             <Route path="/about" element={<About />} />
             <Route path="/en/about" element={<About />} />
+            <Route path="/projects" element={<Projects />} />
+            <Route path="/en/projects" element={<Projects />} />
             <Route path="/tools" element={<Tools />} />
             <Route path="/tools/email-validator" element={<EmailValidator />} />
             <Route path="/tools/cpf" element={<CPFGenerator />} />

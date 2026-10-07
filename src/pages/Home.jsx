@@ -3,7 +3,8 @@ import { FaCode, FaDatabase, FaTerminal } from 'react-icons/fa';
 import Card from '../components/ui/Card';
 import Button from '../components/ui/Button';
 import Seo from '../components/Seo';
-import { itemListSchema } from '../utils/seo';
+import { itemListSchema, personNode, PERSON_ID } from '../utils/seo';
+import { projectsContent } from '../content/projects';
 import { toolsPt, toolsEn } from '../content/tools';
 import { homeContent } from '../content/home';
 import { useLocale, getLocalizedPath } from '../hooks/useLocale';
@@ -16,12 +17,43 @@ const techStack = [
   { icon: FaTerminal, label: 'Fedora Linux' },
 ];
 
+function homeSchema(locale, path, tools) {
+  const toolList = itemListSchema({
+    name: locale === 'en' ? 'Developer tools' : 'Ferramentas para desenvolvedores',
+    items: tools.map((tool) => ({ name: tool.title, path: tool.path })),
+  });
+  delete toolList['@context'];
+
+  return {
+    '@context': 'https://schema.org',
+    '@graph': [
+      {
+        '@type': 'WebSite',
+        '@id': `${SITE_URL}/#website`,
+        url: SITE_URL,
+        name: 'Vinnicius Santos',
+        inLanguage: ['pt-BR', 'en-US'],
+        author: { '@id': PERSON_ID },
+      },
+      {
+        '@type': 'ProfilePage',
+        url: `${SITE_URL}${path}`,
+        mainEntity: { '@id': PERSON_ID },
+      },
+      personNode(locale),
+      toolList,
+    ],
+  };
+}
+
 export default function Home() {
   const locale = useLocale();
   const { pathname } = useLocation();
   const t = homeContent[locale];
   const tools = locale === 'en' ? toolsEn : toolsPt;
   const aboutHref = locale === 'en' ? '/en/about' : '/about';
+  const projectsHref = locale === 'en' ? '/en/projects' : '/projects';
+  const featured = projectsContent[locale].projects.slice(0, 3);
   const currentPath = locale === 'en' ? '/en' : '/';
 
   return (
@@ -31,10 +63,7 @@ export default function Home() {
         description={t.seo.description}
         path={currentPath}
         lang={locale === 'en' ? 'en-US' : 'pt-BR'}
-        structuredData={itemListSchema({
-          name: locale === 'en' ? 'Developer tools' : 'Ferramentas para desenvolvedores',
-          items: tools.map((tool) => ({ name: tool.title, path: tool.path })),
-        })}
+        structuredData={homeSchema(locale, currentPath, tools)}
         alternates={[
           { hreflang: 'pt-BR', href: SITE_URL + getLocalizedPath(pathname, 'pt') },
           { hreflang: 'en-US', href: SITE_URL + getLocalizedPath(pathname, 'en') },
@@ -75,8 +104,13 @@ export default function Home() {
             </p>
 
             <div className="flex flex-wrap gap-4">
-              <Link to="/tools">
+              <Link to={projectsHref}>
                 <Button variant="primary" size="lg">
+                  {t.ctaProjects}
+                </Button>
+              </Link>
+              <Link to="/tools">
+                <Button variant="secondary" size="lg">
                   {t.ctaPrimary}
                 </Button>
               </Link>
@@ -127,6 +161,49 @@ export default function Home() {
           <p className="text-[10px] text-gray-600 font-mono uppercase">
             Hardware: Acer_Nitro_V15 // OS: Fedora_43
           </p>
+        </div>
+      </section>
+
+      {/* ===========================================================
+          PROJETOS EM DESTAQUE
+          =========================================================== */}
+      <section className="mt-24">
+        <div className="flex items-center gap-4 mb-8">
+          <div className="h-px flex-1 bg-gradient-to-r from-transparent via-purple-500/30 to-transparent" />
+          <h2 className="text-[10px] font-mono text-purple-400 uppercase tracking-widest">
+            {t.projectsSectionLabel}
+          </h2>
+          <div className="h-px flex-1 bg-gradient-to-r from-transparent via-purple-500/30 to-transparent" />
+        </div>
+
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+          {featured.map((project) => (
+            <Link
+              key={project.name}
+              to={projectsHref}
+              className="block group focus:outline-none focus-visible:ring-2 focus-visible:ring-purple-500 rounded-sm"
+            >
+              <Card glow className="h-full">
+                <p className="text-[10px] font-mono text-purple-400 uppercase tracking-widest mb-2">
+                  {project.status}
+                </p>
+                <h3 className="text-lg font-bold text-white mb-2 group-hover:text-purple-400 transition-colors">
+                  {project.name}
+                </h3>
+                <p className="text-sm text-muted mb-4">{project.kind}</p>
+                <ul className="space-y-1.5 list-none">
+                  {project.decisions.slice(0, 3).map((decision) => (
+                    <li key={decision.title} className="text-sm text-muted flex gap-2">
+                      <span className="text-purple-500 flex-shrink-0" aria-hidden="true">
+                        →
+                      </span>
+                      {decision.title}
+                    </li>
+                  ))}
+                </ul>
+              </Card>
+            </Link>
+          ))}
         </div>
       </section>
 
