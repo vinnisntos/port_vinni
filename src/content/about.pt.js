@@ -228,7 +228,8 @@ export const aboutPt = {
       role: 'Desenvolvedor de Software — github.com/vinnisntos',
       period: 'Em Desenvolvimento',
       bullets: [
-        'Agenda Osvair: agendamento online para transporte executivo, com fluxo de solicitação, orçamento e aprovação do cliente; front estático com Supabase (Auth, RLS e funções RPC), servido por nginx em AWS EC2.',
+        'Agenda Osvair (agenda.osvairsantos.com.br): agendamento online para transporte executivo, com fluxo de solicitação, orçamento e aprovação do cliente; front estático com Supabase (Auth, RLS e funções RPC), servido por nginx em AWS EC2.',
+        'Lopes Vision (demonstrativo.vinnisantos.com.br): site demonstrativo de agendamento para uma ótica, em Next.js, em que o cliente escolhe serviço, dia e horário sem criar conta e recebe a confirmação na tela.',
         'BDC — Batalha das Capivaras: piloto com landing pública, ranking e sorteio de chaves ao vivo para uma batalha de rima independente, em Next.js 14, Supabase e Vercel.',
         'wpp-agendamento: SaaS multi-tenant de agendamento via WhatsApp (Baileys), com cobrança via PIX (Mercado Pago), persistência em Supabase/PostgreSQL e fluxo conversacional por máquina de estados.',
         'SaaS_PDV: sistema desktop de PDV e gestão financeira multi-tenant em C# .NET 10 (Windows Forms), Entity Framework Core e SQLite, com isolamento de dados por empresa e filial.',

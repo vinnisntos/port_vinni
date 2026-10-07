@@ -228,7 +228,8 @@ export const aboutEn = {
       role: 'Software Developer — github.com/vinnisntos',
       period: 'In Development',
       bullets: [
-        'Agenda Osvair: online booking for an executive transport service, with a request, quote, and customer-approval flow; static front end on Supabase (Auth, RLS, and RPC functions), served by nginx on AWS EC2.',
+        'Agenda Osvair (agenda.osvairsantos.com.br): online booking for an executive transport service, with a request, quote, and customer-approval flow; static front end on Supabase (Auth, RLS, and RPC functions), served by nginx on AWS EC2.',
+        'Lopes Vision (demonstrativo.vinnisantos.com.br): a demo booking site for an optician, built with Next.js, where customers pick a service, day, and time without creating an account and get on-screen confirmation.',
         'BDC — Batalha das Capivaras: a pilot with a public landing page, ranking, and live bracket draw for an independent rap battle, built with Next.js 14, Supabase, and Vercel.',
         'wpp-agendamento: a multi-tenant WhatsApp scheduling SaaS (built on Baileys), with PIX billing via Mercado Pago, Supabase/PostgreSQL persistence, and a state-machine-driven conversational flow.',
         'SaaS_PDV: a multi-tenant desktop point-of-sale and financial management system in C# .NET 10 (Windows Forms), Entity Framework Core, and SQLite, with data isolation per company and branch.',
