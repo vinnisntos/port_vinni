@@ -17,6 +17,11 @@ dist-ssr
 .env
 .env.*
 
+# Material de referência interno (atas de reunião, apresentações) — nunca versionar
+/*.pdf
+/curso_santander*.png
+/WhatsApp Image*
+
 # Editor directories and files
 .vscode/*
 !.vscode/extensions.json

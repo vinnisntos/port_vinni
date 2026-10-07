@@ -35,13 +35,21 @@ const historyPt = (
       <span className="text-purple-400">
         Análise e Desenvolvimento de Sistemas
       </span>{' '}
-      na UNIP e atuo como estagiário de TI em HelpDesk/DevOps na Going2,
-      enquanto mantenho projetos próprios de backend/fullstack. Tenho
-      experiência prática criando soluções e automações com{' '}
-      <span className="text-purple-400">C#</span>,{' '}
-      <span className="text-purple-400">Python</span> e bancos de
-      dados SQL, além de estar me aprofundando em JavaScript/
-      TypeScript e boas práticas de UX/UI.
+      na UNIP e estagiário de TI na Going2. Entrei para cuidar de suporte
+      e governança de TI e, em menos de dois meses, fui chamado para o
+      time de automação e IA para desenvolver a plataforma B2B da
+      empresa, em{' '}
+      <span className="text-purple-400">Next.js</span>,{' '}
+      <span className="text-purple-400">TypeScript</span> e{' '}
+      <span className="text-purple-400">PostgreSQL</span>, com mentoria
+      dos engenheiros de soluções.
+    </p>
+    <p>
+      Em paralelo, mantenho produtos próprios em produção, a maioria em{' '}
+      <span className="text-purple-400">C#/.NET</span>: o PendurAi, um
+      PDV/ERP multi-tenant que cofundei, um sistema de reserva de passagens e um painel
+      pessoal que uso todos os dias. É neles que pratico arquitetura,
+      segurança e deploy de ponta a ponta.
     </p>
     <p>
       Este portfólio foi construído com{' '}
@@ -70,13 +78,20 @@ const historyEn = (
       <span className="text-purple-400">
         Systems Analysis and Development
       </span>{' '}
-      student at UNIP and work as an IT Intern in Helpdesk/DevOps at
-      Going2, while maintaining my own backend/full-stack projects. I
-      have hands-on experience building solutions and automations with{' '}
-      <span className="text-purple-400">C#</span>,{' '}
-      <span className="text-purple-400">Python</span>, and SQL
-      databases, and I'm deepening my knowledge of JavaScript/TypeScript
-      and UX/UI best practices.
+      student at UNIP and an IT Intern at Going2. I joined to handle IT
+      support and governance and, in under two months, was brought into
+      the automation and AI team to build the company's B2B platform
+      with <span className="text-purple-400">Next.js</span>,{' '}
+      <span className="text-purple-400">TypeScript</span>, and{' '}
+      <span className="text-purple-400">PostgreSQL</span>, mentored by
+      the solutions engineers.
+    </p>
+    <p>
+      Alongside that, I keep my own products running in production,
+      mostly in <span className="text-purple-400">C#/.NET</span>:
+      PendurAi, a multi-tenant POS/ERP I co-founded, a ticket reservation system, and a personal
+      dashboard I use every day. They are where I practice architecture,
+      security, and deployment end to end.
     </p>
     <p>
       This portfolio was built with{' '}
@@ -112,6 +127,9 @@ function personSchema(locale, path) {
         'TypeScript',
         'PostgreSQL',
         'React',
+        'Next.js',
+        'ASP.NET Core',
+        'Docker',
       ],
       sameAs: [
         'https://github.com/vinnisntos',
@@ -254,6 +272,45 @@ export default function About() {
             <div className="space-y-4 text-muted leading-relaxed">
               {history}
             </div>
+          </Card>
+
+          {/* Como Trabalho */}
+          <Card>
+            <h3 className="text-xl font-bold text-white mb-6 flex items-center gap-3">
+              <span className="text-purple-500" aria-hidden="true">//</span>
+              {t.sectionHeadings.workProfile}
+            </h3>
+            <ul className="grid grid-cols-1 sm:grid-cols-2 gap-4 list-none">
+              {t.workProfile.strengths.map((item) => (
+                <li
+                  key={item.title}
+                  className="border-l-2 border-purple-500/30 pl-4"
+                >
+                  <h4 className="text-white font-semibold text-sm mb-1">
+                    {item.title}
+                  </h4>
+                  <p className="text-sm text-muted leading-relaxed">
+                    {item.text}
+                  </p>
+                </li>
+              ))}
+            </ul>
+            <h4 className="text-[11px] font-mono text-gray-500 uppercase tracking-widest mt-6 mb-3">
+              {t.sectionHeadings.growth}
+            </h4>
+            <ul className="space-y-1.5 list-none">
+              {t.workProfile.growth.map((item) => (
+                <li
+                  key={item}
+                  className="text-sm text-muted leading-relaxed flex gap-2"
+                >
+                  <span className="text-purple-500 flex-shrink-0" aria-hidden="true">
+                    →
+                  </span>
+                  {item}
+                </li>
+              ))}
+            </ul>
           </Card>
 
           {/* Competências Técnicas */}

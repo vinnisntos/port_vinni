@@ -9,16 +9,22 @@ import {
   FaPalette,
   FaRobot,
   FaServer,
-  FaMicrosoft,
+  FaReact,
+  FaNodeJs,
+  FaAws,
+  FaVial,
+  FaShieldAlt,
 } from 'react-icons/fa';
 import {
   SiPostgresql,
   SiTypescript,
   SiDotnet,
-  SiFlask,
-  SiDjango,
   SiSupabase,
   SiGooglecloud,
+  SiNextdotjs,
+  SiTailwindcss,
+  SiNginx,
+  SiGithubactions,
 } from 'react-icons/si';
 import { TbBrandCSharp } from 'react-icons/tb';
 
@@ -32,12 +38,12 @@ export const aboutPt = {
   seo: {
     title: 'Vinnicius Santos · Sobre — Full Stack Developer',
     description:
-      'Conheça a trajetória de Vinnicius Santos: estagiário de TI em HelpDesk/DevOps, estudante de ADS e desenvolvedor full stack com projetos em produção.',
+      'Conheça a trajetória de Vinnicius Santos: estagiário de TI na Going2, estudante de ADS e desenvolvedor full stack (.NET e Next.js) com SaaS multi-tenant em produção.',
   },
 
   profile: {
-    roleTag: 'Estagiário TI (HelpDesk/DevOps) · Backend Jr.',
-    bio: 'Estudante de Análise e Desenvolvimento de Sistemas com base sólida em lógica de programação, arquitetura de sistemas e foco em backend. Experiência prática com C#, Python e bancos SQL, somada à vivência em ambientes industriais e comerciais que trouxe forte visão de processos de negócio, logística e resolução de problemas.',
+    roleTag: 'Estagiário de TI · Full Stack Jr. (.NET / Next.js)',
+    bio: 'Estudante de Análise e Desenvolvimento de Sistemas e estagiário de TI na Going2, onde, além do suporte, desenvolvo uma plataforma B2B interna. Construo SaaS multi-tenant com C#/.NET, Next.js e PostgreSQL, com projetos próprios em produção, entre eles o PendurAi, do qual sou cofundador. A vivência anterior em indústria, vendas e logística me deu visão de processo e de quem usa o sistema.',
     location: 'Sorocaba — SP',
     phones: [
       { display: '(15) 92002-2260', href: 'tel:+5515920022260' },
@@ -58,6 +64,8 @@ export const aboutPt = {
 
   sectionHeadings: {
     history: 'Minha História',
+    workProfile: 'Como Trabalho',
+    growth: 'Em evolução',
     skills: 'Competências Técnicas',
     experience: 'Experiência Profissional',
     education: 'Formação Acadêmica',
@@ -66,23 +74,42 @@ export const aboutPt = {
     stack: 'Como Construí Este Portfólio',
   },
 
+  workProfile: {
+    strengths: [
+      {
+        title: 'Entendo o problema antes de construir',
+        text: 'Procuro quem vai usar o sistema e levanto requisitos com gestor e engenheiros, para não entregar uma solução genérica.',
+      },
+      {
+        title: 'Entrego cedo e ajusto com feedback',
+        text: 'Mostro o que construí em demonstrações para o time e trato cada apontamento de usabilidade ou regra como a próxima tarefa.',
+      },
+      {
+        title: 'Digo o que ainda não sei',
+        text: 'Quando o tema é novo, aviso, estudo e pergunto. Foi assim que, em menos de dois meses de estágio, passei do suporte para o desenvolvimento de uma plataforma interna.',
+      },
+      {
+        title: 'Desenvolvimento assistido por IA, com direção própria',
+        text: 'Uso Claude Code e Codex no dia a dia: planejo em fases, defino papéis e regras de negócio e valido o resultado contra o que foi pedido.',
+      },
+    ],
+    growth: [
+      'Testes automatizados como hábito: já presentes no MarcAi e no Life OS, ainda pendentes no PendurAi.',
+      'Padrões de usabilidade em telas de gestão, como filtros, paginação e formulários mais enxutos.',
+      'Estimativa de custo e dimensionamento de infraestrutura antes de recomendar um serviço.',
+      'Rotina de equipe: branches, revisão de código e bibliotecas de componentes compartilhadas.',
+      'Conversação em inglês.',
+    ],
+  },
+
   skillGroups: [
-    {
-      title: 'Ferramentas & Controle de Versão',
-      items: [
-        { name: 'Git', icon: FaGitAlt },
-        { name: 'GitHub', icon: FaGithub },
-        { name: 'Docker', icon: FaDocker },
-        { name: 'CLI', icon: FaTerminal },
-      ],
-    },
     {
       title: 'Linguagens de Programação',
       items: [
         { name: 'C# (.NET)', icon: TbBrandCSharp },
-        { name: 'Python', icon: FaPython },
-        { name: 'JavaScript', icon: FaJs },
         { name: 'TypeScript', icon: SiTypescript },
+        { name: 'JavaScript', icon: FaJs },
+        { name: 'Python', icon: FaPython },
         { name: 'SQL', icon: FaDatabase },
       ],
     },
@@ -90,18 +117,40 @@ export const aboutPt = {
       title: 'Frameworks & Desenvolvimento Web',
       items: [
         { name: 'ASP.NET Core (Razor Pages)', icon: SiDotnet },
-        { name: 'Flask', icon: SiFlask },
-        { name: 'Django', icon: SiDjango },
+        { name: 'Next.js (App Router)', icon: SiNextdotjs },
+        { name: 'React', icon: FaReact },
+        { name: 'Node.js', icon: FaNodeJs },
+        { name: 'Tailwind CSS', icon: SiTailwindcss },
       ],
     },
     {
-      title: 'Banco de Dados & Cloud',
+      title: 'Banco de Dados',
       items: [
         { name: 'PostgreSQL', icon: SiPostgresql },
+        { name: 'Supabase (Auth · RLS)', icon: SiSupabase },
         { name: 'SQL Server', icon: FaServer },
-        { name: 'Supabase', icon: SiSupabase },
-        { name: 'Azure', icon: FaMicrosoft },
-        { name: 'Google Cloud (Console/CLI)', icon: SiGooglecloud },
+        { name: 'EF Core · Dapper · Drizzle', icon: FaDatabase },
+      ],
+    },
+    {
+      title: 'Infraestrutura & DevOps',
+      items: [
+        { name: 'Docker', icon: FaDocker },
+        { name: 'AWS EC2', icon: FaAws },
+        { name: 'Nginx', icon: SiNginx },
+        { name: 'GitHub Actions (CI/CD)', icon: SiGithubactions },
+        { name: 'Google Workspace · GCP', icon: SiGooglecloud },
+        { name: 'Git', icon: FaGitAlt },
+        { name: 'GitHub', icon: FaGithub },
+        { name: 'CLI', icon: FaTerminal },
+      ],
+    },
+    {
+      title: 'Arquitetura, Segurança & Qualidade',
+      items: [
+        { name: 'Multi-tenancy · RBAC', icon: FaShieldAlt },
+        { name: 'Autenticação · 2FA (TOTP)', icon: FaShieldAlt },
+        { name: 'xUnit · Vitest', icon: FaVial },
       ],
     },
     {
@@ -111,7 +160,7 @@ export const aboutPt = {
     {
       title: 'IA & Engenharia de Prompt',
       items: [
-        { name: 'ChatGPT, Claude AI/Claude Code, Gemini', icon: FaRobot },
+        { name: 'Claude Code, Codex, Gemini, ChatGPT', icon: FaRobot },
       ],
     },
   ],
@@ -119,25 +168,27 @@ export const aboutPt = {
   experience: [
     {
       company: 'Going2',
-      role: 'Estagiário de TI — HelpDesk / DevOps',
-      period: '07/2026 — Atual',
+      role: 'Estagiário de TI — Suporte, Governança e Desenvolvimento',
+      period: '08/2026 — Atual',
       bullets: [
-        'Gestão de TI e governança, responsável pelo desenvolvimento ponta a ponta de um Portal interno (Next.js, Supabase, AWS EC2) para controle de acessos e auditoria do catálogo de sistemas.',
-        'Automação e inovação tecnológica, participando ativamente da criação e implementação de projetos internos utilizando Inteligência Artificial para otimização de processos.',
-        'Responsável pelas rotinas de DevOps, atuando no gerenciamento de infraestrutura em nuvem, configuração de servidores (Nginx/PM2) e manutenção de ambientes para garantir a alta disponibilidade das aplicações.',
-        'Suporte técnico de HelpDesk, realizando atendimento contínuo, resolução ágil de incidentes e manutenção preventiva e corretiva da infraestrutura tecnológica corporativa.',
+        'Desenvolvimento da plataforma B2B com que a empresa entrega automação e IA aos clientes: assumi um projeto já iniciado e entreguei a visão do cliente, o hub de automações, o módulo de capacitação, o FAQ com assistente e os painéis de gestão e auditoria, além de reformular a interface.',
+        'Stack da plataforma: monorepo Next.js 16, React 19 e TypeScript sobre PostgreSQL com Row Level Security por organização, Drizzle ORM, fila de jobs no próprio Postgres e CI no GitHub Actions; cuidei também do deploy em Docker/Dokploy.',
+        'Levantamento de requisitos direto com o gestor e os engenheiros de soluções e demonstrações para o time de engenharia, com ciclos curtos de ajuste a partir do feedback (usabilidade, permissões e integrações).',
+        'Desenvolvimento ponta a ponta do Portal de Governança de TI (Next.js 14, TypeScript e PostgreSQL): RBAC com quatro papéis, solicitação e aprovação de acessos, inventário de hardware com check-in mensal, telefonia, base de conhecimento e trilha de auditoria por triggers. Gravei também o treinamento em vídeo para os usuários.',
+        'Administração de TI: contas e acessos no Google Workspace (onboarding e offboarding com backup), dispositivos corporativos, cofre de senhas e manutenção de ambientes com Docker, Nginx e PM2 em AWS EC2.',
+        'Atendimento (SAC) de uma campanha promocional de alcance nacional: suporte a participantes por e-mail e WhatsApp, validação de notas fiscais e cadastro de ganhadores, seguindo o fluxo com o jurídico e os cuidados de LGPD.',
       ],
     },
     {
       company: 'PendurAi',
-      role: 'Desenvolvedor Full Stack — ERP e PDV (SaaS) para Adegas e Mercados',
-      period: 'Em Produção',
+      role: 'Cofundador e Desenvolvedor Full Stack — ERP e PDV (SaaS) para Adegas e Mercados',
+      period: 'Em Produção (beta)',
       bullets: [
         'SaaS multi-tenant de PDV e ERP em produção na AWS EC2 (pendurai.vinnisantos.com.br), com isolamento de dados por loja (tenant_id), painel de SuperAdmin e licenciamento com bloqueio automático de acesso suspenso, cancelado ou expirado.',
         'PDV completo com venda por código de barras ou nome, atalhos de teclado, comandas por mesa e transação atômica (estoque + venda + ledger em uma única operação).',
         'Caixa cego com contagem sem saldo visível e ledger imutável de sangria/suprimento, estoque com fator de conversão e Kardex de auditoria, e carteira de fiado com limite de crédito por cliente.',
-        'Integração de pagamentos recorrentes via API do Asaas, integração com o Zé Delivery via webhook (fila durável, assinatura HMAC e rate limiting) e impressão térmica de recibos via ESC/POS.',
-        'Dashboard administrativo com métricas de negócio (CMV, lucro bruto, ROI), construído em ASP.NET Core (Razor Pages) com arquitetura em camadas e acesso transacional via Dapper/Npgsql.',
+        'Integração de pagamentos recorrentes via API do Asaas, e-mail transacional via Resend, integração com o Zé Delivery via webhook (fila durável, assinatura HMAC e rate limiting) e impressão térmica de recibos via ESC/POS.',
+        'Dashboard administrativo com métricas de negócio (CMV, lucro bruto, ROI) e relatórios exportáveis em Excel, PDF, XML e CSV, construído em ASP.NET Core (Razor Pages) com arquitetura em camadas e acesso transacional via Dapper/Npgsql.',
       ],
     },
     {
@@ -146,9 +197,9 @@ export const aboutPt = {
       period: 'Em Produção',
       bullets: [
         'Sistema 100% em produção com dados reais em mocidade015.vinnisantos.com.br, usado ativamente na venda e reserva de passagens de ônibus para viagens em grupo, com seleção de assentos, lista de espera e gestão de acompanhantes.',
-        'Desenvolvido em ASP.NET Core (Razor Pages) com C# .NET 10 e Entity Framework Core, incluindo cadastro em lote de passageiros com dados completos (CPF, RG, contatos de emergência, congregação).',
-        'Camada de segurança própria: validação de CPF e telefone com dígito verificador, rate limiting contra força bruta e políticas de senha forte.',
-        'Pipeline de CI/CD com GitHub Actions, publicando a aplicação e realizando deploy automático via SSH/SCP em servidor AWS com reinício do serviço.',
+        'Desenvolvido em ASP.NET Core (Razor Pages) com C# .NET 10, Entity Framework Core e PostgreSQL, incluindo cadastro em lote de passageiros com dados completos (CPF, RG, contatos de emergência, congregação).',
+        'Consistência e segurança: reservas em transação Serializable, que impede dois participantes no mesmo assento, validação de CPF e telefone com dígito verificador e senhas com BCrypt.',
+        'Pipeline de CI/CD com GitHub Actions, publicando a aplicação e fazendo deploy automático via rsync em servidor AWS, com reinício do serviço systemd.',
       ],
     },
     {
@@ -156,9 +207,10 @@ export const aboutPt = {
       role: 'Desenvolvedor Full Stack — Plataforma de Agendamento (SaaS)',
       period: 'Em Desenvolvimento',
       bullets: [
-        'Construção de aplicação multi-tenant voltada para salões de estética, com foco em segurança e autenticação de dois fatores (TOTP 2FA).',
-        'Garantia de qualidade de código através de testes unitários (xUnit) e conteinerização do ambiente com Docker.',
-        'Stack: C# (ASP.NET Core), Supabase, xUnit e Docker.',
+        'Plataforma multi-tenant de agendamento para salões de estética: cada salão em seu subdomínio, com isolamento por tenant conferido a cada requisição e onboarding self-service.',
+        'Agenda com preço e duração por profissional, conflito de horário bloqueado no próprio banco (constraint EXCLUDE no PostgreSQL) e regra de cancelamento reforçada por trigger.',
+        'Superadmin com 2FA via TOTP (RFC 6238) implementado do zero e validado contra os vetores oficiais; 57 testes xUnit rodando em CI no GitHub Actions.',
+        'E-mail transacional via Resend, assinatura via Asaas (implementada, ainda em validação) e deploy em Docker Compose com Caddy e TLS wildcard. Stack: ASP.NET Core (Razor Pages) e Supabase/PostgreSQL.',
       ],
     },
     {
@@ -166,8 +218,9 @@ export const aboutPt = {
       role: 'Desenvolvedor Full Stack — Dashboard de Gestão Pessoal',
       period: 'Em Produção',
       bullets: [
-        'Aplicação fullstack para gerenciamento pessoal e produtividade, em uso diário como ferramenta pessoal, disponível em lifeos.vinnisantos.com.br.',
-        'Stack: Next.js 15, Tailwind CSS e Supabase Auth, orquestrado com Docker na AWS EC2.',
+        'Aplicação fullstack de rotina e produtividade, em uso diário como ferramenta pessoal em lifeos.vinnisantos.com.br, com módulos de treinos, alimentação e Kanban de estudos e trabalhos.',
+        'Stack: Next.js 16 (App Router), Supabase (Postgres, Auth e RLS), Drizzle ORM, Tailwind CSS v4 e shadcn/ui, com imagem Docker gerada no GitHub Actions e servida atrás de nginx na AWS EC2.',
+        'Decisões de arquitetura registradas em ADRs e regras de negócio cobertas por testes unitários (Vitest).',
       ],
     },
     {
@@ -175,10 +228,12 @@ export const aboutPt = {
       role: 'Desenvolvedor de Software — github.com/vinnisntos',
       period: 'Em Desenvolvimento',
       bullets: [
-        'SaaS_PDV: sistema de PDV e gestão financeira com arquitetura multi-tenant em C# .NET 10, Entity Framework Core e SQLite, com isolamento de dados por empresa e filial.',
+        'Agenda Osvair: agendamento online para transporte executivo, com fluxo de solicitação, orçamento e aprovação do cliente; front estático com Supabase (Auth, RLS e funções RPC), servido por nginx em AWS EC2.',
+        'BDC — Batalha das Capivaras: piloto com landing pública, ranking e sorteio de chaves ao vivo para uma batalha de rima independente, em Next.js 14, Supabase e Vercel.',
         'wpp-agendamento: SaaS multi-tenant de agendamento via WhatsApp (Baileys), com cobrança via PIX (Mercado Pago), persistência em Supabase/PostgreSQL e fluxo conversacional por máquina de estados.',
+        'SaaS_PDV: sistema desktop de PDV e gestão financeira multi-tenant em C# .NET 10 (Windows Forms), Entity Framework Core e SQLite, com isolamento de dados por empresa e filial.',
         'botmocidade: bot de automação de respostas no WhatsApp (whatsapp-web.js) com comandos customizáveis e sessão persistente via QR Code — projeto open-source educacional.',
-        'Desenvolvimento de catálogos digitais e sistemas de cadastro sob demanda para pequenos negócios e clientes autônomos.',
+        'Landing pages para profissionais autônomos, como osvairsantos.com.br e o catálogo de uma designer de sobrancelhas, em HTML e Tailwind CSS.',
       ],
     },
     {
@@ -207,7 +262,7 @@ export const aboutPt = {
   education: {
     degree: 'Tecnólogo em Análise e Desenvolvimento de Sistemas',
     school: 'Universidade Paulista (UNIP)',
-    note: 'Previsão de conclusão: fev/2027 — cursando o 4º semestre (último) (período noturno)',
+    note: 'Previsão de conclusão: meados de 2027 (período noturno)',
   },
 
   courses: [
@@ -221,21 +276,32 @@ export const aboutPt = {
       org: 'Harvard University / EdX',
       year: 'Em andamento',
     },
-    { name: 'Java Fundamentos', org: 'FIAP', year: '2026' },
+    { name: 'Java Fundamentos (60h)', org: 'FIAP', year: '2026' },
     { name: 'Metrologia', org: 'SENAI', year: '2024' },
     {
-      name: 'Programação Orientada a Objetos (POO) com C#',
-      org: 'Udemy',
+      name: 'C# Completo: Programação Orientada a Objetos + Projetos (38h)',
+      org: 'Udemy · Nelio Alves',
       year: '2026',
     },
-    { name: 'Engenharia de Software', org: 'FIAP', year: 'Em andamento' },
+    { name: 'Engenharia de Software (100h)', org: 'FIAP', year: '2026' },
+    {
+      name: 'Palestra Strategic Sourcing (2h)',
+      org: 'JUNIP — Consultoria UNIP Júnior de Sorocaba',
+      year: '2026',
+    },
+    { name: 'Semana Tecnológica UNIP', org: 'UNIP / Even3', year: '2025' },
+    {
+      name: 'Santander Fala Mundo 2026 — 3ª Edição (vaga concedida)',
+      org: 'Santander Open Academy',
+      year: '2026',
+    },
   ],
 
   languages: [
     {
       name: 'Inglês',
       level: 'Intermediário',
-      text: 'Excelente compreensão de leitura técnica, documentações de APIs, código e termos de tecnologia. Boa capacidade de comunicação e escrita.',
+      text: 'Leitura técnica segura de documentações, código e APIs, com escrita funcional. Conversação em desenvolvimento.',
     },
     {
       name: 'Latim',
