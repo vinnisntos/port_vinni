@@ -28,6 +28,53 @@ import {
 } from 'react-icons/si';
 import { TbBrandCSharp } from 'react-icons/tb';
 
+const courses = [
+  {
+    name: 'Introduction to Computer Science with Python (CS50P)',
+    org: 'Harvard University / EdX',
+    year: '2024',
+  },
+  {
+    name: 'Introduction to Databases with SQL (CS50SQL)',
+    org: 'Harvard University / EdX',
+    year: '2026',
+  },
+  { name: 'Java Fundamentals (60h)', org: 'FIAP', year: '2026' },
+  { name: 'Metrology', org: 'SENAI', year: '2024' },
+  {
+    name: 'Complete C#: Object-Oriented Programming + Projects (38h)',
+    org: 'Udemy · Nelio Alves',
+    year: '2026',
+  },
+  { name: 'Software Engineering (100h)', org: 'FIAP', year: '2026' },
+  {
+    name: 'Strategic Sourcing Talk (2h)',
+    org: 'JUNIP — UNIP Junior Consulting, Sorocaba',
+    year: '2026',
+  },
+  {
+    name: 'Leadership Talk',
+    org: 'JUNIP — UNIP Junior Consulting, Sorocaba',
+    year: '2026',
+  },
+  {
+    name: 'People Development Talk (2h)',
+    org: 'JUNIP — UNIP Junior Consulting, Sorocaba',
+    year: '2026',
+  },
+  {
+    name: 'Business Ideas Talk: JUNIP (2h)',
+    org: 'JUNIP — UNIP Junior Consulting, Sorocaba',
+    year: '2026',
+  },
+  { name: 'UNIP Technology Week', org: 'UNIP / Even3', year: '2025' },
+  {
+    name: 'Santander Fala Mundo 2026 — 3rd Edition (place awarded)',
+    org: 'Santander Open Academy',
+    year: '2026',
+  },
+];
+
 export const aboutEn = {
   pageHeader: {
     tag: '[ about // dev-student ]',
@@ -37,8 +84,7 @@ export const aboutEn = {
 
   seo: {
     title: 'About Vinnicius Santos · Full Stack Developer & Solution Architecture',
-    description:
-      'Background of Vinnicius Santos (Vinnicius Gabriel Matos dos Santos): full stack developer focused on solution architecture, co-founder of PendurAi, IT Intern at Going2, and Systems Analysis and Development student at UNIP.',
+    description: `Background of Vinnicius Santos (Vinnicius Gabriel Matos dos Santos): full stack developer focused on solution architecture, co-founder of PendurAi, and IT Intern at Going2. ${courses.length} courses and certifications, including Harvard CS50 (Python and SQL), FIAP, and SENAI.`,
   },
 
   profile: {
@@ -266,37 +312,7 @@ export const aboutEn = {
     note: 'Expected graduation: mid-2027 (evening program)',
   },
 
-  courses: [
-    {
-      name: 'Introduction to Computer Science with Python (CS50P)',
-      org: 'Harvard University / EdX',
-      year: '2024',
-    },
-    {
-      name: 'Introduction to Databases with SQL (CS50SQL)',
-      org: 'Harvard University / EdX',
-      year: 'In Progress',
-    },
-    { name: 'Java Fundamentals (60h)', org: 'FIAP', year: '2026' },
-    { name: 'Metrology', org: 'SENAI', year: '2024' },
-    {
-      name: 'Complete C#: Object-Oriented Programming + Projects (38h)',
-      org: 'Udemy · Nelio Alves',
-      year: '2026',
-    },
-    { name: 'Software Engineering (100h)', org: 'FIAP', year: '2026' },
-    {
-      name: 'Strategic Sourcing Talk (2h)',
-      org: 'JUNIP — UNIP Junior Consulting, Sorocaba',
-      year: '2026',
-    },
-    { name: 'UNIP Technology Week', org: 'UNIP / Even3', year: '2025' },
-    {
-      name: 'Santander Fala Mundo 2026 — 3rd Edition (place awarded)',
-      org: 'Santander Open Academy',
-      year: '2026',
-    },
-  ],
+  courses,
 
   languages: [
     {

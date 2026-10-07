@@ -105,12 +105,20 @@ const historyEn = (
   </>
 );
 
-function personSchema(locale, path) {
+function personSchema(locale, path, courses) {
   return {
     '@context': 'https://schema.org',
     '@type': 'ProfilePage',
     url: `${SITE_URL}${path}`,
-    mainEntity: personNode(locale),
+    mainEntity: {
+      ...personNode(locale),
+      hasCredential: courses.map((course) => ({
+        '@type': 'EducationalOccupationalCredential',
+        name: course.name,
+        credentialCategory: 'certificate',
+        recognizedBy: { '@type': 'Organization', name: course.org },
+      })),
+    },
   };
 }
 
@@ -128,7 +136,7 @@ export default function About() {
         description={t.seo.description}
         path={currentPath}
         lang={locale === 'en' ? 'en-US' : 'pt-BR'}
-        structuredData={personSchema(locale, currentPath)}
+        structuredData={personSchema(locale, currentPath, t.courses)}
         alternates={[
           { hreflang: 'pt-BR', href: SITE_URL + getLocalizedPath(pathname, 'pt') },
           { hreflang: 'en-US', href: SITE_URL + getLocalizedPath(pathname, 'en') },
@@ -378,6 +386,9 @@ export default function About() {
             <h3 className="text-xl font-bold text-white mb-4 flex items-center gap-3">
               <FaCertificate className="text-purple-500" aria-hidden="true" />
               {t.sectionHeadings.courses}
+              <span className="text-xs text-purple-400 font-mono font-normal">
+                [ {t.courses.length} ]
+              </span>
             </h3>
             <ul className="space-y-3 list-none">
               {t.courses.map((course) => (
