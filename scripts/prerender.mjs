@@ -85,6 +85,8 @@ function aboutRoute(locale) {
     description: t.seo.description,
     body: `<p>${esc(t.profile.bio)}</p>\n      <h2>${esc(t.sectionHeadings.experience)}</h2>\n      ${list(
       t.experience.map((job) => `${esc(job.role)} · ${esc(job.company)} (${esc(job.period)})`)
+    )}\n      <h2>${esc(t.sectionHeadings.courses)} (${t.courses.length})</h2>\n      ${list(
+      t.courses.map((course) => `${esc(course.name)} · ${esc(course.org)} (${esc(course.year)})`)
     )}`,
   };
 }
