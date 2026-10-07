@@ -36,13 +36,13 @@ export const aboutPt = {
   },
 
   seo: {
-    title: 'Vinnicius Santos · Sobre — Full Stack Developer',
+    title: 'Sobre Vinnicius Santos · Desenvolvedor Full Stack e Arquitetura de Soluções',
     description:
-      'Conheça a trajetória de Vinnicius Santos: estagiário de TI na Going2, estudante de ADS e desenvolvedor full stack (.NET e Next.js) com SaaS multi-tenant em produção.',
+      'Trajetória de Vinnicius Santos (Vinnicius Gabriel Matos dos Santos): desenvolvedor full stack com foco em arquitetura de soluções, cofundador do PendurAi, estagiário de TI na Going2 e estudante de ADS na UNIP.',
   },
 
   profile: {
-    roleTag: 'Estagiário de TI · Full Stack Jr. (.NET / Next.js)',
+    roleTag: 'Full Stack · Arquitetura de Soluções (.NET / Next.js)',
     bio: 'Estudante de Análise e Desenvolvimento de Sistemas e estagiário de TI na Going2, onde, além do suporte, desenvolvo uma plataforma B2B interna. Construo SaaS multi-tenant com C#/.NET, Next.js e PostgreSQL, com projetos próprios em produção, entre eles o PendurAi, do qual sou cofundador. A vivência anterior em indústria, vendas e logística me deu visão de processo e de quem usa o sistema.',
     location: 'Sorocaba — SP',
     phones: [
@@ -181,7 +181,7 @@ export const aboutPt = {
     },
     {
       company: 'PendurAi',
-      role: 'Cofundador e Desenvolvedor Full Stack — ERP e PDV (SaaS) para Adegas e Mercados',
+      role: 'Cofundador · Arquitetura e Desenvolvimento Full Stack — ERP e PDV (SaaS) para Adegas e Mercados',
       period: 'Em Produção (beta)',
       bullets: [
         'SaaS multi-tenant de PDV e ERP em produção na AWS EC2 (pendurai.vinnisantos.com.br), com isolamento de dados por loja (tenant_id), painel de SuperAdmin e licenciamento com bloqueio automático de acesso suspenso, cancelado ou expirado.',

@@ -36,13 +36,13 @@ export const aboutEn = {
   },
 
   seo: {
-    title: 'Vinnicius Santos · About — Full Stack Developer',
+    title: 'About Vinnicius Santos · Full Stack Developer & Solution Architecture',
     description:
-      "Vinnicius Santos' background: IT Intern at Going2, Systems Analysis and Development student, and full stack developer (.NET and Next.js) with multi-tenant SaaS products live in production.",
+      'Background of Vinnicius Santos (Vinnicius Gabriel Matos dos Santos): full stack developer focused on solution architecture, co-founder of PendurAi, IT Intern at Going2, and Systems Analysis and Development student at UNIP.',
   },
 
   profile: {
-    roleTag: 'IT Intern · Jr. Full Stack Developer (.NET / Next.js)',
+    roleTag: 'Full Stack · Solution Architecture (.NET / Next.js)',
     bio: 'Systems Analysis and Development student and IT Intern at Going2, where, alongside support work, I build an internal B2B platform. I develop multi-tenant SaaS with C#/.NET, Next.js, and PostgreSQL, with my own projects live in production, including PendurAi, which I co-founded. A previous background in manufacturing, sales, and logistics gave me a practical sense of business processes and of the people who use the system.',
     location: 'Sorocaba, SP — Brazil',
     phones: [
@@ -181,7 +181,7 @@ export const aboutEn = {
     },
     {
       company: 'PendurAi',
-      role: 'Co-Founder & Full Stack Developer — POS & ERP (SaaS) for Wine Shops and Small Markets',
+      role: 'Co-Founder · Architecture & Full Stack Development — POS & ERP (SaaS) for Wine Shops and Small Markets',
       period: 'In Production (beta)',
       bullets: [
         'Multi-tenant POS/ERP SaaS running in production on AWS EC2 (pendurai.vinnisantos.com.br), with per-store data isolation (tenant_id), a Super Admin panel, and licensing that automatically locks out suspended, canceled, or expired accounts.',

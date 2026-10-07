@@ -16,6 +16,7 @@ import Button from '../components/ui/Button';
 import Seo from '../components/Seo';
 import { aboutPt } from '../content/about.pt';
 import { aboutEn } from '../content/about.en';
+import { personNode } from '../utils/seo';
 import { useLocale, getLocalizedPath } from '../hooks/useLocale';
 
 const SITE_URL = 'https://vinnisantos.com.br';
@@ -108,34 +109,8 @@ function personSchema(locale, path) {
   return {
     '@context': 'https://schema.org',
     '@type': 'ProfilePage',
-    mainEntity: {
-      '@type': 'Person',
-      name: 'Vinnicius Santos',
-      alternateName: 'Vinnicius Gabriel Matos dos Santos',
-      url: `${SITE_URL}${path}`,
-      jobTitle: locale === 'en' ? 'Full Stack Developer' : 'Desenvolvedor Full Stack',
-      worksFor: { '@type': 'Organization', name: 'Going2' },
-      alumniOf: {
-        '@type': 'CollegeOrUniversity',
-        name: 'Universidade Paulista (UNIP)',
-      },
-      knowsAbout: [
-        'C#',
-        '.NET',
-        'Python',
-        'JavaScript',
-        'TypeScript',
-        'PostgreSQL',
-        'React',
-        'Next.js',
-        'ASP.NET Core',
-        'Docker',
-      ],
-      sameAs: [
-        'https://github.com/vinnisntos',
-        'https://linkedin.com/in/vinnisantos',
-      ],
-    },
+    url: `${SITE_URL}${path}`,
+    mainEntity: personNode(locale),
   };
 }
 

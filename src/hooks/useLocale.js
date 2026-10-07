@@ -5,6 +5,7 @@ import { useLocation } from 'react-router-dom';
 const LOCALIZED_ROUTES = {
   '/': { pt: '/', en: '/en' },
   '/about': { pt: '/about', en: '/en/about' },
+  '/projects': { pt: '/projects', en: '/en/projects' },
 };
 
 export function useLocale() {
