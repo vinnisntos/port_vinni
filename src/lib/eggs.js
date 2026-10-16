@@ -38,10 +38,23 @@ export function unlock(id, locale = 'pt') {
     // sem storage: a conquista vale só nesta visita
   }
   const total = Object.keys(EGGS).length;
+  const en = locale === 'en';
+  const complete = next.length === total;
   emit('toast', {
-    title: locale === 'en' ? `Achievement unlocked (${next.length}/${total})` : `Conquista desbloqueada (${next.length}/${total})`,
-    text: EGGS[id][locale],
+    title: en ? `Achievement unlocked (${next.length}/${total})` : `Conquista desbloqueada (${next.length}/${total})`,
+    text: complete
+      ? `${EGGS[id][locale]}. ${en ? 'Curious User Certificate unlocked.' : 'Certificado de Usuário Curioso liberado.'}`
+      : EGGS[id][locale],
+    ...(complete && {
+      duration: 10000,
+      action: { label: en ? 'Download certificate' : 'Baixar certificado', run: () => downloadCertificate(locale) },
+    }),
   });
   emit('eggs:change', next);
   return true;
+}
+
+/** Baixa o certificado (carregado sob demanda, só quem zerou os eggs precisa dele). */
+export function downloadCertificate(locale = 'pt', name = '') {
+  return import('./certificate').then((mod) => mod.downloadCertificate(locale, name));
 }

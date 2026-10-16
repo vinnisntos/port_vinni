@@ -4,7 +4,7 @@
 //   'terminal:open'  troca o console do hero para a aba do terminal
 //   'matrix:start'   chuva de código em tela cheia
 //   'debug:toggle'   liga/desliga o modo debug (contornos em tudo)
-//   'toast'          { title, text } aviso curto no canto da tela
+//   'toast'          { title, text, action?, duration? } aviso curto no canto da tela
 const bus = new EventTarget();
 
 export function emit(name, detail) {

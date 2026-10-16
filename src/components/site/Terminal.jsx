@@ -3,7 +3,7 @@ import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { cn, slugify } from '@/lib/utils';
 import { BUILD } from '@/lib/build';
 import { emit } from '@/lib/events';
-import { EGGS, foundEggs, unlock } from '@/lib/eggs';
+import { EGGS, downloadCertificate, foundEggs, unlock } from '@/lib/eggs';
 import { downloadResume, openExternal, GITHUB, LINKEDIN } from '@/lib/actions';
 import { terminalContent } from '../../content/terminal';
 import { projectsContent } from '../../content/projects';
@@ -69,6 +69,9 @@ const Terminal = forwardRef(function Terminal({ locale, className }, ref) {
     'help', 'whoami', en ? 'projects' : 'projetos', en ? 'open' : 'abrir', 'stack', en ? 'contact' : 'contato',
     'cv', 'ls', 'cd', 'cat', 'git log', 'lang', en ? 'achievements' : 'conquistas', 'clear', 'sudo', 'date', 'echo',
   ];
+  const certCommand = en ? 'certificate' : 'certificado';
+  // o comando do certificado só existe para quem achou os 6 easter eggs
+  const certUnlocked = () => foundEggs().length === Object.keys(EGGS).length;
 
   function run(raw) {
     const input = raw.trim();
@@ -82,7 +85,7 @@ const Terminal = forwardRef(function Terminal({ locale, className }, ref) {
     if (c === 'help' || c === '?' || c === 'ajuda') {
       return [
         line(t.help.title),
-        ...t.help.rows.map(([name, desc]) => line({ text: name.padEnd(18, ' '), tone: 'cmd' }, { text: desc, tone: 'dim' })),
+        ...(certUnlocked() ? [...t.help.rows.slice(0, -1), t.certRow, ...t.help.rows.slice(-1)] : t.help.rows).map(([name, desc]) => line({ text: name.padEnd(20, ' '), tone: 'cmd' }, { text: desc, tone: 'dim' })),
         line({ text: t.help.footer, tone: 'dim' }),
       ];
     }
@@ -160,8 +163,13 @@ const Terminal = forwardRef(function Terminal({ locale, className }, ref) {
         ...Object.entries(EGGS).map(([id, egg]) =>
           line({ text: found.includes(id) ? '[x] ' : '[ ] ', tone: found.includes(id) ? 'ok' : 'dim' }, found.includes(id) ? egg[locale] : '???')
         ),
-        ...(found.length < total ? [line({ text: t.eggsHint, tone: 'dim' })] : []),
+        line({ text: found.length < total ? t.eggsHint : t.certHint, tone: 'dim' }),
       ];
+    }
+
+    if ((c === 'certificado' || c === 'certificate') && certUnlocked()) {
+      downloadCertificate(locale, args.join(' '));
+      return [line({ text: t.cert, tone: 'ok' })];
     }
 
     // ---- escondidos ----
@@ -220,7 +228,7 @@ const Terminal = forwardRef(function Terminal({ locale, className }, ref) {
       cursor.current = Math.max(cursor.current - 1, -1);
       setValue(cursor.current === -1 ? '' : history.current[cursor.current]);
     } else if (event.key === 'Tab' && value.trim()) {
-      const match = COMMANDS.find((cmd) => cmd.startsWith(value.trim().toLowerCase()));
+      const match = (certUnlocked() ? [...COMMANDS, certCommand] : COMMANDS).find((cmd) => cmd.startsWith(value.trim().toLowerCase()));
       if (match) {
         event.preventDefault();
         setValue(`${match} `);

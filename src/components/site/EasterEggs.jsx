@@ -78,7 +78,7 @@ export default function EasterEggs() {
 
   useEffect(() => {
     if (!toast) return undefined;
-    const timer = setTimeout(() => setToast(null), 4200);
+    const timer = setTimeout(() => setToast(null), toast.duration ?? 4200);
     return () => clearTimeout(timer);
   }, [toast]);
 
@@ -108,6 +108,18 @@ export default function EasterEggs() {
               <div className="min-w-0">
                 <p className="font-mono text-sm font-medium text-primary">{toast.title}</p>
                 <p className="mt-0.5 text-sm text-foreground/85">{toast.text}</p>
+                {toast.action && (
+                  <button
+                    type="button"
+                    onClick={() => {
+                      toast.action.run();
+                      setToast(null);
+                    }}
+                    className="mt-2 rounded-md bg-primary px-3 py-1 font-mono text-xs font-medium text-primary-foreground hover:bg-primary-hover"
+                  >
+                    {toast.action.label}
+                  </button>
+                )}
               </div>
             </m.div>
           )}
