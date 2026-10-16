@@ -7,7 +7,7 @@ import { cn, slugify } from '@/lib/utils';
 import GlassCard from '../components/site/GlassCard';
 import Reveal from '../components/site/Reveal';
 import ScrambleText from '../components/site/ScrambleText';
-import BrowserFrame from '../components/site/BrowserFrame';
+import HeroConsole from '../components/site/HeroConsole';
 import StackMarquee from '../components/site/StackMarquee';
 import LiveGenerator from '../components/site/LiveGenerator';
 import Seo from '../components/Seo';
@@ -54,7 +54,7 @@ function homeSchema(locale, path, tools) {
   };
 }
 
-function Hero({ t, projectsHref, hero }) {
+function Hero({ t, projectsHref, locale }) {
   const reduce = useReducedMotion();
   const enter = (delay) =>
     reduce
@@ -68,6 +68,12 @@ function Hero({ t, projectsHref, hero }) {
   return (
     <section className="grid min-h-[100dvh] grid-cols-1 items-center gap-12 pt-28 pb-12 lg:grid-cols-12 lg:gap-10 lg:pt-24">
       <div className="lg:col-span-6">
+        {/* O único rótulo do hero: um prompt de shell, o "comando" que gera o nome abaixo */}
+        <m.p {...enter(0)} className="mb-6 font-mono text-sm text-muted-foreground md:text-base">
+          <span className="text-[var(--syntax-string)]">~/vinnicius</span>
+          <span className="text-primary"> $ </span>
+          whoami
+        </m.p>
         <h1 className="text-[clamp(3.4rem,7.2vw,6.6rem)] leading-[0.9] font-bold tracking-[-0.05em] text-foreground">
           <ScrambleText text="Vinnicius" className="block" />
           <span className="flex items-end gap-[0.06em]">
@@ -81,30 +87,31 @@ function Hero({ t, projectsHref, hero }) {
         </m.p>
 
         <m.div {...enter(0.45)} className="mt-10 flex flex-wrap gap-3">
-          <Button asChild size="lg">
+          <Button asChild size="lg" className="group font-mono">
             <Link to={projectsHref}>
-              {t.ctaProjects}
-              <ArrowRight weight="bold" aria-hidden="true" />
+              <ScrambleText text={t.ctaProjects} trigger="hover" />
+              <ArrowRight className="transition-transform duration-300 group-hover:translate-x-1" weight="bold" aria-hidden="true" />
             </Link>
           </Button>
-          <Button asChild size="lg" variant="secondary">
+          <Button asChild size="lg" variant="secondary" className="group font-mono">
             <a href={`${import.meta.env.BASE_URL}${t.resumeFile}`} download={t.resumeDownloadName}>
-              <DownloadSimple weight="bold" aria-hidden="true" />
-              {t.ctaResume}
+              <span aria-hidden="true" className="text-primary">$</span>
+              <ScrambleText text={t.ctaResume} trigger="hover" />
+              <DownloadSimple className="transition-transform duration-300 group-hover:translate-y-0.5" weight="bold" aria-hidden="true" />
             </a>
           </Button>
         </m.div>
       </div>
 
-      <m.figure
-        className="lg:col-span-6"
+      <m.div
+        id="console"
+        className="scroll-mt-28 lg:col-span-6"
         initial={reduce ? false : { opacity: 0, y: 40, scale: 0.96, filter: 'blur(10px)' }}
         animate={{ opacity: 1, y: 0, scale: 1, filter: 'blur(0px)' }}
         transition={{ duration: 1.1, delay: 0.25, ease: EASE }}
       >
-        <BrowserFrame src={hero.image} alt={t.heroShotAlt} url={hero.links.site} priority tilt />
-        <figcaption className="mt-4 px-2 text-sm text-muted-foreground">{t.heroShotCaption}</figcaption>
-      </m.figure>
+        <HeroConsole locale={locale} />
+      </m.div>
     </section>
   );
 }
@@ -186,7 +193,7 @@ export default function Home() {
         ]}
       />
 
-      <Hero t={t} projectsHref={projectsHref} hero={lead} />
+      <Hero t={t} projectsHref={projectsHref} locale={locale} />
 
       {/* Stack: o único marquee da página */}
       <div className="-mx-4 md:-mx-8">
@@ -216,7 +223,7 @@ export default function Home() {
           <Reveal delay={0.2} className="lg:col-span-12">
             <Link
               to={projectsHref}
-              className="group flex flex-col gap-4 rounded-[var(--radius-panel)] bg-primary p-7 text-primary-foreground transition-[transform,background-color] duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] hover:bg-[#5cf0bb] active:scale-[0.99] md:flex-row md:items-center md:justify-between md:p-10"
+              className="group flex flex-col gap-4 rounded-[var(--radius-panel)] bg-primary p-7 text-primary-foreground transition-[transform,background-color] duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] hover:bg-primary-hover active:scale-[0.99] md:flex-row md:items-center md:justify-between md:p-10"
             >
               <span>
                 <span className="block text-3xl font-bold tracking-[-0.03em] md:text-4xl">
