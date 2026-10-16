@@ -2,6 +2,7 @@ import { Link } from 'react-router-dom';
 import { ArrowUpRight, GithubLogo, LinkedinLogo } from '@phosphor-icons/react';
 import { useLocale } from '../../hooks/useLocale';
 import Reveal from './Reveal';
+import StatusBar from './StatusBar';
 
 const COPY = {
   pt: {
@@ -39,7 +40,7 @@ export default function Footer() {
             href="https://www.linkedin.com/in/vinnisantos"
             target="_blank"
             rel="noopener noreferrer"
-            className="group inline-flex h-12 items-center gap-2 rounded-full bg-primary px-6 text-base font-medium text-primary-foreground shadow-[inset_0_1px_0_rgb(255_255_255/0.35)] transition-[transform,background-color] duration-300 hover:-translate-y-px hover:bg-[#5cf0bb] active:scale-[0.97]"
+            className="group inline-flex h-12 items-center gap-2 rounded-full bg-primary px-6 text-base font-medium text-primary-foreground shadow-[inset_0_1px_0_rgb(255_255_255/0.35)] transition-[transform,background-color] duration-300 hover:-translate-y-px hover:bg-primary-hover active:scale-[0.97]"
           >
             <LinkedinLogo className="size-5" weight="fill" aria-hidden="true" />
             {t.contact}
@@ -85,6 +86,8 @@ export default function Footer() {
             <p className="text-muted-foreground/80">{t.built}</p>
           </div>
         </div>
+
+        <StatusBar locale={locale} />
       </div>
     </footer>
   );

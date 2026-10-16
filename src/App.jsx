@@ -5,6 +5,8 @@ import Navbar from './components/site/Navbar';
 import Footer from './components/site/Footer';
 import ScrollToTop from './components/site/ScrollToTop';
 import Backdrop from './components/site/Backdrop';
+import CommandPaletteHost from './components/site/CommandPaletteHost';
+import EasterEggs from './components/site/EasterEggs';
 import Home from './pages/Home';
 
 // A Home é a página de entrada e vai no bundle principal; as demais rotas
@@ -33,6 +35,8 @@ function App() {
         <MotionConfig reducedMotion="user">
           <ScrollToTop />
           <Backdrop />
+          <CommandPaletteHost />
+          <EasterEggs />
           <div className="flex min-h-[100dvh] flex-col overflow-x-clip text-foreground">
             <Navbar />
 

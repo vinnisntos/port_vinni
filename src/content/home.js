@@ -10,8 +10,6 @@ export const homeContent = {
     ctaResume: 'Baixar currículo',
     resumeFile: 'curriculo-vinnicius-santos.docx',
     resumeDownloadName: 'Vinnicius_Gabriel_Matos_dos_Santos_Curriculo.docx',
-    heroShotAlt: 'Página inicial do PendurAi, PDV e ERP para adegas que Vinnicius cofundou',
-    heroShotCaption: 'PendurAi, o PDV e ERP multi-tenant que cofundei, em produção.',
     stackLabel: 'Tecnologias que uso no dia a dia',
     projectsTitle: 'Sistemas em produção, explicados',
     projectsLead:
@@ -46,8 +44,6 @@ export const homeContent = {
     ctaResume: 'Download resume',
     resumeFile: 'curriculo-vinnicius-santos-en.docx',
     resumeDownloadName: 'Vinnicius_Gabriel_Matos_dos_Santos_Resume_EN.docx',
-    heroShotAlt: 'Homepage of PendurAi, the POS and ERP for wine shops that Vinnicius co-founded',
-    heroShotCaption: 'PendurAi, the multi-tenant POS and ERP I co-founded, in production.',
     stackLabel: 'Technologies I use every day',
     projectsTitle: 'Systems in production, explained',
     projectsLead:

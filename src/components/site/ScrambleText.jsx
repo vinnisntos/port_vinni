@@ -1,49 +1,39 @@
 import { useEffect, useRef } from 'react';
 import { useReducedMotion } from 'motion/react';
-
-const GLYPHS = 'ABCDEFGHJKLMNPQRSTUVWXYZ0123456789#$%&*+<>/';
+import { scramble } from '@/lib/scramble';
 
 /**
- * Texto que se "decodifica" ao carregar: cada letra passa por caracteres
- * aleatórios e trava no valor final, da esquerda para a direita.
- * Escreve direto no DOM (sem estado React). O texto real fica numa cópia
- * sr-only, então leitores de tela e buscadores nunca veem o embaralhado.
+ * Texto que se "decodifica": cada letra passa por caracteres de código e
+ * trava no valor final, da esquerda para a direita.
+ *   trigger="mount"  roda ao carregar (nome do hero, 404)
+ *   trigger="hover"  roda quando o ponteiro entra no link/botão que o contém
+ * O texto real fica numa cópia sr-only, então leitores de tela e buscadores
+ * nunca veem o embaralhado.
  */
-export default function ScrambleText({ text, className, duration = 1100, startDelay = 150 }) {
+export default function ScrambleText({ text, className, duration = 1100, startDelay = 150, trigger = 'mount' }) {
   const ref = useRef(null);
   const reduce = useReducedMotion();
 
   useEffect(() => {
     const el = ref.current;
-    if (!el) return undefined;
-    if (reduce) {
-      el.textContent = text;
-      return undefined;
-    }
+    if (!el || reduce) return undefined;
 
-    let frame = 0;
-    let start = 0;
-    const chars = [...text];
+    if (trigger === 'mount') return scramble(el, text, { duration, delay: startDelay });
 
-    const tick = (now) => {
-      if (!start) start = now + startDelay;
-      const progress = Math.min(1, Math.max(0, (now - start) / duration));
-      const locked = Math.floor(progress * chars.length);
-
-      el.textContent = chars
-        .map((char, i) => {
-          if (char === ' ' || i < locked) return char;
-          return GLYPHS[Math.floor(Math.random() * GLYPHS.length)];
-        })
-        .join('');
-
-      if (progress < 1) frame = requestAnimationFrame(tick);
-      else el.textContent = text;
+    const host = el.closest('a, button') ?? el;
+    let cancel = null;
+    const start = () => {
+      cancel?.();
+      cancel = scramble(el, text, { duration: Math.min(duration, 450) });
     };
-
-    frame = requestAnimationFrame(tick);
-    return () => cancelAnimationFrame(frame);
-  }, [text, reduce, duration, startDelay]);
+    host.addEventListener('pointerenter', start);
+    host.addEventListener('focus', start);
+    return () => {
+      host.removeEventListener('pointerenter', start);
+      host.removeEventListener('focus', start);
+      cancel?.();
+    };
+  }, [text, reduce, duration, startDelay, trigger]);
 
   return (
     <span className={className}>
