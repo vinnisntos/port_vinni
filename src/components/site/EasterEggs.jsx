@@ -2,7 +2,7 @@ import { lazy, Suspense, useCallback, useEffect, useState } from 'react';
 import { AnimatePresence, m, useReducedMotion } from 'motion/react';
 import { Trophy } from '@phosphor-icons/react';
 import { emit, on } from '@/lib/events';
-import { unlock } from '@/lib/eggs';
+import { announceCertificate, EGGS, foundEggs, unlock } from '@/lib/eggs';
 import { useLocale } from '../../hooks/useLocale';
 
 const MatrixRain = lazy(() => import('./MatrixRain'));
@@ -75,6 +75,13 @@ export default function EasterEggs() {
       offToast();
     };
   }, [locale, reduce]);
+
+  // quem zerou os eggs antes do certificado existir também ganha o aviso
+  useEffect(() => {
+    if (foundEggs().length < Object.keys(EGGS).length) return undefined;
+    const timer = setTimeout(() => announceCertificate(locale), 1500);
+    return () => clearTimeout(timer);
+  }, [locale]);
 
   useEffect(() => {
     if (!toast) return undefined;

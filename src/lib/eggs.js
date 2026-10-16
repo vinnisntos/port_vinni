@@ -38,20 +38,34 @@ export function unlock(id, locale = 'pt') {
     // sem storage: a conquista vale só nesta visita
   }
   const total = Object.keys(EGGS).length;
-  const en = locale === 'en';
-  const complete = next.length === total;
-  emit('toast', {
-    title: en ? `Achievement unlocked (${next.length}/${total})` : `Conquista desbloqueada (${next.length}/${total})`,
-    text: complete
-      ? `${EGGS[id][locale]}. ${en ? 'Curious User Certificate unlocked.' : 'Certificado de Usuário Curioso liberado.'}`
-      : EGGS[id][locale],
-    ...(complete && {
-      duration: 10000,
-      action: { label: en ? 'Download certificate' : 'Baixar certificado', run: () => downloadCertificate(locale) },
-    }),
-  });
+  const title = locale === 'en' ? `Achievement unlocked (${next.length}/${total})` : `Conquista desbloqueada (${next.length}/${total})`;
+  if (next.length === total) {
+    announceCertificate(locale, { title, text: `${EGGS[id][locale]}.` });
+  } else {
+    emit('toast', { title, text: EGGS[id][locale] });
+  }
   emit('eggs:change', next);
   return true;
+}
+
+const CERT_KEY = 'vs:cert-announced';
+
+/** Toast com o botão do certificado. Sai uma vez por navegador. */
+export function announceCertificate(locale = 'pt', { title, text } = {}) {
+  const en = locale === 'en';
+  try {
+    if (localStorage.getItem(CERT_KEY)) return;
+    localStorage.setItem(CERT_KEY, '1');
+  } catch {
+    // sem storage: avisa nesta visita
+  }
+  const unlocked = en ? 'Curious User Certificate unlocked.' : 'Certificado de Usuário Curioso liberado.';
+  emit('toast', {
+    title: title ?? (en ? 'All 6 easter eggs found' : 'Os 6 easter eggs encontrados'),
+    text: text ? `${text} ${unlocked}` : unlocked,
+    duration: 10000,
+    action: { label: en ? 'Download certificate' : 'Baixar certificado', run: () => downloadCertificate(locale) },
+  });
 }
 
 /** Baixa o certificado (carregado sob demanda, só quem zerou os eggs precisa dele). */
