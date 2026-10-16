@@ -1,7 +1,12 @@
 import { useLocation } from 'react-router-dom';
-import { FaExternalLinkAlt, FaGithub } from 'react-icons/fa';
-import Card from '../components/ui/Card';
-import PageHeader from '../components/ui/PageHeader';
+import { ArrowUpRight, GithubLogo } from '@phosphor-icons/react';
+import { Button } from '@/components/ui/button';
+import { Badge } from '@/components/ui/badge';
+import { slugify } from '@/lib/utils';
+import GlassCard from '../components/site/GlassCard';
+import PageHeader from '../components/site/PageHeader';
+import Reveal from '../components/site/Reveal';
+import BrowserFrame from '../components/site/BrowserFrame';
 import Seo from '../components/Seo';
 import { projectsContent } from '../content/projects';
 import { PERSON_ID, breadcrumbList } from '../utils/seo';
@@ -46,17 +51,104 @@ function projectsSchema(t, path, locale) {
   };
 }
 
-const linkClass =
-  'px-4 py-2 bg-white/5 border border-white/10 text-gray-400 hover:text-purple-400 hover:border-purple-500/50 transition-all text-xs font-mono uppercase inline-flex items-center gap-2';
+function CaseStudy({ project, labels, shotAlt }) {
+  return (
+    <GlassCard
+      as="article"
+      id={slugify(project.name)}
+      aria-labelledby={`${slugify(project.name)}-title`}
+      className="scroll-mt-28 p-5 md:p-10"
+    >
+      <div className="grid grid-cols-1 gap-10 lg:grid-cols-12 lg:gap-12">
+        {/* Identidade do projeto: fica presa ao topo enquanto as decisões rolam */}
+        <header className="lg:col-span-5">
+          <div className="flex flex-col gap-5 lg:sticky lg:top-28">
+            <div className="flex flex-wrap items-center gap-x-4 gap-y-3">
+              <h2
+                id={`${slugify(project.name)}-title`}
+                className="text-4xl leading-none font-bold tracking-[-0.035em] md:text-5xl"
+              >
+                {project.name}
+              </h2>
+              <Badge variant="signal">{project.status}</Badge>
+            </div>
+            <p className="text-lg leading-relaxed text-foreground/85">{project.kind}</p>
+            <p className="text-sm text-muted-foreground">{project.role}</p>
+
+            <ul className="flex flex-wrap gap-2" aria-label="Stack">
+              {project.stack.map((tech) => (
+                <li key={tech}>
+                  <Badge>{tech}</Badge>
+                </li>
+              ))}
+            </ul>
+
+            {project.image && (
+              <BrowserFrame src={project.image} alt={shotAlt(project.name)} url={project.links.site} className="mt-2" />
+            )}
+
+            {(project.links.site || project.links.repo) && (
+              <div className="flex flex-wrap gap-3">
+                {project.links.site && (
+                  <Button asChild size="sm">
+                    <a href={project.links.site} target="_blank" rel="noopener noreferrer">
+                      {labels.site}
+                      <ArrowUpRight weight="bold" aria-hidden="true" />
+                    </a>
+                  </Button>
+                )}
+                {project.links.repo && (
+                  <Button asChild size="sm" variant="secondary">
+                    <a href={project.links.repo} target="_blank" rel="noopener noreferrer">
+                      <GithubLogo weight="bold" aria-hidden="true" />
+                      {labels.repo}
+                    </a>
+                  </Button>
+                )}
+              </div>
+            )}
+          </div>
+        </header>
+
+        <div className="flex flex-col gap-10 lg:col-span-7">
+          <section>
+            <h3 className="text-sm font-semibold text-muted-foreground">{labels.context}</h3>
+            <p className="mt-3 text-xl leading-relaxed text-foreground md:text-2xl md:leading-snug">{project.context}</p>
+          </section>
+
+          <section>
+            <h3 className="text-sm font-semibold text-muted-foreground">{labels.decisions}</h3>
+            <ol className="mt-4 grid gap-3">
+              {project.decisions.map((decision) => (
+                <li key={decision.title} className="glass-inset rounded-xl p-5 md:p-6">
+                  <h4 className="text-lg font-semibold tracking-tight text-foreground">{decision.title}</h4>
+                  <p className="mt-2 text-base leading-relaxed text-foreground/75">{decision.text}</p>
+                </li>
+              ))}
+            </ol>
+          </section>
+
+          {project.debt && (
+            <section className="rounded-xl bg-primary/[0.07] p-5 ring-1 ring-primary/20 ring-inset md:p-6">
+              <h3 className="text-sm font-semibold text-primary">{labels.debt}</h3>
+              <p className="mt-2 text-base leading-relaxed text-foreground/85">{project.debt}</p>
+            </section>
+          )}
+        </div>
+      </div>
+    </GlassCard>
+  );
+}
 
 export default function Projects() {
   const locale = useLocale();
   const { pathname } = useLocation();
   const t = projectsContent[locale];
   const currentPath = locale === 'en' ? '/en/projects' : '/projects';
+  const shotAlt = (name) => (locale === 'en' ? `Homepage of ${name}` : `Página inicial do ${name}`);
 
   return (
-    <div className="pt-24 pb-12">
+    <div className="pt-36 md:pt-44">
       <Seo
         title={t.seo.title}
         description={t.seo.description}
@@ -69,115 +161,38 @@ export default function Projects() {
           { hreflang: 'x-default', href: SITE_URL + getLocalizedPath(pathname, 'pt') },
         ]}
       />
-      <PageHeader
-        tag={t.pageHeader.tag}
-        title={t.pageHeader.title}
-        accent={t.pageHeader.accent}
-        description={t.pageHeader.description}
-      />
+      <PageHeader title={t.pageHeader.title} accent={t.pageHeader.accent} description={t.pageHeader.description} />
 
-      <p className="max-w-3xl text-muted leading-relaxed mb-8">{t.intro}</p>
-
-      {/* Princípios */}
-      <section aria-labelledby="principles-heading" className="mb-12">
-        <h2
-          id="principles-heading"
-          className="text-[11px] font-mono text-gray-500 uppercase tracking-widest mb-4"
-        >
-          {t.principlesTitle}
-        </h2>
-        <ul className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 list-none">
-          {t.principles.map((item) => (
-            <Card as="li" key={item.title}>
-              <h3 className="text-white font-semibold text-sm mb-2">{item.title}</h3>
-              <p className="text-sm text-muted leading-relaxed">{item.text}</p>
-            </Card>
-          ))}
-        </ul>
+      {/* Abertura + princípios */}
+      <section aria-labelledby="principles-heading" className="grid grid-cols-1 gap-10 lg:grid-cols-12">
+        <Reveal className="lg:col-span-5">
+          <p className="text-2xl leading-snug font-medium tracking-tight text-foreground md:text-3xl">{t.intro}</p>
+        </Reveal>
+        <div className="lg:col-span-7">
+          <Reveal>
+            <h2 id="principles-heading" className="text-sm font-semibold text-muted-foreground">
+              {t.principlesTitle}
+            </h2>
+          </Reveal>
+          <ul className="mt-4 grid grid-cols-1 gap-3 sm:grid-cols-2">
+            {t.principles.map((item, i) => (
+              <Reveal as="li" key={item.title} delay={0.06 + i * 0.06}>
+                <GlassCard spotlight className="h-full p-6">
+                  <h3 className="text-lg font-semibold tracking-tight">{item.title}</h3>
+                  <p className="mt-2 text-base leading-relaxed text-foreground/75">{item.text}</p>
+                </GlassCard>
+              </Reveal>
+            ))}
+          </ul>
+        </div>
       </section>
 
       {/* Estudos de caso */}
-      <div className="space-y-8">
+      <div className="mt-24 flex flex-col gap-6 md:mt-32">
         {t.projects.map((project) => (
-          <Card as="article" key={project.name}>
-            <header className="mb-4">
-              <div className="flex flex-col sm:flex-row sm:items-baseline sm:justify-between gap-1">
-                <h2 className="text-2xl font-bold text-white">{project.name}</h2>
-                <span className="text-xs text-purple-400 font-mono uppercase whitespace-nowrap">
-                  {project.status}
-                </span>
-              </div>
-              <p className="text-muted">{project.kind}</p>
-              <p className="text-xs text-gray-500 font-mono mt-1">{project.role}</p>
-            </header>
-
-            <ul className="flex flex-wrap gap-2 list-none mb-6">
-              {project.stack.map((tech) => (
-                <li
-                  key={tech}
-                  className="px-2 py-1 bg-purple-500/5 border border-purple-500/20 text-purple-400 text-[10px] font-mono uppercase tracking-wider"
-                >
-                  {tech}
-                </li>
-              ))}
-            </ul>
-
-            <h3 className="text-[11px] font-mono text-gray-500 uppercase tracking-widest mb-2">
-              {t.labels.context}
-            </h3>
-            <p className="text-sm text-muted leading-relaxed mb-6">{project.context}</p>
-
-            <h3 className="text-[11px] font-mono text-gray-500 uppercase tracking-widest mb-3">
-              {t.labels.decisions}
-            </h3>
-            <ol className="grid grid-cols-1 md:grid-cols-2 gap-4 list-none mb-6">
-              {project.decisions.map((decision) => (
-                <li
-                  key={decision.title}
-                  className="border-l-2 border-purple-500/30 pl-4"
-                >
-                  <h4 className="text-white font-semibold text-sm mb-1">
-                    {decision.title}
-                  </h4>
-                  <p className="text-sm text-muted leading-relaxed">{decision.text}</p>
-                </li>
-              ))}
-            </ol>
-
-            {project.debt && (
-              <>
-                <h3 className="text-[11px] font-mono text-gray-500 uppercase tracking-widest mb-2">
-                  {t.labels.debt}
-                </h3>
-                <p className="text-sm text-muted leading-relaxed mb-6">{project.debt}</p>
-              </>
-            )}
-
-            {(project.links.site || project.links.repo) && (
-              <div className="flex flex-wrap gap-3">
-                {project.links.site && (
-                  <a
-                    href={project.links.site}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className={linkClass}
-                  >
-                    <FaExternalLinkAlt aria-hidden="true" /> {t.labels.site}
-                  </a>
-                )}
-                {project.links.repo && (
-                  <a
-                    href={project.links.repo}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className={linkClass}
-                  >
-                    <FaGithub aria-hidden="true" /> {t.labels.repo}
-                  </a>
-                )}
-              </div>
-            )}
-          </Card>
+          <Reveal key={project.name} y={32}>
+            <CaseStudy project={project} labels={t.labels} shotAlt={shotAlt} />
+          </Reveal>
         ))}
       </div>
     </div>

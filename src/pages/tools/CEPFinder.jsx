@@ -1,9 +1,9 @@
 import { useState } from 'react';
-import { FaSearch, FaMapMarkerAlt, FaCopy, FaCheck } from 'react-icons/fa';
-import Card from '../../components/ui/Card';
-import Input from '../../components/ui/Input';
-import Button from '../../components/ui/Button';
-import PageHeader from '../../components/ui/PageHeader';
+import { Check, Copy, MagnifyingGlass, MapPin } from '@phosphor-icons/react';
+import Card from '../../components/site/GlassCard';
+import Input from '../../components/site/Field';
+import { Button } from '@/components/ui/button';
+import PageHeader from '../../components/site/PageHeader';
 import Seo from '../../components/Seo';
 import { toolSchema } from '../../utils/seo';
 import { fetchCEP } from '../../utils/api';
@@ -51,7 +51,7 @@ export default function CEPFinder() {
   };
 
   return (
-    <div className="pt-24 pb-12 max-w-3xl mx-auto">
+    <div className="stagger-in max-w-3xl pt-36 md:pt-44">
       <Seo
         title="Buscador de CEP Online e Grátis · Vinnicius Santos"
         description="Encontre o endereço completo a partir de um CEP usando a API ViaCEP, direto no navegador e sem cadastro."
@@ -68,9 +68,8 @@ export default function CEPFinder() {
         })}
       />
       <PageHeader
-        tag="[ busca // cep ]"
-        title="CEP"
-        accent="FINDER"
+        title="Busca de"
+        accent="CEP"
         description="Busca endereços completos através do CEP utilizando a API ViaCEP."
       />
 
@@ -86,7 +85,7 @@ export default function CEPFinder() {
               setError(null);
             }}
             onKeyDown={(e) => e.key === 'Enter' && handleSearch()}
-            icon={<FaSearch />}
+            icon={<MagnifyingGlass />}
             error={error}
           />
 
@@ -100,24 +99,24 @@ export default function CEPFinder() {
           </div>
 
           {address && (
-            <div className="p-4 bg-purple-500/5 border border-purple-500/30 rounded-lg">
+            <div className="glass-inset rounded-xl p-5">
               <div className="flex items-center justify-between mb-4">
-                <span className="text-[10px] font-mono text-purple-400 uppercase flex items-center gap-2">
-                  <FaMapMarkerAlt aria-hidden="true" /> Endereço Encontrado
+                <span className="text-sm font-medium text-primary flex items-center gap-2">
+                  <MapPin aria-hidden="true" /> Endereço Encontrado
                 </span>
                 <button
                   type="button"
                   onClick={handleCopyAddress}
-                  className="text-gray-400 hover:text-purple-400 transition-colors text-xs flex items-center gap-1 p-1"
+                  className="text-muted-foreground hover:text-primary transition-colors text-xs flex items-center gap-1 p-1"
                   aria-label="Copiar endereço completo"
                 >
                   {copied ? (
                     <>
-                      <FaCheck className="text-green-400" aria-hidden="true" /> Copiado
+                      <Check className="text-primary" aria-hidden="true" /> Copiado
                     </>
                   ) : (
                     <>
-                      <FaCopy aria-hidden="true" /> Copiar
+                      <Copy aria-hidden="true" /> Copiar
                     </>
                   )}
                 </button>
@@ -125,28 +124,28 @@ export default function CEPFinder() {
 
               <dl className="grid grid-cols-1 md:grid-cols-2 gap-4 text-sm">
                 <div>
-                  <dt className="text-[10px] text-gray-500 uppercase">Logradouro</dt>
-                  <dd className="text-white">{address.logradouro || 'N/A'}</dd>
+                  <dt className="text-sm text-muted-foreground">Logradouro</dt>
+                  <dd className="text-foreground">{address.logradouro || 'N/A'}</dd>
                 </div>
                 <div>
-                  <dt className="text-[10px] text-gray-500 uppercase">Bairro</dt>
-                  <dd className="text-white">{address.bairro || 'N/A'}</dd>
+                  <dt className="text-sm text-muted-foreground">Bairro</dt>
+                  <dd className="text-foreground">{address.bairro || 'N/A'}</dd>
                 </div>
                 <div>
-                  <dt className="text-[10px] text-gray-500 uppercase">Cidade</dt>
-                  <dd className="text-white">{address.localidade || 'N/A'}</dd>
+                  <dt className="text-sm text-muted-foreground">Cidade</dt>
+                  <dd className="text-foreground">{address.localidade || 'N/A'}</dd>
                 </div>
                 <div>
-                  <dt className="text-[10px] text-gray-500 uppercase">UF</dt>
-                  <dd className="text-white">{address.uf || 'N/A'}</dd>
+                  <dt className="text-sm text-muted-foreground">UF</dt>
+                  <dd className="text-foreground">{address.uf || 'N/A'}</dd>
                 </div>
                 <div>
-                  <dt className="text-[10px] text-gray-500 uppercase">Complemento</dt>
-                  <dd className="text-white">{address.complemento || 'N/A'}</dd>
+                  <dt className="text-sm text-muted-foreground">Complemento</dt>
+                  <dd className="text-foreground">{address.complemento || 'N/A'}</dd>
                 </div>
                 <div>
-                  <dt className="text-[10px] text-gray-500 uppercase">DDD</dt>
-                  <dd className="text-white">{address.ddd || 'N/A'}</dd>
+                  <dt className="text-sm text-muted-foreground">DDD</dt>
+                  <dd className="text-foreground">{address.ddd || 'N/A'}</dd>
                 </div>
               </dl>
             </div>
@@ -155,25 +154,24 @@ export default function CEPFinder() {
       </Card>
 
       <Card className="mt-6">
-        <h3 className="text-white font-semibold mb-3 flex items-center gap-2">
-          <span className="text-purple-500" aria-hidden="true">//</span>
+        <h2 className="mb-4 text-xl font-semibold tracking-tight">
           Sobre a API
-        </h3>
-        <ul className="space-y-2 text-muted text-sm list-none">
-          <li className="flex items-start gap-2">
-            <span className="text-purple-500 mt-1" aria-hidden="true">•</span>
+        </h2>
+        <ul className="grid max-w-[60ch] gap-3 text-base leading-relaxed text-foreground/80">
+          <li className="flex items-start gap-3">
+            <span className="mt-[0.7em] h-px w-2.5 shrink-0 bg-primary/70" aria-hidden="true" />
             Utiliza a API pública ViaCEP (gratuita, sem necessidade de cadastro)
           </li>
-          <li className="flex items-start gap-2">
-            <span className="text-purple-500 mt-1" aria-hidden="true">•</span>
+          <li className="flex items-start gap-3">
+            <span className="mt-[0.7em] h-px w-2.5 shrink-0 bg-primary/70" aria-hidden="true" />
             Dados oficiais dos Correios do Brasil
           </li>
-          <li className="flex items-start gap-2">
-            <span className="text-purple-500 mt-1" aria-hidden="true">•</span>
+          <li className="flex items-start gap-3">
+            <span className="mt-[0.7em] h-px w-2.5 shrink-0 bg-primary/70" aria-hidden="true" />
             Não armazena ou registra buscas realizadas
           </li>
-          <li className="flex items-start gap-2">
-            <span className="text-purple-500 mt-1" aria-hidden="true">•</span>
+          <li className="flex items-start gap-3">
+            <span className="mt-[0.7em] h-px w-2.5 shrink-0 bg-primary/70" aria-hidden="true" />
             CEP deve conter exatamente 8 dígitos
           </li>
         </ul>

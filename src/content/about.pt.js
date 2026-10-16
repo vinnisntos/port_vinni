@@ -49,27 +49,27 @@ const courses = [
   { name: 'Engenharia de Software (100h)', org: 'FIAP', year: '2026' },
   {
     name: 'Palestra Strategic Sourcing (2h)',
-    org: 'JUNIP — Consultoria UNIP Júnior de Sorocaba',
+    org: 'JUNIP, Consultoria UNIP Júnior de Sorocaba',
     year: '2026',
   },
   {
     name: 'Palestra Liderança',
-    org: 'JUNIP — Consultoria UNIP Júnior de Sorocaba',
+    org: 'JUNIP, Consultoria UNIP Júnior de Sorocaba',
     year: '2026',
   },
   {
     name: 'Palestra Desenvolvimento de Pessoas (2h)',
-    org: 'JUNIP — Consultoria UNIP Júnior de Sorocaba',
+    org: 'JUNIP, Consultoria UNIP Júnior de Sorocaba',
     year: '2026',
   },
   {
     name: 'Palestra Ideias de Negócio: JUNIP (2h)',
-    org: 'JUNIP — Consultoria UNIP Júnior de Sorocaba',
+    org: 'JUNIP, Consultoria UNIP Júnior de Sorocaba',
     year: '2026',
   },
   { name: 'Semana Tecnológica UNIP', org: 'UNIP / Even3', year: '2025' },
   {
-    name: 'Santander Fala Mundo 2026 — 3ª Edição (vaga concedida)',
+    name: 'Santander Fala Mundo 2026, 3ª Edição (vaga concedida)',
     org: 'Santander Open Academy',
     year: '2026',
   },
@@ -78,8 +78,8 @@ const courses = [
 export const aboutPt = {
   pageHeader: {
     tag: '[ sobre // estudante-dev ]',
-    title: 'SOBRE',
-    accent: 'MIM',
+    title: 'Sobre',
+    accent: 'mim',
   },
 
   seo: {
@@ -90,7 +90,7 @@ export const aboutPt = {
   profile: {
     roleTag: 'Full Stack · Arquitetura de Soluções (.NET / Next.js)',
     bio: 'Estudante de Análise e Desenvolvimento de Sistemas e estagiário de TI na Going2, onde, além do suporte, desenvolvo uma plataforma B2B interna. Construo SaaS multi-tenant com C#/.NET, Next.js e PostgreSQL, com projetos próprios em produção, entre eles o PendurAi, do qual sou cofundador. A vivência anterior em indústria, vendas e logística me deu visão de processo e de quem usa o sistema.',
-    location: 'Sorocaba — SP',
+    location: 'Sorocaba, SP',
     phones: [
       { display: '(15) 92002-2260', href: 'tel:+5515920022260' },
       { display: '(15) 98163-6193', href: 'tel:+5515981636193' },
@@ -214,8 +214,8 @@ export const aboutPt = {
   experience: [
     {
       company: 'Going2',
-      role: 'Estagiário de TI — Suporte, Governança e Desenvolvimento',
-      period: '08/2026 — Atual',
+      role: 'Estagiário de TI, Suporte, Governança e Desenvolvimento',
+      period: '08/2026 - Atual',
       bullets: [
         'Desenvolvimento da plataforma B2B com que a empresa entrega automação e IA aos clientes: assumi um projeto já iniciado e entreguei a visão do cliente, o hub de automações, o módulo de capacitação, o FAQ com assistente e os painéis de gestão e auditoria, além de reformular a interface.',
         'Stack da plataforma: monorepo Next.js 16, React 19 e TypeScript sobre PostgreSQL com Row Level Security por organização, Drizzle ORM, fila de jobs no próprio Postgres e CI no GitHub Actions; cuidei também do deploy em Docker/Dokploy.',
@@ -227,7 +227,7 @@ export const aboutPt = {
     },
     {
       company: 'PendurAi',
-      role: 'Cofundador · Arquitetura e Desenvolvimento Full Stack — ERP e PDV (SaaS) para Adegas e Mercados',
+      role: 'Cofundador · Arquitetura e Desenvolvimento Full Stack, ERP e PDV (SaaS) para Adegas e Mercados',
       period: 'Em Produção (beta)',
       bullets: [
         'SaaS multi-tenant de PDV e ERP em produção na AWS EC2 (pendurai.vinnisantos.com.br), com isolamento de dados por loja (tenant_id), painel de SuperAdmin e licenciamento com bloqueio automático de acesso suspenso, cancelado ou expirado.',
@@ -239,7 +239,7 @@ export const aboutPt = {
     },
     {
       company: 'Mocidade 015',
-      role: 'Desenvolvedor Full Stack — Sistema de Passagens e Reservas',
+      role: 'Desenvolvedor Full Stack, Sistema de Passagens e Reservas',
       period: 'Em Produção',
       bullets: [
         'Sistema 100% em produção com dados reais em mocidade015.vinnisantos.com.br, usado ativamente na venda e reserva de passagens de ônibus para viagens em grupo, com seleção de assentos, lista de espera e gestão de acompanhantes.',
@@ -250,7 +250,7 @@ export const aboutPt = {
     },
     {
       company: 'MarcAi',
-      role: 'Desenvolvedor Full Stack — Plataforma de Agendamento (SaaS)',
+      role: 'Desenvolvedor Full Stack, Plataforma de Agendamento (SaaS)',
       period: 'Em Desenvolvimento',
       bullets: [
         'Plataforma multi-tenant de agendamento para salões de estética: cada salão em seu subdomínio, com isolamento por tenant conferido a cada requisição e onboarding self-service.',
@@ -261,7 +261,7 @@ export const aboutPt = {
     },
     {
       company: 'Life OS',
-      role: 'Desenvolvedor Full Stack — Dashboard de Gestão Pessoal',
+      role: 'Desenvolvedor Full Stack, Dashboard de Gestão Pessoal',
       period: 'Em Produção',
       bullets: [
         'Aplicação fullstack de rotina e produtividade, em uso diário como ferramenta pessoal em lifeos.vinnisantos.com.br, com módulos de treinos, alimentação e Kanban de estudos e trabalhos.',
@@ -271,22 +271,22 @@ export const aboutPt = {
     },
     {
       company: 'Projetos Independentes',
-      role: 'Desenvolvedor de Software — github.com/vinnisntos',
+      role: 'Desenvolvedor de Software, github.com/vinnisntos',
       period: 'Em Desenvolvimento',
       bullets: [
         'Agenda Osvair (agenda.osvairsantos.com.br): agendamento online para transporte executivo, com fluxo de solicitação, orçamento e aprovação do cliente; front estático com Supabase (Auth, RLS e funções RPC), servido por nginx em AWS EC2.',
         'Lopes Vision (demonstrativo.vinnisantos.com.br): site demonstrativo de agendamento para uma ótica, em Next.js, em que o cliente escolhe serviço, dia e horário sem criar conta e recebe a confirmação na tela.',
-        'BDC — Batalha das Capivaras: piloto com landing pública, ranking e sorteio de chaves ao vivo para uma batalha de rima independente, em Next.js 14, Supabase e Vercel.',
+        'BDC (Batalha das Capivaras): piloto com landing pública, ranking e sorteio de chaves ao vivo para uma batalha de rima independente, em Next.js 14, Supabase e Vercel.',
         'wpp-agendamento: SaaS multi-tenant de agendamento via WhatsApp (Baileys), com cobrança via PIX (Mercado Pago), persistência em Supabase/PostgreSQL e fluxo conversacional por máquina de estados.',
         'SaaS_PDV: sistema desktop de PDV e gestão financeira multi-tenant em C# .NET 10 (Windows Forms), Entity Framework Core e SQLite, com isolamento de dados por empresa e filial.',
-        'botmocidade: bot de automação de respostas no WhatsApp (whatsapp-web.js) com comandos customizáveis e sessão persistente via QR Code — projeto open-source educacional.',
+        'botmocidade: bot de automação de respostas no WhatsApp (whatsapp-web.js) com comandos customizáveis e sessão persistente via QR Code. Projeto open-source educacional.',
         'Landing pages para profissionais autônomos, como osvairsantos.com.br e o catálogo de uma designer de sobrancelhas, em HTML e Tailwind CSS.',
       ],
     },
     {
       company: 'D.S.S. Distribuidora',
       role: 'Auxiliar de Vendas Externas Júnior',
-      period: '11/2024 — 03/2026',
+      period: '11/2024 - 03/2026',
       bullets: [
         'Atuação direta no modelo de negócios B2B, com atendimento consultivo, cobrança e negociação com clientes corporativos.',
         'Responsável pela inteligência de roteirização e logística bruta, otimizando o fluxo de entregas e distribuição de mercadorias.',
@@ -295,9 +295,9 @@ export const aboutPt = {
       ],
     },
     {
-      company: 'MDA Do Brasil — Indústria e Comércio',
+      company: 'MDA Do Brasil Indústria e Comércio',
       role: 'Alimentador de Linha de Produção',
-      period: '01/2024 — 03/2024',
+      period: '01/2024 - 03/2024',
       bullets: [
         'Inspeção visual e controle de qualidade rigoroso de peças usinadas de alta precisão.',
         'Monitoramento constante de sistemas de fluidos refrigerantes e manutenção preventiva/corretiva de maquinários industriais.',
@@ -330,6 +330,8 @@ export const aboutPt = {
     { name: 'Vite 8', desc: 'build ultra-rápido' },
     { name: 'React 19', desc: 'com hooks modernos' },
     { name: 'Tailwind CSS v4', desc: 'nativo no Vite' },
+    { name: 'shadcn/ui', desc: 'componentes Radix customizados em vidro' },
+    { name: 'Motion', desc: 'animações que respeitam o movimento reduzido' },
     { name: 'React Router v7', desc: 'para navegação' },
     { name: 'Validações brasileiras', desc: 'algoritmos oficiais' },
     { name: 'API ViaCEP', desc: 'busca de endereços' },
