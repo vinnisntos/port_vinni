@@ -1,7 +1,15 @@
 import { Link, useLocation } from 'react-router-dom';
-import { FaCode, FaDatabase, FaTerminal } from 'react-icons/fa';
-import Card from '../components/ui/Card';
-import Button from '../components/ui/Button';
+import { m, useReducedMotion } from 'motion/react';
+import { ArrowRight, ArrowUpRight, DownloadSimple } from '@phosphor-icons/react';
+import { Button } from '@/components/ui/button';
+import { Badge } from '@/components/ui/badge';
+import { cn, slugify } from '@/lib/utils';
+import GlassCard from '../components/site/GlassCard';
+import Reveal from '../components/site/Reveal';
+import ScrambleText from '../components/site/ScrambleText';
+import BrowserFrame from '../components/site/BrowserFrame';
+import StackMarquee from '../components/site/StackMarquee';
+import LiveGenerator from '../components/site/LiveGenerator';
 import Seo from '../components/Seo';
 import { itemListSchema, personNode, PERSON_ID } from '../utils/seo';
 import { projectsContent } from '../content/projects';
@@ -10,12 +18,12 @@ import { homeContent } from '../content/home';
 import { useLocale, getLocalizedPath } from '../hooks/useLocale';
 
 const SITE_URL = 'https://vinnisantos.com.br';
+const EASE = [0.16, 1, 0.3, 1];
 
-const techStack = [
-  { icon: FaCode, label: 'React 19 + TypeScript' },
-  { icon: FaDatabase, label: 'C# .NET + PostgreSQL' },
-  { icon: FaTerminal, label: 'Fedora Linux' },
-];
+// Projetos do bento: os que têm sistema público para mostrar em imagem.
+const FEATURED = ['PendurAi', 'Life OS', 'Agenda Osvair'];
+// O card grande do bento é mais alto que 16:10; usa uma captura mais alta do mesmo sistema.
+const TALL_SHOTS = { PendurAi: { src: '/shots/pendurai-tall.webp', width: 1280, height: 1120 } };
 
 function homeSchema(locale, path, tools) {
   const toolList = itemListSchema({
@@ -46,18 +54,125 @@ function homeSchema(locale, path, tools) {
   };
 }
 
+function Hero({ t, projectsHref, hero }) {
+  const reduce = useReducedMotion();
+  const enter = (delay) =>
+    reduce
+      ? {}
+      : {
+          initial: { opacity: 0, y: 24 },
+          animate: { opacity: 1, y: 0 },
+          transition: { duration: 0.8, delay, ease: EASE },
+        };
+
+  return (
+    <section className="grid min-h-[100dvh] grid-cols-1 items-center gap-12 pt-28 pb-12 lg:grid-cols-12 lg:gap-10 lg:pt-24">
+      <div className="lg:col-span-6">
+        <h1 className="text-[clamp(3.4rem,7.2vw,6.6rem)] leading-[0.9] font-bold tracking-[-0.05em] text-foreground">
+          <ScrambleText text="Vinnicius" className="block" />
+          <span className="flex items-end gap-[0.06em]">
+            <ScrambleText text="Santos" startDelay={350} />
+            <span aria-hidden="true" className="caret mb-[0.12em] inline-block h-[0.72em] w-[0.09em] bg-primary" />
+          </span>
+        </h1>
+
+        <m.p {...enter(0.35)} className="mt-8 max-w-[34rem] text-lg leading-relaxed text-foreground/80 md:text-xl">
+          {t.heroLead}
+        </m.p>
+
+        <m.div {...enter(0.45)} className="mt-10 flex flex-wrap gap-3">
+          <Button asChild size="lg">
+            <Link to={projectsHref}>
+              {t.ctaProjects}
+              <ArrowRight weight="bold" aria-hidden="true" />
+            </Link>
+          </Button>
+          <Button asChild size="lg" variant="secondary">
+            <a href={`${import.meta.env.BASE_URL}${t.resumeFile}`} download={t.resumeDownloadName}>
+              <DownloadSimple weight="bold" aria-hidden="true" />
+              {t.ctaResume}
+            </a>
+          </Button>
+        </m.div>
+      </div>
+
+      <m.figure
+        className="lg:col-span-6"
+        initial={reduce ? false : { opacity: 0, y: 40, scale: 0.96, filter: 'blur(10px)' }}
+        animate={{ opacity: 1, y: 0, scale: 1, filter: 'blur(0px)' }}
+        transition={{ duration: 1.1, delay: 0.25, ease: EASE }}
+      >
+        <BrowserFrame src={hero.image} alt={t.heroShotAlt} url={hero.links.site} priority tilt />
+        <figcaption className="mt-4 px-2 text-sm text-muted-foreground">{t.heroShotCaption}</figcaption>
+      </m.figure>
+    </section>
+  );
+}
+
+function ProjectTile({ project, href, t, large = false }) {
+  const shot = (large && TALL_SHOTS[project.name]) || { src: project.image, width: 1440, height: 900 };
+
+  return (
+    <Link
+      to={href}
+      className="group block h-full rounded-[var(--radius-panel)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary"
+    >
+      <GlassCard spotlight className="flex h-full flex-col gap-6 p-3 md:p-3">
+        {/* No card grande, a captura cresce para ocupar a altura das duas linhas do bento */}
+        <div
+          className={cn(
+            'overflow-hidden rounded-[calc(var(--radius-panel)-8px)]',
+            large && 'lg:relative lg:min-h-[18rem] lg:flex-1'
+          )}
+        >
+          <img
+            src={shot.src}
+            alt={t.projectsShotAlt(project.name)}
+            width={shot.width}
+            height={shot.height}
+            loading="lazy"
+            decoding="async"
+            className={cn(
+              'aspect-[16/10] w-full object-cover object-top transition-transform duration-700 ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:scale-[1.03]',
+              large && 'lg:absolute lg:inset-0 lg:aspect-auto lg:h-full'
+            )}
+          />
+        </div>
+        <div className={cn('flex flex-col gap-3 px-3 pb-4 md:px-4', !large && 'flex-1')}>
+          <div className="flex flex-wrap items-center justify-between gap-3">
+            <h3 className={large ? 'text-3xl font-semibold tracking-tight' : 'text-2xl font-semibold tracking-tight'}>
+              {project.name}
+            </h3>
+            <Badge variant="signal">{project.status}</Badge>
+          </div>
+          <p className="text-base leading-relaxed text-muted-foreground">{project.kind}</p>
+          {large && (
+            <ul className="mt-2 grid gap-2 sm:grid-cols-2">
+              {project.decisions.slice(0, 4).map((decision) => (
+                <li key={decision.title} className="glass-inset rounded-xl px-4 py-3 text-sm leading-snug text-foreground/90">
+                  {decision.title}
+                </li>
+              ))}
+            </ul>
+          )}
+        </div>
+      </GlassCard>
+    </Link>
+  );
+}
+
 export default function Home() {
   const locale = useLocale();
   const { pathname } = useLocation();
   const t = homeContent[locale];
   const tools = locale === 'en' ? toolsEn : toolsPt;
-  const aboutHref = locale === 'en' ? '/en/about' : '/about';
   const projectsHref = locale === 'en' ? '/en/projects' : '/projects';
-  const featured = projectsContent[locale].projects.slice(0, 3);
+  const allProjects = projectsContent[locale].projects;
+  const [lead, ...rest] = FEATURED.map((name) => allProjects.find((p) => p.name === name));
   const currentPath = locale === 'en' ? '/en' : '/';
 
   return (
-    <div className="pt-24 pb-12">
+    <div>
       <Seo
         title={t.seo.title}
         description={t.seo.description}
@@ -70,194 +185,93 @@ export default function Home() {
           { hreflang: 'x-default', href: SITE_URL + getLocalizedPath(pathname, 'pt') },
         ]}
       />
-      {/* ===========================================================
-          HERO
-          Hierarquia:
-            1. Tag CLI (status)
-            2. Nome (display gigante)
-            3. Subtítulo / proposta de valor
-            4. CTAs principais
-            5. Stack (informação de suporte)
-          =========================================================== */}
-      <section className="relative min-h-[80vh] flex flex-col justify-center">
-        {/* Glow de fundo — atmosfera, não compete com o conteúdo */}
-        <div
-          aria-hidden="true"
-          className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-purple-600/10 blur-[120px] -z-10 rounded-full"
-        />
 
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-end">
-          {/* Lado esquerdo — identidade + CTAs */}
-          <div className="lg:col-span-8">
-            <span className="inline-block px-3 py-1 mb-6 border border-purple-500/30 bg-purple-500/5 text-purple-400 font-mono text-[10px] tracking-widest uppercase">
-              {t.statusTag}
-            </span>
+      <Hero t={t} projectsHref={projectsHref} hero={lead} />
 
-            <h1 className="text-5xl md:text-8xl font-black leading-[0.85] tracking-tighter uppercase mb-6 text-white">
-              VINNICIUS
-              <br />
-              <span className="text-gradient-purple">SANTOS</span>
-            </h1>
+      {/* Stack: o único marquee da página */}
+      <div className="-mx-4 md:-mx-8">
+        <StackMarquee label={t.stackLabel} />
+      </div>
 
-            <p className="max-w-xl text-muted text-lg md:text-xl font-light leading-relaxed mb-8">
-              {t.subtitle}
-            </p>
-
-            <div className="flex flex-wrap gap-4">
-              <Link to={projectsHref}>
-                <Button variant="primary" size="lg">
-                  {t.ctaProjects}
-                </Button>
-              </Link>
-              <Link to="/tools">
-                <Button variant="secondary" size="lg">
-                  {t.ctaPrimary}
-                </Button>
-              </Link>
-              <Link to={aboutHref}>
-                <Button variant="secondary" size="lg">
-                  {t.ctaSecondary}
-                </Button>
-              </Link>
-            </div>
-          </div>
-
-          {/* Lado direito — stack como card secundário (não compete com o hero) */}
-          <aside className="lg:col-span-4 pb-4" aria-label="Stack principal">
-            <Card glow className="h-full">
-              <p className="text-[10px] font-mono text-gray-600 uppercase tracking-widest mb-4">
-                {t.stackLabel}
-              </p>
-              <ul className="space-y-4 list-none">
-                {techStack.map(({ icon: Icon, label }) => (
-                  <li key={label} className="flex items-center gap-3">
-                    <Icon className="text-purple-500 flex-shrink-0" aria-hidden="true" />
-                    <span className="font-mono text-sm text-muted">{label}</span>
-                  </li>
-                ))}
-              </ul>
-            </Card>
-          </aside>
-        </div>
-
-        {/* Faixa inferior — info técnica discreta */}
-        <div className="absolute bottom-0 left-0 right-0 hidden md:flex justify-between items-center py-8 border-t border-white/5">
-          <dl className="flex gap-8">
-            <div className="flex flex-col">
-              <dt className="text-[10px] text-gray-600 font-mono uppercase tracking-tighter">
-                Stack_Primary
-              </dt>
-              <dd className="text-xs text-purple-500 font-mono">React + C# .NET</dd>
-            </div>
-            <div className="flex flex-col">
-              <dt className="text-[10px] text-gray-600 font-mono uppercase tracking-tighter">
-                Database_Engine
-              </dt>
-              <dd className="text-xs text-purple-500 font-mono">
-                PostgreSQL (Supabase)
-              </dd>
-            </div>
-          </dl>
-          <p className="text-[10px] text-gray-600 font-mono uppercase">
-            Hardware: Acer_Nitro_V15 // OS: Fedora_43
-          </p>
-        </div>
-      </section>
-
-      {/* ===========================================================
-          PROJETOS EM DESTAQUE
-          =========================================================== */}
-      <section className="mt-24">
-        <div className="flex items-center gap-4 mb-8">
-          <div className="h-px flex-1 bg-gradient-to-r from-transparent via-purple-500/30 to-transparent" />
-          <h2 className="text-[10px] font-mono text-purple-400 uppercase tracking-widest">
-            {t.projectsSectionLabel}
+      {/* Projetos: bento com capturas reais */}
+      <section aria-labelledby="projects-heading" className="mt-32 md:mt-44">
+        <Reveal>
+          <h2 id="projects-heading" className="max-w-3xl text-4xl leading-[1.02] font-bold tracking-[-0.035em] md:text-6xl">
+            {t.projectsTitle}
           </h2>
-          <div className="h-px flex-1 bg-gradient-to-r from-transparent via-purple-500/30 to-transparent" />
-        </div>
+        </Reveal>
+        <Reveal delay={0.07}>
+          <p className="mt-5 max-w-xl text-lg leading-relaxed text-muted-foreground">{t.projectsLead}</p>
+        </Reveal>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-          {featured.map((project) => (
-            <Link
-              key={project.name}
-              to={projectsHref}
-              className="block group focus:outline-none focus-visible:ring-2 focus-visible:ring-purple-500 rounded-sm"
-            >
-              <Card glow className="h-full">
-                <p className="text-[10px] font-mono text-purple-400 uppercase tracking-widest mb-2">
-                  {project.status}
-                </p>
-                <h3 className="text-lg font-bold text-white mb-2 group-hover:text-purple-400 transition-colors">
-                  {project.name}
-                </h3>
-                <p className="text-sm text-muted mb-4">{project.kind}</p>
-                <ul className="space-y-1.5 list-none">
-                  {project.decisions.slice(0, 3).map((decision) => (
-                    <li key={decision.title} className="text-sm text-muted flex gap-2">
-                      <span className="text-purple-500 flex-shrink-0" aria-hidden="true">
-                        →
-                      </span>
-                      {decision.title}
-                    </li>
-                  ))}
-                </ul>
-              </Card>
-            </Link>
+        <div className="mt-12 grid grid-cols-1 gap-4 lg:grid-cols-12 lg:grid-rows-[auto_auto]">
+          <Reveal delay={0.1} className="lg:col-span-7 lg:row-span-2">
+            <ProjectTile project={lead} href={`${projectsHref}#${slugify(lead.name)}`} t={t} large />
+          </Reveal>
+          {rest.map((project, i) => (
+            <Reveal key={project.name} delay={0.16 + i * 0.07} className="lg:col-span-5">
+              <ProjectTile project={project} href={`${projectsHref}#${slugify(project.name)}`} t={t} />
+            </Reveal>
           ))}
+          <Reveal delay={0.2} className="lg:col-span-12">
+            <Link
+              to={projectsHref}
+              className="group flex flex-col gap-4 rounded-[var(--radius-panel)] bg-primary p-7 text-primary-foreground transition-[transform,background-color] duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] hover:bg-[#5cf0bb] active:scale-[0.99] md:flex-row md:items-center md:justify-between md:p-10"
+            >
+              <span>
+                <span className="block text-3xl font-bold tracking-[-0.03em] md:text-4xl">
+                  {t.projectsAll(allProjects.length)}
+                </span>
+                <span className="mt-2 block text-base text-primary-foreground/75">{t.projectsAllHint}</span>
+              </span>
+              <span className="flex size-14 shrink-0 items-center justify-center rounded-full bg-primary-foreground text-primary transition-transform duration-500 group-hover:translate-x-1">
+                <ArrowRight className="size-6" weight="bold" aria-hidden="true" />
+              </span>
+            </Link>
+          </Reveal>
         </div>
       </section>
 
-      {/* ===========================================================
-          FERRAMENTAS
-          =========================================================== */}
-      <section className="mt-24">
-        <div className="flex items-center gap-4 mb-8">
-          <div className="h-px flex-1 bg-gradient-to-r from-transparent via-purple-500/30 to-transparent" />
-          <span className="text-[10px] font-mono text-purple-400 uppercase tracking-widest">
-            {t.toolsSectionLabel}
-          </span>
-          <div className="h-px flex-1 bg-gradient-to-r from-transparent via-purple-500/30 to-transparent" />
-        </div>
-
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-          {tools.map((tool) => (
-            <Link
-              key={tool.path}
-              to={tool.path}
-              className="block group focus:outline-none focus-visible:ring-2 focus-visible:ring-purple-500 rounded-sm"
-              aria-label={t.toolAriaLabel(tool.title)}
-            >
-              <Card glow className="h-full">
-                <div className="flex items-start justify-between mb-4">
-                  <tool.icon
-                    className="w-8 h-8 text-purple-500 group-hover:text-purple-400 transition-colors"
+      {/* Ferramentas: lista + elemento vivo */}
+      <section aria-labelledby="tools-heading" className="mt-32 grid grid-cols-1 gap-12 md:mt-44 lg:grid-cols-12 lg:gap-10">
+        <div className="lg:col-span-5">
+          <Reveal>
+            <h2 id="tools-heading" className="text-4xl leading-[1.02] font-bold tracking-[-0.035em] md:text-5xl">
+              {t.toolsTitle}
+            </h2>
+          </Reveal>
+          <Reveal delay={0.07}>
+            <p className="mt-5 max-w-md text-lg leading-relaxed text-muted-foreground">{t.toolsLead}</p>
+          </Reveal>
+          <ul className="mt-10 grid gap-1">
+            {tools.map((tool, i) => (
+              <Reveal as="li" key={tool.path} delay={0.08 + i * 0.05}>
+                <Link
+                  to={tool.path}
+                  aria-label={t.toolAriaLabel(tool.title)}
+                  className="group flex items-center gap-4 rounded-xl px-3 py-3 transition-colors duration-300 hover:bg-white/5"
+                >
+                  <span className="glass-inset flex size-11 shrink-0 items-center justify-center rounded-full text-primary">
+                    <tool.icon className="size-5" weight="duotone" aria-hidden="true" />
+                  </span>
+                  <span className="min-w-0 flex-1">
+                    <span className="block font-medium text-foreground">{tool.title}</span>
+                    <span className="block text-sm text-muted-foreground md:truncate">{tool.description}</span>
+                  </span>
+                  <ArrowUpRight
+                    className="size-4 shrink-0 text-muted-foreground transition-[transform,color] duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 group-hover:text-primary"
+                    weight="bold"
                     aria-hidden="true"
                   />
-                  <span
-                    aria-hidden="true"
-                    className="text-[10px] font-mono text-gray-600 group-hover:text-purple-400 transition-colors"
-                  >
-                    →
-                  </span>
-                </div>
-                <h3 className="text-lg font-bold text-white mb-2 group-hover:text-purple-400 transition-colors">
-                  {tool.title}
-                </h3>
-                <p className="text-sm text-muted mb-4">{tool.description}</p>
-                <div className="flex flex-wrap gap-2">
-                  {tool.tags.map((tag) => (
-                    <span
-                      key={tag}
-                      className="px-2 py-1 bg-purple-500/5 border border-purple-500/20 text-purple-400 text-[10px] font-mono uppercase tracking-wider"
-                    >
-                      {tag}
-                    </span>
-                  ))}
-                </div>
-              </Card>
-            </Link>
-          ))}
+                </Link>
+              </Reveal>
+            ))}
+          </ul>
         </div>
+
+        <Reveal delay={0.12} className="lg:col-span-7 lg:pt-28">
+          <LiveGenerator t={t.live} />
+        </Reveal>
       </section>
     </div>
   );

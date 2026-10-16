@@ -1,14 +1,9 @@
 import { useState } from 'react';
-import {
-  FaPhone,
-  FaCheckCircle,
-  FaTimesCircle,
-  FaMobileAlt,
-} from 'react-icons/fa';
-import Card from '../../components/ui/Card';
-import Input from '../../components/ui/Input';
-import Button from '../../components/ui/Button';
-import PageHeader from '../../components/ui/PageHeader';
+import { CheckCircle, DeviceMobile, Phone, XCircle } from '@phosphor-icons/react';
+import Card from '../../components/site/GlassCard';
+import Input from '../../components/site/Field';
+import { Button } from '@/components/ui/button';
+import PageHeader from '../../components/site/PageHeader';
 import Seo from '../../components/Seo';
 import { toolSchema } from '../../utils/seo';
 import { isValidPhone, formatPhone } from '../../utils/validators';
@@ -43,7 +38,7 @@ export default function PhoneValidator() {
   };
 
   return (
-    <div className="pt-24 pb-12 max-w-3xl mx-auto">
+    <div className="stagger-in max-w-3xl pt-36 md:pt-44">
       <Seo
         title="Validador de Telefone Online e Grátis · Vinnicius Santos"
         description="Valide números de celular e telefone fixo do Brasil com formatação automática, direto no navegador."
@@ -60,9 +55,8 @@ export default function PhoneValidator() {
         })}
       />
       <PageHeader
-        tag="[ validador // telefone ]"
-        title="PHONE"
-        accent="VALIDATOR"
+        title="Validador de"
+        accent="telefone"
         description="Valida números de telefone brasileiros (celulares e fixos)."
       />
 
@@ -78,7 +72,7 @@ export default function PhoneValidator() {
               setResult(null);
             }}
             onKeyDown={(e) => e.key === 'Enter' && handleValidate()}
-            icon={<FaPhone />}
+            icon={<Phone />}
           />
 
           <div className="flex gap-3">
@@ -93,28 +87,28 @@ export default function PhoneValidator() {
           {result && (
             <div
               role="status"
-              className={`p-4 border rounded-lg flex items-center gap-3 ${
+              className={`p-4 border rounded-xl flex items-center gap-3 ${
                 result.valid
-                  ? 'bg-green-500/5 border-green-500/30 text-green-400'
-                  : 'bg-red-500/5 border-red-500/30 text-red-400'
+                  ? 'bg-primary/[0.08] border-primary/30 text-primary'
+                  : 'bg-destructive/[0.08] border-destructive/30 text-destructive'
               }`}
             >
               {result.valid ? (
-                <FaCheckCircle
+                <CheckCircle
                   className="w-5 h-5 flex-shrink-0"
                   aria-hidden="true"
                 />
               ) : (
-                <FaTimesCircle
+                <XCircle
                   className="w-5 h-5 flex-shrink-0"
                   aria-hidden="true"
                 />
               )}
               <div>
-                <p className="font-mono text-sm">{result.message}</p>
+                <p className="text-sm font-medium">{result.message}</p>
                 {result.type && (
-                  <p className="text-xs text-gray-500 mt-1 flex items-center gap-1">
-                    <FaMobileAlt aria-hidden="true" /> Tipo: {result.type}
+                  <p className="text-xs text-muted-foreground mt-1 flex items-center gap-1">
+                    <DeviceMobile aria-hidden="true" /> Tipo: {result.type}
                   </p>
                 )}
               </div>
@@ -124,25 +118,24 @@ export default function PhoneValidator() {
       </Card>
 
       <Card className="mt-6">
-        <h3 className="text-white font-semibold mb-3 flex items-center gap-2">
-          <span className="text-purple-500" aria-hidden="true">//</span>
+        <h2 className="mb-4 text-xl font-semibold tracking-tight">
           Regras de validação
-        </h3>
-        <ul className="space-y-2 text-muted text-sm list-none">
-          <li className="flex items-start gap-2">
-            <span className="text-purple-500 mt-1" aria-hidden="true">•</span>
+        </h2>
+        <ul className="grid max-w-[60ch] gap-3 text-base leading-relaxed text-foreground/80">
+          <li className="flex items-start gap-3">
+            <span className="mt-[0.7em] h-px w-2.5 shrink-0 bg-primary/70" aria-hidden="true" />
             <strong>Celular:</strong> 11 dígitos, começando com 9 após o DDD
           </li>
-          <li className="flex items-start gap-2">
-            <span className="text-purple-500 mt-1" aria-hidden="true">•</span>
+          <li className="flex items-start gap-3">
+            <span className="mt-[0.7em] h-px w-2.5 shrink-0 bg-primary/70" aria-hidden="true" />
             <strong>Fixo:</strong> 10 dígitos, primeiros dígitos entre 2-5
           </li>
-          <li className="flex items-start gap-2">
-            <span className="text-purple-500 mt-1" aria-hidden="true">•</span>
+          <li className="flex items-start gap-3">
+            <span className="mt-[0.7em] h-px w-2.5 shrink-0 bg-primary/70" aria-hidden="true" />
             DDD válido: 11 a 99 (todos os DDDs brasileiros)
           </li>
-          <li className="flex items-start gap-2">
-            <span className="text-purple-500 mt-1" aria-hidden="true">•</span>
+          <li className="flex items-start gap-3">
+            <span className="mt-[0.7em] h-px w-2.5 shrink-0 bg-primary/70" aria-hidden="true" />
             Formatação automática no padrão (XX) XXXXX-XXXX
           </li>
         </ul>

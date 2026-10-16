@@ -1,5 +1,6 @@
 // Estudos de caso: cada projeto lista as decisões de arquitetura tomadas,
-// o motivo e o custo assumido. O conteúdo vem dos READMEs e ADRs dos repositórios.
+// o motivo e o custo assumido. `image` aponta para uma captura real do sistema
+// no ar (public/shots), quando ele tem página pública. O conteúdo vem dos READMEs e ADRs dos repositórios.
 
 const GITHUB = 'https://github.com/vinnisntos';
 
@@ -7,8 +8,8 @@ export const projectsContent = {
   pt: {
     pageHeader: {
       tag: '[ arquitetura // decisões ]',
-      title: 'ARQUITETURA &',
-      accent: 'PROJETOS',
+      title: 'Arquitetura &',
+      accent: 'projetos',
       description:
         'Como cada sistema foi desenhado: a decisão tomada, o motivo e o custo assumido.',
     },
@@ -48,6 +49,7 @@ export const projectsContent = {
     projects: [
       {
         name: 'PendurAi',
+        image: '/shots/pendurai.webp',
         kind: 'PDV e ERP SaaS multi-tenant para adegas e mercados',
         role: 'Cofundador · arquitetura e desenvolvimento',
         status: 'Em produção (beta)',
@@ -170,6 +172,7 @@ export const projectsContent = {
       },
       {
         name: 'Life OS',
+        image: '/shots/lifeos.webp',
         kind: 'Painel pessoal de rotina, treinos, alimentação e estudos',
         role: 'Arquitetura e desenvolvimento',
         status: 'Em produção',
@@ -198,6 +201,7 @@ export const projectsContent = {
       },
       {
         name: 'Agenda Osvair',
+        image: '/shots/agenda.webp',
         kind: 'Agendamento online para transporte executivo',
         role: 'Arquitetura e desenvolvimento',
         status: 'Em produção',
@@ -227,8 +231,8 @@ export const projectsContent = {
   en: {
     pageHeader: {
       tag: '[ architecture // decisions ]',
-      title: 'ARCHITECTURE &',
-      accent: 'PROJECTS',
+      title: 'Architecture &',
+      accent: 'projects',
       description:
         'How each system was designed: the decision made, the reason, and the cost accepted.',
     },
@@ -268,6 +272,7 @@ export const projectsContent = {
     projects: [
       {
         name: 'PendurAi',
+        image: '/shots/pendurai.webp',
         kind: 'Multi-tenant POS and ERP SaaS for wine shops and small markets',
         role: 'Co-founder · architecture and development',
         status: 'In production (beta)',
@@ -390,6 +395,7 @@ export const projectsContent = {
       },
       {
         name: 'Life OS',
+        image: '/shots/lifeos.webp',
         kind: 'Personal dashboard for routine, workouts, nutrition, and studies',
         role: 'Architecture and development',
         status: 'In production',
@@ -418,6 +424,7 @@ export const projectsContent = {
       },
       {
         name: 'Agenda Osvair',
+        image: '/shots/agenda.webp',
         kind: 'Online booking for an executive transport service',
         role: 'Architecture and development',
         status: 'In production',
