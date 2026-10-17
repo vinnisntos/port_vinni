@@ -2,7 +2,7 @@ import { lazy, Suspense, useCallback, useEffect, useState } from 'react';
 import { AnimatePresence, m, useReducedMotion } from 'motion/react';
 import { Trophy } from '@phosphor-icons/react';
 import { emit, on } from '@/lib/events';
-import { unlock } from '@/lib/eggs';
+import { announceCertificate, EGGS, foundEggs, unlock } from '@/lib/eggs';
 import { useLocale } from '../../hooks/useLocale';
 
 const MatrixRain = lazy(() => import('./MatrixRain'));
@@ -76,9 +76,16 @@ export default function EasterEggs() {
     };
   }, [locale, reduce]);
 
+  // quem zerou os eggs antes do certificado existir também ganha o aviso
+  useEffect(() => {
+    if (foundEggs().length < Object.keys(EGGS).length) return undefined;
+    const timer = setTimeout(() => announceCertificate(locale), 1500);
+    return () => clearTimeout(timer);
+  }, [locale]);
+
   useEffect(() => {
     if (!toast) return undefined;
-    const timer = setTimeout(() => setToast(null), 4200);
+    const timer = setTimeout(() => setToast(null), toast.duration ?? 4200);
     return () => clearTimeout(timer);
   }, [toast]);
 
@@ -108,6 +115,18 @@ export default function EasterEggs() {
               <div className="min-w-0">
                 <p className="font-mono text-sm font-medium text-primary">{toast.title}</p>
                 <p className="mt-0.5 text-sm text-foreground/85">{toast.text}</p>
+                {toast.action && (
+                  <button
+                    type="button"
+                    onClick={() => {
+                      toast.action.run();
+                      setToast(null);
+                    }}
+                    className="mt-2 rounded-md bg-primary px-3 py-1 font-mono text-xs font-medium text-primary-foreground hover:bg-primary-hover"
+                  >
+                    {toast.action.label}
+                  </button>
+                )}
               </div>
             </m.div>
           )}
